@@ -15,7 +15,7 @@
 <h2 id="Node-js"><a href="#Node-js" class="headerlink" title="Node.js"></a>Node.js</h2><h3 id="什么是Node-js"><a href="#什么是Node-js" class="headerlink" title="什么是Node.js"></a>什么是Node.js</h3><p><strong>Node.js</strong>  是一个基于 Chrome V8 引擎的JavaScript运行时环境，运行在服务端，且开源、跨平台。</p>
 <p>Node.js大部分基本模块使用 JavaScript 编写，使用事件驱动、非阻塞和异步输入输出模型等技术提供性能。</p>
 <h3 id="Node-js安装"><a href="#Node-js安装" class="headerlink" title="Node.js安装"></a>Node.js安装</h3><p>登录官网下载：<a href="https://nodejs.org/zh-cn/download/" target="_blank" rel="noopener">https://nodejs.org/zh-cn/download/</a></p>
-<p><img src="C:%5CUsers%5Cdell%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1571486141707.png" alt="1571486141707"></p>
+<p><img src="%5Cimages%5Chexo-blog%5Cnodejs-install.png" alt="Node.js的安装"></p>
 <p>下载windows安装包，安装一路 next 即可。</p>
 <p>查看是否安装成功，运行 <code>node -v</code>，出现版本号。</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">C:\Users\dell&gt;node -v</span><br><span class="line">v10.16.0</span><br></pre></td></tr></table></figure>
