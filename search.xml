@@ -107,7 +107,7 @@
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">hexo d</span><br></pre></td></tr></table></figure>
 
 <p>GitHub对应仓库的分支下，可查到提交的代码。</p>
-<p><img src="C:%5CUsers%5Cdell%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1571485524596.png" alt="1571485524596"></p>
+<p><img src="/images/hexo-blog/code-commit.png" alt="提交的代码"></p>
 <p>访问GitHub Page，即可浏览博客页，参考：<a href=""https://newiflin.github.io"">newiflin.github.io</a></p>
 <p>至此，基于 hexo + GitHub 的博客就基本搭建完毕。</p>
 <hr>
