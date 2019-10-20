@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>Typera 的基本语法基础</title>
+    <title>Typora 的基本语法基础</title>
     <url>/2019/10/20/typera-markdown/</url>
     <content><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><blockquote>
 <p><strong>Typora</strong> 是当下一款流行的 <strong>mardown</strong> 编辑器和阅读器，简单、高效。</p>
@@ -225,7 +225,7 @@
         <category>markdown</category>
       </categories>
       <tags>
-        <tag>Typera</tag>
+        <tag>Typora</tag>
         <tag>markdown</tag>
       </tags>
   </entry>
@@ -233,15 +233,15 @@
     <title>使用 Hexo 和 GitHub 搭建个人博客</title>
     <url>/2019/10/19/hexo-blog/</url>
     <content><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><blockquote>
-<p>很早就计划着写博客的念头，从申请域名，租服务器，又因为各种原因推到现在。最近无意浏览到了搭建基于 Hexo 与 GitHub 的教程，废话少说，Just Do It。</p>
+<p>计划建个人博客的念头由来已久，从尝试申请域名，租服务器，又因为各种原因放弃，推迟到了现在。最近无意间浏览到一篇基于 Hexo 与 GitHub 的个人博客搭建教程，相当容易上手，那就此开始吧。</p>
 </blockquote><h2 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h2><ul>
 <li>node.js（推荐 10.0 版本及以上）</li>
 <li>git</li>
 <li>hexo</li>
-</ul><hr><h2 id="Node-js"><a href="#Node-js" class="headerlink" title="Node.js"></a>Node.js</h2><h3 id="什么是Node-js"><a href="#什么是Node-js" class="headerlink" title="什么是Node.js"></a>什么是Node.js</h3><p><strong>Node.js</strong>  是一个基于 Chrome V8 引擎的 JavaScript 运行时环境，运行在服务端，具有开源、跨平台的特性。</p><a id="more"></a>
+</ul><hr><h2 id="Node-js"><a href="#Node-js" class="headerlink" title="Node.js"></a>Node.js</h2><h3 id="什么是Node-js"><a href="#什么是Node-js" class="headerlink" title="什么是Node.js"></a>什么是Node.js</h3><a id="more"></a>
 
 
-
+<p><strong>Node.js</strong>  是一个基于 Chrome V8 引擎的 JavaScript 运行时环境，运行在服务端，具有开源、跨平台的特性。</p>
 <p>Node.js 大部分基本模块使用 JavaScript 编写，使用事件驱动、非阻塞和异步输入输出模型等技术提高性能。</p>
 <h3 id="Node-js安装"><a href="#Node-js安装" class="headerlink" title="Node.js安装"></a>Node.js安装</h3><p>登录官网下载：<a href="https://nodejs.org/zh-cn/download/" target="_blank" rel="noopener">https://nodejs.org/zh-cn/download/</a></p>
 <p><img src="/images/hexo-blog/nodejs-install.png" alt="Node.js的安装"></p>
