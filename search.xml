@@ -233,7 +233,7 @@
     <title>使用 Hexo 和 GitHub 搭建个人博客</title>
     <url>/2019/10/19/hexo-blog/</url>
     <content><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><blockquote>
-<p>计划建个人博客的念头由来已久，从尝试申请域名，租服务器，又因为各种原因放弃，推迟到了现在。最近无意间浏览到一篇基于 Hexo 与 GitHub 的个人博客搭建教程，相当容易上手，那就此开始吧。</p>
+<p>拥有个人博客的念头由来已久，尝试申请域名，租服务器，却又因为各种原因搁置到了今天。最近无意间浏览到一篇基于 Hexo 与 GitHub 的个人博客搭建教程，相当容易上手，那趁着周末就此开始吧。</p>
 </blockquote><h2 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h2><ul>
 <li>node.js（推荐 10.0 版本及以上）</li>
 <li>git</li>
@@ -337,7 +337,7 @@
 
 <p>GitHub对应仓库的分支下，可查到提交的代码。</p>
 <p><img src="/images/hexo-blog/code-commit.png" alt="提交的代码"></p>
-<p>访问GitHub Page，即可浏览博客页，参考：<a href https: newiflin.github.io"">newiflin.github.io</a></p>
+<p>访问GitHub Page，即可浏览个人的博客页，参考：<a href https: newiflin.github.io"">newiflin.github.io</a></p>
 <p>至此，基于 hexo + GitHub 的博客就基本搭建完毕。</p>
 <hr>
 ]]></content>
@@ -349,21 +349,31 @@
       </tags>
   </entry>
   <entry>
-    <title>Hello World</title>
+    <title>Hexo 的基本命令</title>
     <url>/2019/10/19/hello-world/</url>
-    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p><a id="more"></a>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
+    <content><![CDATA[<blockquote>
+<p>Hexo 官网：<a href="https://hexo.io/" target="_blank" rel="noopener">https://hexo.io/</a></p>
+<p>Hexo 官方文档：<a href="https://hexo.io/docs/" target="_blank" rel="noopener">https://hexo.io/docs/</a></p>
+<p>Hexo 的 GitHub 地址：<a href="https://github.com/hexojs/hexo">https://github.com/hexojs/hexo</a></p>
+</blockquote><h2 id="快速开始"><a href="#快速开始" class="headerlink" title="快速开始"></a>快速开始</h2><h3 id="创建一篇新文章"><a href="#创建一篇新文章" class="headerlink" title="创建一篇新文章"></a>创建一篇新文章</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure><p>更多信息: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p><a id="more"></a>
 
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
 
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
 
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+<h3 id="运行服务器"><a href="#运行服务器" class="headerlink" title="运行服务器"></a>运行服务器</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
 
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+<p>更多信息: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
+<h3 id="生成静态网页"><a href="#生成静态网页" class="headerlink" title="生成静态网页"></a>生成静态网页</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>更多信息: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
+<h3 id="提交到远程站点"><a href="#提交到远程站点" class="headerlink" title="提交到远程站点"></a>提交到远程站点</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>更多信息: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
 ]]></content>
+      <categories>
+        <category>博客</category>
+      </categories>
+      <tags>
+        <tag>hexo</tag>
+      </tags>
   </entry>
 </search>
