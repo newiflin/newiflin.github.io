@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>VS Code windows10快捷键</title>
+    <title>VS Code windows10 快捷键</title>
     <url>/2019/10/23/vscode-ks/</url>
     <content><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><blockquote>
 <p>Visual Studio Code（简称 VS Code）是一款由微软推出的开源代码编辑器，支持多种编程语言，集成终端，可以在编译器中脚本、编译软件、调试脚本、设置断点、做版本管理。此外VS Code 还支持丰富的扩展程序。VS Code 凭借众多优点已一跃成为”最受欢迎的开发环境“，没有之一！</p>
 <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQO0B5xlmRoPQO43h8hjigbOhNQqLLT1CxzH92P2_TTwZV5GAB_Kg&amp;s" alt="“vscode”的图片搜索结果" style="zoom:50%;">
 
-<p>掌握VS Code 的快捷键，对于开发效率的提升将有很大帮助。</p>
+<p>掌握 VS Code 的快捷键，对于开发效率的提升将有很大帮助。</p>
 </blockquote><a id="more"></a>
 <hr>
 <h2 id="VS-Code-快捷键"><a href="#VS-Code-快捷键" class="headerlink" title="VS Code 快捷键"></a>VS Code 快捷键</h2><style>
    table th:first-of-type {
            width: 40%
     }
-    a {
+    a .foo  {
         color: blue
     }
 </style>
@@ -554,15 +554,13 @@
 <h2 id="VS-Code-常用的快捷键"><a href="#VS-Code-常用的快捷键" class="headerlink" title="VS Code 常用的快捷键"></a>VS Code 常用的快捷键</h2><ul>
 <li>一篇值得收藏的关于 VS Code 常用快捷键的公众号文章：</li>
 </ul>
-<blockquote>
-<p><a href="https://mp.weixin.qq.com/s/SX0dp3506Pabo-mpZ99cKw" target="_blank" rel="noopener">21个VSCode快捷键，让代码更快，更有趣</a></p>
-</blockquote>
-<ul>
-<li>最后，再附上markdown修改表格宽度的方法：</li>
-</ul>
-<blockquote>
-<p><a href="https://stackoverflow.com/questions/36121672/set-table-column-width-via-markdown" target="_blank" rel="noopener">https://stackoverflow.com/questions/36121672/set-table-column-width-via-markdown</a></p>
-</blockquote>
+<div class="foo">
+> [21个VSCode快捷键，让代码更快，更有趣](https://mp.weixin.qq.com/s/SX0dp3506Pabo-mpZ99cKw)
+</div>
++ 最后，再附上 markdown 修改表格宽度的方法：
+<div class="foo">
+> https://stackoverflow.com/questions/36121672/set-table-column-width-via-markdown
+</div>
 ]]></content>
       <categories>
         <category>快捷键</category>
