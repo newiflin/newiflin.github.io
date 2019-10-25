@@ -13,25 +13,25 @@
 <h2 id="VS-Code-快捷键"><a href="#VS-Code-快捷键" class="headerlink" title="VS Code 快捷键"></a>VS Code 快捷键</h2><h3 id="通用部分"><a href="#通用部分" class="headerlink" title="通用部分"></a>通用部分</h3><table>
 <thead>
 <tr>
-<th>命令</th>
-<th align="left">快捷键</th>
+<th>快捷键</th>
+<th align="left">命令</th>
 </tr>
 </thead>
 <tbody><tr>
-<td>显示命令</td>
-<td align="left"><code>Ctrl</code>+<code>Shift</code>+<code>P</code>, <code>F1</code></td>
+<td><code>Ctrl</code>+<code>Shift</code>+<code>P</code>, <code>F1</code></td>
+<td align="left">显示命令</td>
 </tr>
 <tr>
-<td>快速打开</td>
-<td align="left"><code>Ctrl</code>+<code>P</code></td>
+<td><code>Ctrl</code>+<code>P</code></td>
+<td align="left">快速打开文件</td>
 </tr>
 <tr>
-<td>开启新的窗口</td>
-<td align="left"><code>Ctrl</code>+<code>Shift</code>+<code>N</code></td>
+<td><code>Ctrl</code>+<code>Shift</code>+<code>N</code></td>
+<td align="left">开启新窗口</td>
 </tr>
 <tr>
-<td>关闭窗口</td>
-<td align="left"><code>Ctrl</code>+<code>Shift</code>+<code>w</code></td>
+<td><code>Ctrl</code>+<code>Shift</code>+<code>w</code></td>
+<td align="left">关闭窗口</td>
 </tr>
 </tbody></table>
 <h3 id="基本的编辑"><a href="#基本的编辑" class="headerlink" title="基本的编辑"></a>基本的编辑</h3><table>
