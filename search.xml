@@ -10,13 +10,16 @@
 <p>掌握VS Code 的快捷键，对于开发效率的提升将有很大帮助。</p>
 </blockquote><a id="more"></a>
 <hr>
-<h2 id="VS-Code-快捷键"><a href="#VS-Code-快捷键" class="headerlink" title="VS Code 快捷键"></a>VS Code 快捷键</h2><h3 id="通用部分"><a href="#通用部分" class="headerlink" title="通用部分"></a>通用部分</h3><style>
+<h2 id="VS-Code-快捷键"><a href="#VS-Code-快捷键" class="headerlink" title="VS Code 快捷键"></a>VS Code 快捷键</h2><style>
    table th:first-of-type {
-   width: 45%
-}
+           width: 40%
+    }
+    a {
+        color: blue
+    }
 </style>
 
-<table>
+<h3 id="通用部分"><a href="#通用部分" class="headerlink" title="通用部分"></a>通用部分</h3><table>
 <thead>
 <tr>
 <th align="left">快捷键</th>
