@@ -14,6 +14,9 @@
    table th:first-of-type {
            width: 40%
     }
+    a .foo {
+        color: blue
+    }
 </style>
 
 <h3 id="通用部分"><a href="#通用部分" class="headerlink" title="通用部分"></a>通用部分</h3><table>
