@@ -10,28 +10,33 @@
 <p>掌握VS Code 的快捷键，对于开发效率的提升将有很大帮助。</p>
 </blockquote><a id="more"></a>
 <hr>
-<h2 id="VS-Code-快捷键"><a href="#VS-Code-快捷键" class="headerlink" title="VS Code 快捷键"></a>VS Code 快捷键</h2><h3 id="通用部分"><a href="#通用部分" class="headerlink" title="通用部分"></a>通用部分</h3><table>
+<h2 id="VS-Code-快捷键"><a href="#VS-Code-快捷键" class="headerlink" title="VS Code 快捷键"></a>VS Code 快捷键</h2><h3 id="通用部分"><a href="#通用部分" class="headerlink" title="通用部分"></a>通用部分</h3><style>
+table th:first-of-type {  #first表示表格第一列
+    width: 45%; # 可使用%比例
+}
+</style>
+<table>
 <thead>
 <tr>
 <th>快捷键</th>
-<th align="left">命令</th>
+<th>命令</th>
 </tr>
 </thead>
 <tbody><tr>
 <td><code>Ctrl</code>+<code>Shift</code>+<code>P</code>, <code>F1</code></td>
-<td align="left">显示命令</td>
+<td>显示命令</td>
 </tr>
 <tr>
 <td><code>Ctrl</code>+<code>P</code></td>
-<td align="left">快速打开文件</td>
+<td>快速打开文件</td>
 </tr>
 <tr>
 <td><code>Ctrl</code>+<code>Shift</code>+<code>N</code></td>
-<td align="left">开启新窗口</td>
+<td>开启新窗口</td>
 </tr>
 <tr>
 <td><code>Ctrl</code>+<code>Shift</code>+<code>w</code></td>
-<td align="left">关闭窗口</td>
+<td>关闭窗口</td>
 </tr>
 </tbody></table>
 <h3 id="基本的编辑"><a href="#基本的编辑" class="headerlink" title="基本的编辑"></a>基本的编辑</h3><table>
@@ -506,36 +511,36 @@
 <thead>
 <tr>
 <th>快捷键</th>
-<th align="left">命令</th>
+<th>命令</th>
 </tr>
 </thead>
 <tbody><tr>
 <td><code>Ctrl</code>+`</td>
-<td align="left">显示集成终端</td>
+<td>显示集成终端</td>
 </tr>
 <tr>
 <td><code>Ctrl</code>+<code>Shift</code>+`</td>
-<td align="left">创建一个新的终端</td>
+<td>创建一个新的终端</td>
 </tr>
 <tr>
 <td><code>Ctrl</code>+<code>Shift</code>+<code>C</code></td>
-<td align="left">复制选中的内容</td>
+<td>复制选中的内容</td>
 </tr>
 <tr>
 <td><code>Ctrl</code>+<code>Shift</code>+<code>V</code></td>
-<td align="left">粘贴到激活状态的终端</td>
+<td>粘贴到激活状态的终端</td>
 </tr>
 <tr>
 <td><code>Ctrl</code>+<code>↑</code>/<code>↓</code></td>
-<td align="left">向上/下滚动</td>
+<td>向上/下滚动</td>
 </tr>
 <tr>
 <td><code>Shift</code>+<code>PgUp</code>/<code>PgDown</code></td>
-<td align="left">向上/下滚动一页</td>
+<td>向上/下滚动一页</td>
 </tr>
 <tr>
 <td><code>Ctrl</code>+<code>Home</code>/<code>End</code></td>
-<td align="left">滚动到顶部/底部</td>
+<td>滚动到顶部/底部</td>
 </tr>
 </tbody></table>
 <hr>
