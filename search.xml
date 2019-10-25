@@ -14,9 +14,6 @@
    table th:first-of-type {
            width: 40%
     }
-    a .foo  {
-        color: blue
-    }
 </style>
 
 <h3 id="通用部分"><a href="#通用部分" class="headerlink" title="通用部分"></a>通用部分</h3><table>
@@ -554,13 +551,15 @@
 <h2 id="VS-Code-常用的快捷键"><a href="#VS-Code-常用的快捷键" class="headerlink" title="VS Code 常用的快捷键"></a>VS Code 常用的快捷键</h2><ul>
 <li>一篇值得收藏的关于 VS Code 常用快捷键的公众号文章：</li>
 </ul>
-<div class="foo">
-> [21个VSCode快捷键，让代码更快，更有趣](https://mp.weixin.qq.com/s/SX0dp3506Pabo-mpZ99cKw)
-</div>
-+ 最后，再附上 markdown 修改表格宽度的方法：
-<div class="foo">
-> https://stackoverflow.com/questions/36121672/set-table-column-width-via-markdown
-</div>
+<blockquote>
+<p><a href="https://mp.weixin.qq.com/s/SX0dp3506Pabo-mpZ99cKw" target="_blank" rel="noopener">$\textcolor{GreenYellow}{ 21个VSCode快捷键，让代码更快，更有趣</a>}</p>
+</blockquote>
+<ul>
+<li>最后，再附上 markdown 修改表格宽度的方法：</li>
+</ul>
+<blockquote>
+<p>$\textcolor{GreenYellow}{<a href="https://stackoverflow.com/questions/36121672/set-table-column-width-via-markdown}" target="_blank" rel="noopener">https://stackoverflow.com/questions/36121672/set-table-column-width-via-markdown}</a></p>
+</blockquote>
 ]]></content>
       <categories>
         <category>快捷键</category>
