@@ -506,36 +506,36 @@
 <thead>
 <tr>
 <th>快捷键</th>
-<th>命令</th>
+<th align="left">命令</th>
 </tr>
 </thead>
 <tbody><tr>
 <td><code>Ctrl</code>+`</td>
-<td>显示集成终端</td>
+<td align="left">显示集成终端</td>
 </tr>
 <tr>
 <td><code>Ctrl</code>+<code>Shift</code>+`</td>
-<td>创建一个新的终端</td>
+<td align="left">创建一个新的终端</td>
 </tr>
 <tr>
 <td><code>Ctrl</code>+<code>Shift</code>+<code>C</code></td>
-<td>复制选中的内容</td>
+<td align="left">复制选中的内容</td>
 </tr>
 <tr>
 <td><code>Ctrl</code>+<code>Shift</code>+<code>V</code></td>
-<td>粘贴到激活状态的终端</td>
+<td align="left">粘贴到激活状态的终端</td>
 </tr>
 <tr>
 <td><code>Ctrl</code>+<code>↑</code>/<code>↓</code></td>
-<td>向上/下滚动</td>
+<td align="left">向上/下滚动</td>
 </tr>
 <tr>
 <td><code>Shift</code>+<code>PgUp</code>/<code>PgDown</code></td>
-<td>向上/下滚动一页</td>
+<td align="left">向上/下滚动一页</td>
 </tr>
 <tr>
 <td><code>Ctrl</code>+<code>Home</code>/<code>End</code></td>
-<td>滚动到顶部/底部</td>
+<td align="left">滚动到顶部/底部</td>
 </tr>
 </tbody></table>
 <hr>
