@@ -13,25 +13,25 @@
 <h2 id="VS-Code-快捷键"><a href="#VS-Code-快捷键" class="headerlink" title="VS Code 快捷键"></a>VS Code 快捷键</h2><h3 id="通用部分"><a href="#通用部分" class="headerlink" title="通用部分"></a>通用部分</h3><table>
 <thead>
 <tr>
-<th align="left">快捷键</th>
 <th>命令</th>
+<th align="left">快捷键</th>
 </tr>
 </thead>
 <tbody><tr>
-<td align="left"><code>Ctrl</code>+<code>Shift</code>+<code>P</code>, <code>F1</code></td>
 <td>显示命令</td>
+<td align="left"><code>Ctrl</code>+<code>Shift</code>+<code>P</code>, <code>F1</code></td>
 </tr>
 <tr>
-<td align="left"><code>Ctrl</code>+<code>P</code></td>
 <td>快速打开</td>
+<td align="left"><code>Ctrl</code>+<code>P</code></td>
 </tr>
 <tr>
-<td align="left"><code>Ctrl</code>+<code>Shift</code>+<code>N</code></td>
 <td>开启新的窗口</td>
+<td align="left"><code>Ctrl</code>+<code>Shift</code>+<code>N</code></td>
 </tr>
 <tr>
-<td align="left"><code>Ctrl</code>+<code>Shift</code>+<code>w</code></td>
 <td>关闭窗口</td>
+<td align="left"><code>Ctrl</code>+<code>Shift</code>+<code>w</code></td>
 </tr>
 </tbody></table>
 <h3 id="基本的编辑"><a href="#基本的编辑" class="headerlink" title="基本的编辑"></a>基本的编辑</h3><table>
@@ -218,8 +218,7 @@
 <td>开启或取消大小写敏感/正则/全局搜索</td>
 </tr>
 </tbody></table>
-<p>多光标和选择</p>
-<table>
+<h3 id="多光标和选择"><a href="#多光标和选择" class="headerlink" title="多光标和选择"></a>多光标和选择</h3><table>
 <thead>
 <tr>
 <th>快捷键</th>
@@ -540,11 +539,13 @@
 </tr>
 </tbody></table>
 <hr>
-<h2 id="获取官方快捷键图片"><a href="#获取官方快捷键图片" class="headerlink" title="获取官方快捷键图片"></a>获取官方快捷键图片</h2><p><code>Ctrl</code>+<code>K</code> <code>Ctrl</code>+<code>R</code>     浏览器自动打开一篇包含 VS Code 支持快捷键的 pdf。</p>
-<p><img src="images%5Cvscode-ks%5Cvscode-ks.png" alt="1572013816555"></p>
+<h2 id="获取官方快捷键文件"><a href="#获取官方快捷键文件" class="headerlink" title="获取官方快捷键文件"></a>获取官方快捷键文件</h2><p><code>Ctrl</code>+<code>K</code> <code>Ctrl</code>+<code>R</code>     启动浏览器自动打开一篇包含 VS Code 支持快捷键的 pdf。</p>
+<p><img src="/images/vscode-ks/vscode-ks.png" alt="1572013816555"></p>
 <hr>
-<h2 id="VS-Code-常用的快捷键"><a href="#VS-Code-常用的快捷键" class="headerlink" title="VS Code 常用的快捷键"></a>VS Code 常用的快捷键</h2><p>一篇值得收藏的关于 VS Code 常用快捷键公众号文章：</p>
+<h2 id="VS-Code-常用的快捷键"><a href="#VS-Code-常用的快捷键" class="headerlink" title="VS Code 常用的快捷键"></a>VS Code 常用的快捷键</h2><p>一篇值得收藏的关于 VS Code 常用快捷键的公众号文章：</p>
+<blockquote>
 <p><a href="https://mp.weixin.qq.com/s/SX0dp3506Pabo-mpZ99cKw" target="_blank" rel="noopener">21个VSCode快捷键，让代码更快，更有趣</a></p>
+</blockquote>
 ]]></content>
       <categories>
         <category>快捷键</category>
