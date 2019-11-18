@@ -138,7 +138,7 @@
 </tr>
 <tr>
 <td><code>Win</code>+<code>Alt</code>+<code>G</code></td>
-<td>录制游戏最近30秒</td>
+<td>录制游戏最近 30 秒</td>
 </tr>
 <tr>
 <td><code>Win</code>+<code>Alt</code>+<code>R</code></td>
@@ -194,7 +194,7 @@
 </tr>
 <tr>
 <td><code>Win</code>+<code>Prtsc</code></td>
-<td>截全屏并保持到用户图片\屏幕截屏文件夹下</td>
+<td>截全屏并保持到用户图片 \ 屏幕截屏文件夹下</td>
 </tr>
 <tr>
 <td><code>Win</code>+<code>↑</code>/<code>↓</code></td>
@@ -206,11 +206,11 @@
 </tr>
 <tr>
 <td><code>Win</code>+<code>←</code>+<code>→</code>  &gt; <code>Win</code>+<code>↑</code>/<code>↓</code></td>
-<td>使应用窗口占据屏幕四个角落1/4的屏幕区域（二分屏、三分屏、四分屏）</td>
+<td>使应用窗口占据屏幕四个角落 1/4 的屏幕区域（二分屏、三分屏、四分屏）</td>
 </tr>
 <tr>
 <td><code>Win</code>+<code>F1</code></td>
-<td>启动Edge 搜索 “如何在 windows 10 中获取帮助”</td>
+<td>启动 Edge 搜索 “如何在 windows 10 中获取帮助”</td>
 </tr>
 <tr>
 <td><code>Win</code>+<code>Ctrl</code>+<code>Shift</code>+<code>B</code></td>
@@ -326,7 +326,7 @@
 </thead>
 <tbody><tr>
 <td><code>Alt</code>+<code>A</code></td>
-<td>截图（前提：启动微信PC版）</td>
+<td>截图（前提：启动微信 PC 版）</td>
 </tr>
 <tr>
 <td><code>Alt</code>+<code>Space</code>+<code>C</code></td>
@@ -366,7 +366,7 @@
 </tr>
 <tr>
 <td><code>Alt</code>+<code>255</code></td>
-<td>QQ号中输入无名人</td>
+<td>QQ 号中输入无名人</td>
 </tr>
 <tr>
 <td><code>Alt</code>+<code>F4</code></td>
@@ -410,7 +410,7 @@
 </tr>
 <tr>
 <td><code>Shift</code>+<code>Space</code></td>
-<td>半\全角切换</td>
+<td>半 \ 全角切换</td>
 </tr>
 <tr>
 <td><code>Shift</code>+<code>右击</code></td>
@@ -442,7 +442,7 @@
 </tr>
 <tr>
 <td><code>Delete</code></td>
-<td>删除文件→回收站</td>
+<td>删除文件 → 回收站</td>
 </tr>
 <tr>
 <td><code>PrtScn</code></td>
@@ -488,8 +488,8 @@
         <category>快捷键</category>
       </categories>
       <tags>
+        <tag>windows 10</tag>
         <tag>快捷键</tag>
-        <tag>windows10</tag>
       </tags>
   </entry>
   <entry>
@@ -1060,9 +1060,9 @@
         <category>快捷键</category>
       </categories>
       <tags>
+        <tag>快捷键</tag>
         <tag>Windows10</tag>
         <tag>Vscode</tag>
-        <tag>快捷键</tag>
       </tags>
   </entry>
   <entry>
