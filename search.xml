@@ -1,7 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>VS Code windows10 快捷键</title>
+    <title>windows10-quickkey</title>
+    <url>/2019/11/18/windows10-quickkey/</url>
+    <content><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><blockquote>
+<p>Windows 10 快捷键</p>
+</blockquote><hr><h2 id="Windows-10-快捷键"><a href="#Windows-10-快捷键" class="headerlink" title="Windows 10 快捷键"></a>Windows 10 快捷键</h2><h3 id="常用快捷键"><a href="#常用快捷键" class="headerlink" title="常用快捷键"></a>常用快捷键</h3><h3 id="桌面快捷键"><a href="#桌面快捷键" class="headerlink" title="桌面快捷键"></a>桌面快捷键</h3><h3 id="资源管理器快捷键"><a href="#资源管理器快捷键" class="headerlink" title="资源管理器快捷键"></a>资源管理器快捷键</h3><h3 id="命令"><a href="#命令" class="headerlink" title="命令"></a>命令</h3><h3 id="编辑"><a href="#编辑" class="headerlink" title="编辑"></a>编辑</h3>]]></content>
+      <categories>
+        <category>快捷键</category>
+      </categories>
+      <tags>
+        <tag>windows10</tag>
+        <tag>快捷键</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Visual Studio Code 快捷键</title>
     <url>/2019/10/23/vscode-ks/</url>
     <content><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><blockquote>
 <p>Visual Studio Code（简称 VS Code）是一款由微软推出的开源代码编辑器，支持多种编程语言，集成终端，可以在编译器中脚本、编译软件、调试脚本、设置断点、做版本管理。此外VS Code 还支持丰富的扩展程序。VS Code 凭借众多优点已一跃成为”最受欢迎的开发环境“，没有之一！</p>
@@ -568,9 +582,9 @@
         <category>快捷键</category>
       </categories>
       <tags>
+        <tag>快捷键</tag>
         <tag>Windows10</tag>
         <tag>Vscode</tag>
-        <tag>快捷键</tag>
       </tags>
   </entry>
   <entry>
