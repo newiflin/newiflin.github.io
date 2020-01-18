@@ -4,7 +4,7 @@
     <title>Chrome 快捷键</title>
     <url>/2019/11/20/chrome-hotkeys/</url>
     <content><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><blockquote>
-<p><strong>Chrome</strong> ，中文名为 “<strong>谷歌浏览器</strong>”，其英文直译为化学元素”铬“，是由 <strong>Google</strong> 公司开发的免费网页浏览器，于2008年9月首次推出。Chrome 诞生后迅速增长，进过短短4年，市场占有率便超越了 <strong>FireFox</strong> 和 <strong>IE</strong>。目前浏览器已占有将近7成的市场份额，对于当下最广为流行的浏览器，学习掌握其特性和使用自然是完全有必要。</p>
+<p><strong>Chrome</strong> ，即<strong>谷歌浏览器</strong>，英文直译为化学元素”铬“，是由 <strong>Google</strong> 公司开发的一款免费的网页浏览器。于2008年9月首次发布后，Chrome 用户数量迅速增长，仅用了4年时间，市场占有率便超越了 <strong>FireFox</strong> 和 <strong>IE</strong>，截止19年， Chrome 浏览器已占有将近 7 成的市场份额。对于当下最广为流行的浏览器，学习掌握其特性和使用自然是完全有必要的。</p>
 <p><img src="data:image/jpeg;base64,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" alt="“chrome”的图片搜索结果"></p>
 </blockquote><a id="more"></a>
 <hr>
@@ -1871,7 +1871,7 @@
     <title>使用 Hexo 和 GitHub 搭建个人博客</title>
     <url>/2019/10/19/hexo-blog/</url>
     <content><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><blockquote>
-<p>拥有个人博客的念头由来已久，尝试申请域名，租服务器，却又因为各种原因搁置到了今天。最近无意间浏览到一篇基于 Hexo 与 GitHub 的个人博客搭建教程，相当容易上手，那趁着周末就此开始吧。</p>
+<p>搭建个人博客的念头由来已久，曾尝试过申请域名，租服务器，却又因为各种原因一直搁置了下来。最近无意间浏览到一篇基于 <strong>Hexo</strong> 与 <strong>GitHub</strong> 的个人博客搭建教程，相当容易上手，那趁着周末就此开始吧！</p>
 </blockquote><h2 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h2><ul>
 <li>node.js（推荐 10.0 版本及以上）</li>
 <li>git</li>
@@ -1887,60 +1887,61 @@
 <p>查看是否安装成功，运行 <code>node -v</code>，出现版本号。</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">C:\Users\dell&gt;node -v</span><br><span class="line">v10.16.0</span><br></pre></td></tr></table></figure>
 
-<h3 id="更改npm源"><a href="#更改npm源" class="headerlink" title="更改npm源"></a>更改npm源</h3><p>查看npm源</p>
+<h3 id="更改-npm-源"><a href="#更改-npm-源" class="headerlink" title="更改 npm 源"></a>更改 npm 源</h3><p>查看 npm 源</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">npm config get registry</span><br></pre></td></tr></table></figure>
 
 <p>更换为国内镜像</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">npm config set registry https://registry.npm.taobao.org</span><br></pre></td></tr></table></figure>
 
 <hr>
-<h2 id="git"><a href="#git" class="headerlink" title="git"></a>git</h2><h3 id="什么是git"><a href="#什么是git" class="headerlink" title="什么是git"></a>什么是git</h3><p>git是优秀的分布式版本控制系统。</p>
+<h2 id="git"><a href="#git" class="headerlink" title="git"></a>git</h2><h3 id="什么是-git"><a href="#什么是-git" class="headerlink" title="什么是 git"></a>什么是 git</h3><p>git 是优秀的分布式版本控制系统。</p>
 <h3 id="git的安装"><a href="#git的安装" class="headerlink" title="git的安装"></a>git的安装</h3><ul>
-<li>windows安装，直接访问 <a href="https://git-scm.com/download/win" target="_blank" rel="noopener">git官网下载</a>。根据电脑位数，选择32/64bit 对应安装即可。</li>
+<li>windows 安装，直接访问 <a href="https://git-scm.com/download/win" target="_blank" rel="noopener">git官网下载</a>。根据电脑位数，选择 32/64bit 对应安装即可。</li>
 </ul>
 <img src="/images/hexo-blog/git-install.png" alt="git仓库" style="zoom: 80%;">
 
 <ul>
-<li>打开 Git Bash 设置git用户名和邮箱</li>
+<li>打开 Git Bash 设置 git 用户名和邮箱</li>
 </ul>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ git config --global user.name &quot;newiflin&quot;</span><br><span class="line">$ git config --global user.email &quot;newiflin@gmail.com&quot;</span><br></pre></td></tr></table></figure>
 
 <h3 id="GitHub"><a href="#GitHub" class="headerlink" title="GitHub"></a>GitHub</h3><p>GitHub 是目前主流的开源代码托管平台，同时也是程序员的社交和学习平台。</p>
 <ul>
-<li><p>注册GitHub账号</p>
+<li><p>注册 GitHub 账号</p>
 </li>
-<li><p>创建一个私有仓库（私有仓库已免费，微软于去年收购GitHub）</p>
+<li><p>创建一个私有仓库（私有仓库已免费，微软于去年收购 GitHub）</p>
 <p><img src="/images/hexo-blog/repository.png" alt="GitHub仓库"></p>
+<p>注：私有仓库似乎无法访问，浏览器直接跳到 GitHub 的404页面，改成公开仓库却没问题。</p>
 </li>
 </ul>
 <hr>
 <h2 id="Hexo"><a href="#Hexo" class="headerlink" title="Hexo"></a>Hexo</h2><h3 id="什么是Hexo"><a href="#什么是Hexo" class="headerlink" title="什么是Hexo"></a>什么是Hexo</h3><p><strong>Hexo</strong> 是一个快速、简单和功能强大的博客框架，支持 markdown 等标记语言，可以立即生成带有优美主题的静态文件。</p>
-<p>Hexo官方文档：<a href="https://hexo.io/docs/" target="_blank" rel="noopener">https://hexo.io/docs/</a></p>
+<p>Hexo 官方文档：<a href="https://hexo.io/docs/" target="_blank" rel="noopener">https://hexo.io/docs/</a></p>
 <h3 id="安装Hexo"><a href="#安装Hexo" class="headerlink" title="安装Hexo"></a>安装Hexo</h3><ul>
-<li><p>安装Hexo之前，确保已经按照 <strong>Node.js</strong> 和 <strong>Git</strong></p>
+<li><p>安装 Hexo 之前，确保已经按照 <strong>Node.js</strong> 和 <strong>Git</strong></p>
 </li>
-<li><p>在H盘新建文件夹blog</p>
+<li><p>在 H 盘新建文件夹 blog</p>
 </li>
-<li><p>cmd运行命令<code>npm install -g hexo-cli</code></p>
+<li><p>cmd 运行命令<code>npm install -g hexo-cli</code></p>
 <p>报了两个错误，不过并不影响后续。</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">H:\blog&gt;npm install -g hexo-cli</span><br><span class="line">C:\Users\dell\AppData\Roaming\npm\hexo -&gt; C:\Users\dell\AppData\Roaming\npm\node_modules\hexo-cli\bin\hexo</span><br><span class="line">npm WARN optional SKIPPING OPTIONAL DEPENDENCY: fsevents@2.1.1 (node_modules\hexo-cli\node_modules\fsevents):</span><br><span class="line">npm WARN notsup SKIPPING OPTIONAL DEPENDENCY: Unsupported platform for fsevents@2.1.1: wanted &#123;&quot;os&quot;:&quot;darwin&quot;,&quot;arch&quot;:&quot;any&quot;&#125; (current: &#123;&quot;os&quot;:&quot;win32&quot;,&quot;arch&quot;:&quot;x64&quot;&#125;)</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>运行<code>hexo init newiflin.github.io</code>，创建博客目录</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">H:\blog&gt;git init newiflin.github.io</span><br><span class="line">H:\blog&gt;cd newiflin.github.io</span><br><span class="line">H:\blog\newiflin.github.io&gt;npm install</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>启动hexo服务</p>
+<li><p>启动 hexo 服务</p>
 </li>
 </ul>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">H:\blog\hexo&gt;hexo s</span><br><span class="line">INFO  Start processing</span><br><span class="line">INFO  Hexo is running at http://localhost:4000 . Press Ctrl+C to stop.</span><br></pre></td></tr></table></figure>
 
 <ul>
-<li>启动Chrome，访问<a href="http://localhost:4000，预览页面" target="_blank" rel="noopener">http://localhost:4000，预览页面</a></li>
+<li>启动 Chrome，访问 <a href="http://localhost:4000，预览页面" target="_blank" rel="noopener">http://localhost:4000，预览页面</a></li>
 </ul>
 <p><img src="/images/hexo-blog/hexo-page.png" alt="hexo首页"></p>
 <ul>
 <li>发表文章，命令<code>hexo new [文章名]</code></li>
 </ul>
-<p>会在source/_posts目录下生成对应的 md 文件，可预览页面。</p>
+<p>会在 source/_posts 目录下生成对应的 md 文件，可预览页面。</p>
 <p><img src="/images/hexo-blog/new-passage.png" alt="预览文章"></p>
 <ul>
 <li><p>修改hexo目录下的 <strong>_config.yml</strong> 文件</p>
@@ -1964,7 +1965,7 @@
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">H:\blog\hexo&gt;npx hexo generate</span><br><span class="line">INFO  Start processing</span><br><span class="line">INFO  Files loaded in 1.02 min</span><br><span class="line">INFO  Generated: index.html</span><br><span class="line">INFO  Generated: fancybox/fancybox_loading.gif</span><br><span class="line">INFO  Generated: archives/2019/10/index.html</span><br><span class="line">INFO  Generated: fancybox/blank.gif</span><br><span class="line">INFO  Generated: archives/index.html</span><br><span class="line">INFO  Generated: fancybox/jquery.fancybox.css</span><br><span class="line">INFO  Generated: fancybox/fancybox_sprite.png</span><br><span class="line">INFO  Generated: fancybox/fancybox_overlay.png</span><br><span class="line">INFO  Generated: fancybox/fancybox_sprite@2x.png</span><br><span class="line">INFO  Generated: fancybox/fancybox_loading@2x.gif</span><br><span class="line">INFO  Generated: fancybox/helpers/jquery.fancybox-buttons.css</span><br><span class="line">INFO  Generated: js/script.js</span><br><span class="line">INFO  Generated: fancybox/helpers/jquery.fancybox-thumbs.css</span><br><span class="line">INFO  Generated: fancybox/helpers/jquery.fancybox-media.js</span><br><span class="line">INFO  Generated: fancybox/helpers/jquery.fancybox-buttons.js</span><br><span class="line">INFO  Generated: css/fonts/FontAwesome.otf</span><br><span class="line">INFO  Generated: archives/2019/index.html</span><br><span class="line">INFO  Generated: fancybox/helpers/fancybox_buttons.png</span><br><span class="line">INFO  Generated: css/fonts/fontawesome-webfont.woff</span><br><span class="line">INFO  Generated: css/style.css</span><br><span class="line">INFO  Generated: css/fonts/fontawesome-webfont.svg</span><br><span class="line">INFO  Generated: fancybox/jquery.fancybox.pack.js</span><br><span class="line">INFO  Generated: css/fonts/fontawesome-webfont.eot</span><br><span class="line">INFO  Generated: fancybox/helpers/jquery.fancybox-thumbs.js</span><br><span class="line">INFO  Generated: css/fonts/fontawesome-webfont.ttf</span><br><span class="line">INFO  Generated: css/images/banner.jpg</span><br><span class="line">INFO  Generated: 2019/10/19/hello-world/index.html</span><br><span class="line">INFO  Generated: fancybox/jquery.fancybox.js</span><br><span class="line">INFO  28 files generated in 4.18 s</span><br></pre></td></tr></table></figure>
 
 <h3 id="部署到服务器"><a href="#部署到服务器" class="headerlink" title="部署到服务器"></a>部署到服务器</h3><ul>
-<li>确保已安装git部署器，未安装执行以下命令：</li>
+<li>确保已安装 git 部署器，未安装执行以下命令：</li>
 </ul>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">npm install hexo-deployer-git –save</span><br></pre></td></tr></table></figure>
 
@@ -1973,9 +1974,9 @@
 </ul>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">hexo d</span><br></pre></td></tr></table></figure>
 
-<p>GitHub对应仓库的分支下，可查到提交的代码。</p>
+<p>GitHub 对应仓库的分支下，可查到提交的代码。</p>
 <p><img src="/images/hexo-blog/code-commit.png" alt="提交的代码"></p>
-<p>访问GitHub Page，即可浏览个人的博客页，参考：<a href https: newiflin.github.io"">newiflin.github.io</a></p>
+<p>访问 GitHub Page，即可浏览个人的博客页，参考：<a href https: newiflin.github.io"">newiflin.github.io</a></p>
 <p>至此，基于 hexo + GitHub 的博客就基本搭建完毕。</p>
 <hr>
 ]]></content>
