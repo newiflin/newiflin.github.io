@@ -24,11 +24,10 @@
 </ul>
 <p><img src="http://ww1.sinaimg.cn/large/006s8uOZly1gb4exm650kj30dx0awt98.jpg" alt="1579546893010.png"></p>
 <ul>
-<li>然后一路点击 next，等待安装完毕。</li>
-</ul>
-<p><img src="C:%5CUsers%5Cdell%5CPictures%5CFeedback%5Ctesseract-finish.JPG" alt="tesseract-finish"></p>
-<ul>
-<li>添加 tesseract 根目录到环境变量，<code>tesseract --version</code> 可查看相应版本号。</li>
+<li><p>然后一路点击 next，等待安装完毕。</p>
+</li>
+<li><p>添加 tesseract 根目录到环境变量，<code>tesseract --version</code> 可查看相应版本号。</p>
+</li>
 </ul>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">C:\Users\dell&gt;tesseract --version</span><br><span class="line">tesseract v4.0.0.20181030</span><br><span class="line"> leptonica-1.76.0</span><br><span class="line">  libgif 5.1.4 : libjpeg 8d (libjpeg-turbo 1.5.3) : libpng 1.6.34 : libtiff 4.0.9 : zlib 1.2.11 : libwebp 0.6.1 : libopenjp2 2.2.0</span><br></pre></td></tr></table></figure>
 
