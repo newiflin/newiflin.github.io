@@ -11,7 +11,7 @@
 <h3 id="安装-Tesseract"><a href="#安装-Tesseract" class="headerlink" title="安装 Tesseract"></a>安装 Tesseract</h3><ul>
 <li>下载地址：<a href="https://digi.bib.uni-mannheim.de/tesseract/" target="_blank" rel="noopener">https://digi.bib.uni-mannheim.de/tesseract/</a></li>
 </ul>
-<p><img src="C:%5CUsers%5Cdell%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1579545615440.png" alt="1579545615440"></p>
+<p><img src="http://ww1.sinaimg.cn/large/006s8uOZly1gb4ex0cth6j30kb0a3ta4.jpg" alt="1579545615440.png"></p>
 <ul>
 <li><p>32位的机器选择 w32，64位的机器则选择 w64</p>
 </li>
@@ -22,7 +22,7 @@
 <li><p>下载完成，双击 exe 文件开始安装，除勾选同意协议、自定义安装路径、用户外，可勾选 <code>Additional language data(download)</code> 选项安装支持的语言包。</p>
 </li>
 </ul>
-<p><img src="C:%5CUsers%5Cdell%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1579546893010.png" alt="1579546893010"></p>
+<p><img src="http://ww1.sinaimg.cn/large/006s8uOZly1gb4exm650kj30dx0awt98.jpg" alt="1579546893010.png"></p>
 <ul>
 <li>然后一路点击 next，等待安装完毕。</li>
 </ul>
@@ -37,24 +37,20 @@
 <ul>
 <li>进入tesserocr GitHub 地址：<a href="https://github.com/sirfz/tesserocr">https://github.com/sirfz/tesserocr</a></li>
 </ul>
-<p><img src="C:%5CUsers%5Cdell%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1579547897003.png" alt="1579547897003"></p>
-<p>这才是windows 下安装 tesserocr 的正确姿势！采用了第二种方法：pip 安装 wheel。</p>
+<p><img src="http://ww1.sinaimg.cn/large/006s8uOZly1gb4ey8m352j30ra0d8aan.jpg" alt="1579547897003.png"></p>
+<p>这才是windows 下安装 tesserocr 的正确姿势！本文采用了第二种方法：pip 安装 wheel。</p>
 <ul>
 <li>点击提供的链接：<a href="https://github.com/simonflueckiger/tesserocr-windows_build/releases">https://github.com/simonflueckiger/tesserocr-windows_build/releases</a></li>
 </ul>
-<p><img src="C:%5CUsers%5Cdell%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1579548265969.png" alt="1579548265969"></p>
+<p><img src="http://ww1.sinaimg.cn/large/006s8uOZly1gb4eyw3ja8j30rs0hhq4e.jpg" alt="1579548265969.png"></p>
 <ul>
 <li><p>可以看到，目前 tesserocr 最新版本为2.4.0，支持 tesseract 的版本为4.0.0。</p>
 <ul>
-<li><p>注意 tesserocr 和 tesseract 的版本必须严格匹配。例如 tesserocr v2.3.1 (tesseract 3.05.02)，</p>
-</li>
-<li><p>选择安装 tesserocr 2.3.1版本，则 tesseract 的版本必须为 3.05.02，哪怕 tesseract 安装版本 3.05.01 都不行。</p>
+<li><p>注意 tesserocr 和 tesseract 的版本必须严格匹配。例如 tesserocr v2.3.1 (tesseract 3.05.02)，选择安装 tesserocr 2.3.1版本，则 tesseract 的版本必须为 3.05.02，哪怕 tesseract 版本为 3.05.01 都不行！</p>
 </li>
 <li><p>另外，<strong>win32</strong> 支持的<em>32</em>位的机器，<strong>win_amd64</strong> 支持的是<em>64</em>位的机器。</p>
 </li>
-<li><p><strong>cp36</strong> 指的是 <strong>python3.6</strong>版本，<strong>cp37</strong> 即 <strong>python3.7</strong> 版本，<strong>python</strong> 版本也必须严格匹配。</p>
-</li>
-<li><p>(如下载的是 tesserocr-2.4.0-cp37-cp37m-win_amd64.whl，支持64位的机器，python 版本必须为3.7。</p>
+<li><p><strong>cp36</strong> 指的是 <strong>python3.6</strong>版本，<strong>cp37</strong> 即 <strong>python3.7</strong> 版本，<strong>python</strong> 版本也必须严格匹配。(如下载的是 tesserocr-2.4.0-cp37-cp37m-win_amd64.whl，支持64位的机器，python 版本必须为3.7。</p>
 </li>
 <li><p>python 目前最新版本为3.9，tesserocr 最高支持到了 python3.7。用 <strong>Anaconda Navigator</strong> 可将 python 和 pip 更改到合适的版本，推荐这篇文章：<a href="https://www.jianshu.com/p/c3e80fa1591b" target="_blank" rel="noopener">https://www.jianshu.com/p/c3e80fa1591b</a>。</p>
 </li>
@@ -77,7 +73,7 @@
 </ul>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> tesserocr</span><br><span class="line"><span class="keyword">from</span> PIL <span class="keyword">import</span> Image</span><br><span class="line"></span><br><span class="line">print(tesserocr.tesseract_version())  <span class="comment"># print tesseract-ocr version</span></span><br><span class="line">print(tesserocr.get_languages())  <span class="comment"># prints tessdata path and list of available languages</span></span><br><span class="line"></span><br><span class="line">image = Image.open(<span class="string">'image.png'</span>)</span><br><span class="line">print(tesserocr.image_to_text(image))  <span class="comment"># print ocr text from image</span></span><br><span class="line"><span class="comment"># or</span></span><br><span class="line">print(tesserocr.file_to_text(<span class="string">'image.png'</span>))</span><br></pre></td></tr></table></figure>
 
-<p><img src="C:%5CUsers%5Cdell%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1579555286797.png" alt="1579555286797"></p>
+<p><img src="http://ww1.sinaimg.cn/large/006s8uOZly1gb4ezf29f2j308i06adft.jpg" alt="1579555286797.png"></p>
 <ul>
 <li>运行出现新的错误：tessdata 无效的路径。</li>
 </ul>
@@ -1154,8 +1150,8 @@
         <category>快捷键</category>
       </categories>
       <tags>
-        <tag>windows 10</tag>
         <tag>快捷键</tag>
+        <tag>windows 10</tag>
       </tags>
   </entry>
   <entry>
@@ -1726,9 +1722,9 @@
         <category>快捷键</category>
       </categories>
       <tags>
-        <tag>快捷键</tag>
         <tag>Windows10</tag>
         <tag>Vscode</tag>
+        <tag>快捷键</tag>
       </tags>
   </entry>
   <entry>
