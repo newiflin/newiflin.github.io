@@ -49,7 +49,7 @@
 </li>
 <li><p>另外，<strong>win32</strong> 支持的<em>32</em>位的机器，<strong>win_amd64</strong> 支持的是<em>64</em>位的机器。</p>
 </li>
-<li><p><strong>cp36</strong> 指的是 <strong>python3.6</strong>版本，<strong>cp37</strong> 即 <strong>python3.7</strong> 版本，<strong>python</strong> 版本也必须严格匹配。(如下载的是 tesserocr-2.4.0-cp37-cp37m-win_amd64.whl，支持64位的机器，python 版本必须为3.7。</p>
+<li><p><strong>cp36</strong> 指的是 <strong>python3.6</strong>版本，<strong>cp37</strong> 即 <strong>python3.7</strong> 版本，<strong>python</strong> 版本也必须严格匹配。如下载的是 tesserocr-2.4.0-cp37-cp37m-win_amd64.whl，支持64位的机器，python 版本要求必须为3.7。</p>
 </li>
 <li><p>python 目前最新版本为3.9，tesserocr 最高支持到了 python3.7。用 <strong>Anaconda Navigator</strong> 可将 python 和 pip 更改到合适的版本，推荐这篇文章：<a href="https://www.jianshu.com/p/c3e80fa1591b" target="_blank" rel="noopener">https://www.jianshu.com/p/c3e80fa1591b</a>。</p>
 </li>
@@ -1149,8 +1149,8 @@
         <category>快捷键</category>
       </categories>
       <tags>
-        <tag>windows 10</tag>
         <tag>快捷键</tag>
+        <tag>windows 10</tag>
       </tags>
   </entry>
   <entry>
@@ -1721,9 +1721,9 @@
         <category>快捷键</category>
       </categories>
       <tags>
-        <tag>快捷键</tag>
         <tag>Windows10</tag>
         <tag>Vscode</tag>
+        <tag>快捷键</tag>
       </tags>
   </entry>
   <entry>
