@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>对中医的一点感想</title>
+    <url>/2020/02/18/thoughts-of-TCM/</url>
+    <content><![CDATA[<p>中医终究只是在上千年的时间线尺度上不断试出来的医学，理论上靠玄学以不明不白的方式强加解释，自然会误导不少人相信古人反倒有什么大智慧。</p>]]></content>
+      <categories>
+        <category>杂想</category>
+      </categories>
+      <tags>
+        <tag>杂想</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Windows 安装 tesserocr</title>
     <url>/2020/01/21/tesserocr-install/</url>
     <content><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><blockquote>
@@ -93,7 +104,7 @@
 <li><p>测试代码输出结果：</p>
 </li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">PS H:\coding_demo\python_demo\web_crawler_demo\install_demo&gt; python &quot;h:\coding_demo\python_demo\web_crawler_demo\install_demo\verify_tesserocr.py&quot;</span><br><span class="line">tesseract 4.0.0</span><br><span class="line"> leptonica-1.76.0 (Jan  8 2019, 13:34:23) [MSC v.1900 LIB Release x64]</span><br><span class="line">  libgif 5.1.4 : libjpeg 9b : libpng 1.6.35 : libtiff 4.0.9 : zlib 1.2.11 : libwebp 0.6.1 : libopenjp2 2.3.0</span><br><span class="line">(&apos;D:\\SoftWare\\Anaconda3\\/tessdata/&apos;, [&apos;afr&apos;, &apos;amh&apos;, &apos;ara&apos;, &apos;asm&apos;, &apos;aze&apos;, &apos;aze_cyrl&apos;, &apos;bel&apos;, &apos;ben&apos;, &apos;bod&apos;, &apos;bos&apos;, &apos;bre&apos;, &apos;bul&apos;, &apos;cat&apos;, &apos;ceb&apos;, &apos;ces&apos;, &apos;chi_sim&apos;, &apos;chi_sim_vert&apos;, &apos;chi_tra&apos;, &apos;chi_tra_vert&apos;, &apos;chr&apos;, &apos;cos&apos;, &apos;cym&apos;, &apos;dan&apos;, &apos;deu&apos;, &apos;div&apos;, &apos;dzo&apos;, &apos;ell&apos;, &apos;eng&apos;, &apos;enm&apos;, &apos;epo&apos;, &apos;equ&apos;, &apos;est&apos;, &apos;eus&apos;, &apos;fao&apos;, &apos;fas&apos;, &apos;fil&apos;, &apos;fin&apos;, &apos;fra&apos;, &apos;frk&apos;, &apos;frm&apos;, &apos;fry&apos;, &apos;gla&apos;, &apos;gle&apos;, &apos;glg&apos;, &apos;grc&apos;, &apos;guj&apos;, </span><br><span class="line">&apos;hat&apos;, &apos;heb&apos;, &apos;hin&apos;, &apos;hrv&apos;, &apos;hun&apos;, &apos;hye&apos;, &apos;iku&apos;, &apos;ind&apos;, &apos;isl&apos;, &apos;ita&apos;, &apos;ita_old&apos;, &apos;jav&apos;, &apos;jpn&apos;, &apos;kan&apos;, &apos;kat&apos;, &apos;kat_old&apos;, &apos;kaz&apos;, &apos;khm&apos;, &apos;kir&apos;, &apos;kor&apos;, &apos;lao&apos;, &apos;lat&apos;, &apos;lav&apos;, &apos;lit&apos;, &apos;ltz&apos;, &apos;mal&apos;, &apos;mar&apos;, </span><br><span class="line">&apos;mkd&apos;, &apos;mlt&apos;, &apos;mon&apos;, &apos;mri&apos;, &apos;msa&apos;, &apos;mya&apos;, &apos;nep&apos;, &apos;nld&apos;, &apos;nor&apos;, &apos;oci&apos;, &apos;ori&apos;, &apos;osd&apos;, &apos;pan&apos;, &apos;pol&apos;, &apos;por&apos;, &apos;pus&apos;, &apos;que&apos;, &apos;ron&apos;, &apos;rus&apos;, &apos;san&apos;, &apos;sin&apos;, &apos;slk&apos;, &apos;slv&apos;, &apos;snd&apos;, &apos;spa&apos;, &apos;spa_old&apos;, &apos;sqi&apos;, &apos;srp&apos;, &apos;srp_latn&apos;, &apos;sun&apos;, &apos;swa&apos;, &apos;swe&apos;, &apos;syr&apos;, &apos;tam&apos;, &apos;tat&apos;, &apos;tel&apos;, &apos;tgk&apos;, &apos;tha&apos;, &apos;tir&apos;, &apos;ton&apos;, &apos;tur&apos;, &apos;uig&apos;, &apos;ukr&apos;, &apos;urd&apos;, &apos;uzb&apos;, &apos;uzb_cyrl&apos;, &apos;vie&apos;, &apos;yid&apos;, &apos;yor&apos;])</span><br><span class="line">Python3WebSpider</span><br><span class="line"></span><br><span class="line">Python3WebSpider</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">PS H:\coding_demo\python_demo\web_crawler_demo\install_demo&gt; py verify_tesserocr.py</span><br><span class="line">tesseract 4.0.0</span><br><span class="line"> leptonica-1.76.0 (Jan  8 2019, 13:34:23) [MSC v.1900 LIB Release x64]</span><br><span class="line">  libgif 5.1.4 : libjpeg 9b : libpng 1.6.35 : libtiff 4.0.9 : zlib 1.2.11 : libwebp 0.6.1 : libopenjp2 2.3.0</span><br><span class="line">(&apos;D:\\SoftWare\\Anaconda3\\/tessdata/&apos;, [&apos;afr&apos;, &apos;amh&apos;, &apos;ara&apos;, &apos;asm&apos;, &apos;aze&apos;, &apos;aze_cyrl&apos;, &apos;bel&apos;, &apos;ben&apos;, &apos;bod&apos;, &apos;bos&apos;, &apos;bre&apos;, &apos;bul&apos;, &apos;cat&apos;, &apos;ceb&apos;, &apos;ces&apos;, &apos;chi_sim&apos;, &apos;chi_sim_vert&apos;, &apos;chi_tra&apos;, &apos;chi_tra_vert&apos;, &apos;chr&apos;, &apos;cos&apos;, &apos;cym&apos;, &apos;dan&apos;, &apos;deu&apos;, &apos;div&apos;, &apos;dzo&apos;, &apos;ell&apos;, &apos;eng&apos;, &apos;enm&apos;, &apos;epo&apos;, &apos;equ&apos;, &apos;est&apos;, &apos;eus&apos;, &apos;fao&apos;, &apos;fas&apos;, &apos;fil&apos;, &apos;fin&apos;, &apos;fra&apos;, &apos;frk&apos;, &apos;frm&apos;, &apos;fry&apos;, &apos;gla&apos;, &apos;gle&apos;, &apos;glg&apos;, &apos;grc&apos;, &apos;guj&apos;, </span><br><span class="line">&apos;hat&apos;, &apos;heb&apos;, &apos;hin&apos;, &apos;hrv&apos;, &apos;hun&apos;, &apos;hye&apos;, &apos;iku&apos;, &apos;ind&apos;, &apos;isl&apos;, &apos;ita&apos;, &apos;ita_old&apos;, &apos;jav&apos;, &apos;jpn&apos;, &apos;kan&apos;, &apos;kat&apos;, &apos;kat_old&apos;, &apos;kaz&apos;, &apos;khm&apos;, &apos;kir&apos;, &apos;kor&apos;, &apos;lao&apos;, &apos;lat&apos;, &apos;lav&apos;, &apos;lit&apos;, &apos;ltz&apos;, &apos;mal&apos;, &apos;mar&apos;, </span><br><span class="line">&apos;mkd&apos;, &apos;mlt&apos;, &apos;mon&apos;, &apos;mri&apos;, &apos;msa&apos;, &apos;mya&apos;, &apos;nep&apos;, &apos;nld&apos;, &apos;nor&apos;, &apos;oci&apos;, &apos;ori&apos;, &apos;osd&apos;, &apos;pan&apos;, &apos;pol&apos;, &apos;por&apos;, &apos;pus&apos;, &apos;que&apos;, &apos;ron&apos;, &apos;rus&apos;, &apos;san&apos;, &apos;sin&apos;, &apos;slk&apos;, &apos;slv&apos;, &apos;snd&apos;, &apos;spa&apos;, &apos;spa_old&apos;, &apos;sqi&apos;, &apos;srp&apos;, &apos;srp_latn&apos;, &apos;sun&apos;, &apos;swa&apos;, &apos;swe&apos;, &apos;syr&apos;, &apos;tam&apos;, &apos;tat&apos;, &apos;tel&apos;, &apos;tgk&apos;, &apos;tha&apos;, &apos;tir&apos;, &apos;ton&apos;, &apos;tur&apos;, &apos;uig&apos;, &apos;ukr&apos;, &apos;urd&apos;, &apos;uzb&apos;, &apos;uzb_cyrl&apos;, &apos;vie&apos;, &apos;yid&apos;, &apos;yor&apos;])</span><br><span class="line">Python3WebSpider</span><br><span class="line"></span><br><span class="line">Python3WebSpider</span><br></pre></td></tr></table></figure>
 
 <hr>
 ]]></content>
@@ -1158,8 +1169,8 @@
         <category>快捷键</category>
       </categories>
       <tags>
-        <tag>快捷键</tag>
         <tag>windows 10</tag>
+        <tag>快捷键</tag>
       </tags>
   </entry>
   <entry>
@@ -1730,9 +1741,9 @@
         <category>快捷键</category>
       </categories>
       <tags>
+        <tag>快捷键</tag>
         <tag>Windows10</tag>
         <tag>Vscode</tag>
-        <tag>快捷键</tag>
       </tags>
   </entry>
   <entry>
