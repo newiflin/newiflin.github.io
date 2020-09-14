@@ -1,221 +1,2127 @@
 <?xml version="1.0" encoding="utf-8"?>
-<search> 
-  
-  
-    
-    <entry>
-      <title>Windows 安装 tesserocr</title>
-      <link href="/2020/03/11/tesserocr-install/"/>
-      <url>/2020/03/11/tesserocr-install/</url>
-      
-        <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><blockquote><p><a href="[https://zh.wikipedia.org/zh-hans/%E5%85%89%E5%AD%A6%E5%AD%97%E7%AC%A6%E8%AF%86%E5%88%AB](https://zh.wikipedia.org/zh-hans/光学字符识别)">OCR</a> (Optical Character Recognition) ，光学字符识别，指对图像文件进行分析识别处理，获取文字及版面信息的过程。</p><p><strong>tesserocr</strong> 是 <strong>Python</strong> 的一个 <strong>OCR</strong> 识别库， 实质是对 <strong>tesseract</strong> 做了一层 Python Api 封装。</p><p>tesserocr 的安装过程着实存在不小的坑，回溯到去年的10月份直接被坑到了放弃​​，这次好不容易成功安装，特此记录下过程。</p></blockquote><a id="more"></a><h3 id="安装-Tesseract"><a href="#安装-Tesseract" class="headerlink" title="安装 Tesseract"></a>安装 Tesseract</h3><ul><li>下载地址：<a href="https://digi.bib.uni-mannheim.de/tesseract/" target="_blank" rel="noopener">https://digi.bib.uni-mannheim.de/tesseract/</a></li></ul><p><img src="http://ww1.sinaimg.cn/large/006s8uOZly1gb4ex0cth6j30kb0a3ta4.jpg" alt="1579545615440.png"></p><ul><li><p>32位的机器选择 w32，64位的机器则选择 w64</p></li><li><p>自己下了 v4.0.0的版本：<a href="https://digi.bib.uni-mannheim.de/tesseract/tesseract-ocr-w64-setup-v4.0.0.20181030.exe" target="_blank" rel="noopener">tesseract-ocr-w64-setup-v4.0.0.20181030.exe</a></p></li><li><p><strong>注意</strong>：tesserocr 并不支持 tesseract 的所有版本，这点切记，后面会提到怎么看目前哪些版本是支持的。再加上软件下载的速度特慢，版本搞错可能就会白浪费掉近半个小时。</p></li><li><p>下载完成，双击 exe 文件开始安装，除勾选同意协议、自定义安装路径、用户外，可勾选 <code>Additional language data(download)</code> 选项安装支持的语言包。</p></li></ul><p><img src="http://ww1.sinaimg.cn/large/006s8uOZly1gb4exm650kj30dx0awt98.jpg" alt="1579546893010.png"></p><ul><li><p>然后一路点击 next，等待安装完毕。</p></li><li><p>添加 tesseract 根目录到环境变量，<code>tesseract --version</code> 可查看相应版本号。</p></li></ul><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">C:\Users\dell&gt;tesseract --version</span><br><span class="line">tesseract v4.0.0.20181030</span><br><span class="line"> leptonica-1.76.0</span><br><span class="line">  libgif 5.1.4 : libjpeg 8d (libjpeg-turbo 1.5.3) : libpng 1.6.34 : libtiff 4.0.9 : zlib 1.2.11 : libwebp 0.6.1 : libopenjp2 2.2.0</span><br></pre></td></tr></table></figure><hr><h3 id="安装-tesserocr"><a href="#安装-tesserocr" class="headerlink" title="安装 tesserocr"></a>安装 tesserocr</h3><p>首先，不要妄想 <strong>windows</strong>上 使用 <code>pip3 install tesserocr pillow</code>  命令就可以成功安装。</p><ul><li>进入tesserocr GitHub 地址：<a href="https://github.com/sirfz/tesserocr">https://github.com/sirfz/tesserocr</a></li></ul><p><img src="http://ww1.sinaimg.cn/large/006s8uOZly1gb4ey8m352j30ra0d8aan.jpg" alt="1579547897003.png"></p><p>这才是windows 下安装 tesserocr 的正确姿势！本文采用了第二种方法：pip 安装 wheel。</p><ul><li>点击提供的链接：<a href="https://github.com/simonflueckiger/tesserocr-windows_build/releases">https://github.com/simonflueckiger/tesserocr-windows_build/releases</a></li></ul><p><img src="http://ww1.sinaimg.cn/large/006s8uOZly1gb4eyw3ja8j30rs0hhq4e.jpg" alt="1579548265969.png"></p><ul><li><p>可以看到，目前 tesserocr 最新版本为2.4.0，支持 tesseract 的版本为4.0.0。</p><ul><li><p>注意 tesserocr 和 tesseract 的版本必须严格匹配。例如 tesserocr v2.3.1 (tesseract 3.05.02)，选择安装 tesserocr 2.3.1版本，则 tesseract 的版本必须为 3.05.02，哪怕 tesseract 版本为 3.05.01 都不行！</p></li><li><p>另外，<strong>win32</strong> 支持的<em>32</em>位的机器，<strong>win_amd64</strong> 支持的是<em>64</em>位的机器。</p></li><li><p><strong>cp36</strong> 指的是 <strong>python3.6</strong>版本，<strong>cp37</strong> 即 <strong>python3.7</strong> 版本，<strong>python</strong> 版本也必须严格匹配。如下载的是 tesserocr-2.4.0-cp37-cp37m-win_amd64.whl，支持64位的机器，python 版本要求必须为3.7。</p></li><li><p>python 目前最新版本为3.9，tesserocr 最高支持到了 python3.7。用 <strong>Anaconda Navigator</strong> 可将 python 和 pip 更改到合适的版本，推荐这篇文章：<a href="https://www.jianshu.com/p/c3e80fa1591b" target="_blank" rel="noopener">https://www.jianshu.com/p/c3e80fa1591b</a>。</p></li></ul></li><li><p>查看安装的 python 和 pip 的版本号</p></li></ul><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">C:\Users\dell&gt;python -V</span><br><span class="line">Python 3.7.4</span><br><span class="line">C:\Users\dell&gt;pip3 -V</span><br><span class="line">pip 19.0.3 from d:\software\anaconda3\lib\site-packages\pip (python 3.7)</span><br></pre></td></tr></table></figure><ul><li>进入下载的 Wheel 所在目录，执行命令安装。</li></ul><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">H:\download\chrome下载文件&gt;pip3 install tesserocr-2.4.0-cp37-cp37m-win_amd64.whl</span><br><span class="line">Processing h:\download\chrome下载文件\tesserocr-2.4.0-cp37-cp37m-win_amd64.whl</span><br><span class="line">Installing collected packages: tesserocr</span><br><span class="line">Successfully installed tesserocr-2.4.0</span><br><span class="line">You are using pip version 19.0.3, however version 19.3.1 is available.</span><br><span class="line">You should consider upgrading via the &apos;python -m pip install --upgrade pip&apos; command.</span><br></pre></td></tr></table></figure><p>如果出现平台不支持的错误，可以参考下面的回答解决。</p><p><a href="https://stackoverflow.com/questions/28107123/cannot-install-numpy-from-wheel-format?rq=1" target="_blank" rel="noopener">https://stackoverflow.com/questions/28107123/cannot-install-numpy-from-wheel-format?rq=1</a></p><h3 id="验证安装"><a href="#验证安装" class="headerlink" title="验证安装"></a>验证安装</h3><ul><li>验证 tesserocr 安装的 python 代码如下：</li></ul><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> tesserocr</span><br><span class="line"><span class="keyword">from</span> PIL <span class="keyword">import</span> Image</span><br><span class="line"></span><br><span class="line">print(tesserocr.tesseract_version())  <span class="comment"># print tesseract-ocr version</span></span><br><span class="line">print(tesserocr.get_languages())  <span class="comment"># prints tessdata path and list of available languages</span></span><br><span class="line"></span><br><span class="line">image = Image.open(<span class="string">'image.png'</span>)</span><br><span class="line">print(tesserocr.image_to_text(image))  <span class="comment"># print ocr text from image</span></span><br><span class="line"><span class="comment"># or</span></span><br><span class="line">print(tesserocr.file_to_text(<span class="string">'image.png'</span>))</span><br></pre></td></tr></table></figure><ul><li><p>图片 image.png 如下：</p><img src="http://ww1.sinaimg.cn/large/006s8uOZly1gb4mwkoz2tj30gw032mxd.jpg" alt="image.png" style="zoom:80%;"></li></ul><ul><li>代码 verify_tesserocr.py 与 图片 image.png 位于同一目录。</li></ul><p><img src="http://ww1.sinaimg.cn/large/006s8uOZly1gb4ezf29f2j308i06adft.jpg" alt="1579555286797.png"></p><ul><li>运行结果出现新的错误：tessdata 无效的路径。</li></ul><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">RuntimeError: Failed to init API, possibly an invalid tessdata path: D:\SoftWare\Anaconda3\/tessdata/</span><br></pre></td></tr></table></figure><ul><li><p>解决：将 <strong>Tesseract-OCR</strong> 安装目录下的 <strong>tessdata</strong> 文件夹复制到 <strong>Anaconda3</strong> 的安装目录。</p></li><li><p>测试代码输出结果：</p></li></ul><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">PS H:\coding_demo\python_demo\web_crawler_demo\install_demo&gt; py verify_tesserocr.py</span><br><span class="line">tesseract 4.0.0</span><br><span class="line"> leptonica-1.76.0 (Jan  8 2019, 13:34:23) [MSC v.1900 LIB Release x64]</span><br><span class="line">  libgif 5.1.4 : libjpeg 9b : libpng 1.6.35 : libtiff 4.0.9 : zlib 1.2.11 : libwebp 0.6.1 : libopenjp2 2.3.0</span><br><span class="line">(&apos;D:\\SoftWare\\Anaconda3\\/tessdata/&apos;, [&apos;afr&apos;, &apos;amh&apos;, &apos;ara&apos;, &apos;asm&apos;, &apos;aze&apos;, &apos;aze_cyrl&apos;, &apos;bel&apos;, &apos;ben&apos;, &apos;bod&apos;, &apos;bos&apos;, &apos;bre&apos;, &apos;bul&apos;, &apos;cat&apos;, &apos;ceb&apos;, &apos;ces&apos;, &apos;chi_sim&apos;, &apos;chi_sim_vert&apos;, &apos;chi_tra&apos;, &apos;chi_tra_vert&apos;, &apos;chr&apos;, &apos;cos&apos;, &apos;cym&apos;, &apos;dan&apos;, &apos;deu&apos;, &apos;div&apos;, &apos;dzo&apos;, &apos;ell&apos;, &apos;eng&apos;, &apos;enm&apos;, &apos;epo&apos;, &apos;equ&apos;, &apos;est&apos;, &apos;eus&apos;, &apos;fao&apos;, &apos;fas&apos;, &apos;fil&apos;, &apos;fin&apos;, &apos;fra&apos;, &apos;frk&apos;, &apos;frm&apos;, &apos;fry&apos;, &apos;gla&apos;, &apos;gle&apos;, &apos;glg&apos;, &apos;grc&apos;, &apos;guj&apos;, </span><br><span class="line">&apos;hat&apos;, &apos;heb&apos;, &apos;hin&apos;, &apos;hrv&apos;, &apos;hun&apos;, &apos;hye&apos;, &apos;iku&apos;, &apos;ind&apos;, &apos;isl&apos;, &apos;ita&apos;, &apos;ita_old&apos;, &apos;jav&apos;, &apos;jpn&apos;, &apos;kan&apos;, &apos;kat&apos;, &apos;kat_old&apos;, &apos;kaz&apos;, &apos;khm&apos;, &apos;kir&apos;, &apos;kor&apos;, &apos;lao&apos;, &apos;lat&apos;, &apos;lav&apos;, &apos;lit&apos;, &apos;ltz&apos;, &apos;mal&apos;, &apos;mar&apos;, </span><br><span class="line">&apos;mkd&apos;, &apos;mlt&apos;, &apos;mon&apos;, &apos;mri&apos;, &apos;msa&apos;, &apos;mya&apos;, &apos;nep&apos;, &apos;nld&apos;, &apos;nor&apos;, &apos;oci&apos;, &apos;ori&apos;, &apos;osd&apos;, &apos;pan&apos;, &apos;pol&apos;, &apos;por&apos;, &apos;pus&apos;, &apos;que&apos;, &apos;ron&apos;, &apos;rus&apos;, &apos;san&apos;, &apos;sin&apos;, &apos;slk&apos;, &apos;slv&apos;, &apos;snd&apos;, &apos;spa&apos;, &apos;spa_old&apos;, &apos;sqi&apos;, &apos;srp&apos;, &apos;srp_latn&apos;, &apos;sun&apos;, &apos;swa&apos;, &apos;swe&apos;, &apos;syr&apos;, &apos;tam&apos;, &apos;tat&apos;, &apos;tel&apos;, &apos;tgk&apos;, &apos;tha&apos;, &apos;tir&apos;, &apos;ton&apos;, &apos;tur&apos;, &apos;uig&apos;, &apos;ukr&apos;, &apos;urd&apos;, &apos;uzb&apos;, &apos;uzb_cyrl&apos;, &apos;vie&apos;, &apos;yid&apos;, &apos;yor&apos;])</span><br><span class="line">Python3WebSpider</span><br><span class="line"></span><br><span class="line">Python3WebSpider</span><br></pre></td></tr></table></figure><hr>]]></content>
-      
-      
+<search>
+  <entry>
+    <title>Windows 安装 tesserocr</title>
+    <url>/2020/03/11/tesserocr-install/</url>
+    <content><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><blockquote>
+<p><a href="[https://zh.wikipedia.org/zh-hans/%E5%85%89%E5%AD%A6%E5%AD%97%E7%AC%A6%E8%AF%86%E5%88%AB](https://zh.wikipedia.org/zh-hans/光学字符识别)">OCR</a> (Optical Character Recognition) ，光学字符识别，指对图像文件进行分析识别处理，获取文字及版面信息的过程。</p>
+<p><strong>tesserocr</strong> 是 <strong>Python</strong> 的一个 <strong>OCR</strong> 识别库， 实质是对 <strong>tesseract</strong> 做了一层 Python Api 封装。</p>
+<p>tesserocr 的安装过程着实存在不小的坑，回溯到去年的10月份直接被坑到了放弃​​，这次好不容易成功安装，特此记录下过程。</p>
+</blockquote><a id="more"></a>
+<h3 id="安装-Tesseract"><a href="#安装-Tesseract" class="headerlink" title="安装 Tesseract"></a>安装 Tesseract</h3><ul>
+<li>下载地址：<a href="https://digi.bib.uni-mannheim.de/tesseract/" target="_blank" rel="noopener">https://digi.bib.uni-mannheim.de/tesseract/</a></li>
+</ul>
+<p><img src="http://ww1.sinaimg.cn/large/006s8uOZly1gb4ex0cth6j30kb0a3ta4.jpg" alt="1579545615440.png"></p>
+<ul>
+<li><p>32位的机器选择 w32，64位的机器则选择 w64</p>
+</li>
+<li><p>自己下了 v4.0.0的版本：<a href="https://digi.bib.uni-mannheim.de/tesseract/tesseract-ocr-w64-setup-v4.0.0.20181030.exe" target="_blank" rel="noopener">tesseract-ocr-w64-setup-v4.0.0.20181030.exe</a></p>
+</li>
+<li><p><strong>注意</strong>：tesserocr 并不支持 tesseract 的所有版本，这点切记，后面会提到怎么看目前哪些版本是支持的。再加上软件下载的速度特慢，版本搞错可能就会白浪费掉近半个小时。</p>
+</li>
+<li><p>下载完成，双击 exe 文件开始安装，除勾选同意协议、自定义安装路径、用户外，可勾选 <code>Additional language data(download)</code> 选项安装支持的语言包。</p>
+</li>
+</ul>
+<p><img src="http://ww1.sinaimg.cn/large/006s8uOZly1gb4exm650kj30dx0awt98.jpg" alt="1579546893010.png"></p>
+<ul>
+<li><p>然后一路点击 next，等待安装完毕。</p>
+</li>
+<li><p>添加 tesseract 根目录到环境变量，<code>tesseract --version</code> 可查看相应版本号。</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">C:\Users\dell&gt;tesseract --version</span><br><span class="line">tesseract v4.0.0.20181030</span><br><span class="line"> leptonica-1.76.0</span><br><span class="line">  libgif 5.1.4 : libjpeg 8d (libjpeg-turbo 1.5.3) : libpng 1.6.34 : libtiff 4.0.9 : zlib 1.2.11 : libwebp 0.6.1 : libopenjp2 2.2.0</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="安装-tesserocr"><a href="#安装-tesserocr" class="headerlink" title="安装 tesserocr"></a>安装 tesserocr</h3><p>首先，不要妄想 <strong>windows</strong>上 使用 <code>pip3 install tesserocr pillow</code>  命令就可以成功安装。</p>
+<ul>
+<li>进入tesserocr GitHub 地址：<a href="https://github.com/sirfz/tesserocr">https://github.com/sirfz/tesserocr</a></li>
+</ul>
+<p><img src="http://ww1.sinaimg.cn/large/006s8uOZly1gb4ey8m352j30ra0d8aan.jpg" alt="1579547897003.png"></p>
+<p>这才是windows 下安装 tesserocr 的正确姿势！本文采用了第二种方法：pip 安装 wheel。</p>
+<ul>
+<li>点击提供的链接：<a href="https://github.com/simonflueckiger/tesserocr-windows_build/releases">https://github.com/simonflueckiger/tesserocr-windows_build/releases</a></li>
+</ul>
+<p><img src="http://ww1.sinaimg.cn/large/006s8uOZly1gb4eyw3ja8j30rs0hhq4e.jpg" alt="1579548265969.png"></p>
+<ul>
+<li><p>可以看到，目前 tesserocr 最新版本为2.4.0，支持 tesseract 的版本为4.0.0。</p>
+<ul>
+<li><p>注意 tesserocr 和 tesseract 的版本必须严格匹配。例如 tesserocr v2.3.1 (tesseract 3.05.02)，选择安装 tesserocr 2.3.1版本，则 tesseract 的版本必须为 3.05.02，哪怕 tesseract 版本为 3.05.01 都不行！</p>
+</li>
+<li><p>另外，<strong>win32</strong> 支持的<em>32</em>位的机器，<strong>win_amd64</strong> 支持的是<em>64</em>位的机器。</p>
+</li>
+<li><p><strong>cp36</strong> 指的是 <strong>python3.6</strong>版本，<strong>cp37</strong> 即 <strong>python3.7</strong> 版本，<strong>python</strong> 版本也必须严格匹配。如下载的是 tesserocr-2.4.0-cp37-cp37m-win_amd64.whl，支持64位的机器，python 版本要求必须为3.7。</p>
+</li>
+<li><p>python 目前最新版本为3.9，tesserocr 最高支持到了 python3.7。用 <strong>Anaconda Navigator</strong> 可将 python 和 pip 更改到合适的版本，推荐这篇文章：<a href="https://www.jianshu.com/p/c3e80fa1591b" target="_blank" rel="noopener">https://www.jianshu.com/p/c3e80fa1591b</a>。</p>
+</li>
+</ul>
+</li>
+<li><p>查看安装的 python 和 pip 的版本号</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">C:\Users\dell&gt;python -V</span><br><span class="line">Python 3.7.4</span><br><span class="line">C:\Users\dell&gt;pip3 -V</span><br><span class="line">pip 19.0.3 from d:\software\anaconda3\lib\site-packages\pip (python 3.7)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>进入下载的 Wheel 所在目录，执行命令安装。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">H:\download\chrome下载文件&gt;pip3 install tesserocr-2.4.0-cp37-cp37m-win_amd64.whl</span><br><span class="line">Processing h:\download\chrome下载文件\tesserocr-2.4.0-cp37-cp37m-win_amd64.whl</span><br><span class="line">Installing collected packages: tesserocr</span><br><span class="line">Successfully installed tesserocr-2.4.0</span><br><span class="line">You are using pip version 19.0.3, however version 19.3.1 is available.</span><br><span class="line">You should consider upgrading via the &apos;python -m pip install --upgrade pip&apos; command.</span><br></pre></td></tr></table></figure>
+
+<p>如果出现平台不支持的错误，可以参考下面的回答解决。</p>
+<p><a href="https://stackoverflow.com/questions/28107123/cannot-install-numpy-from-wheel-format?rq=1" target="_blank" rel="noopener">https://stackoverflow.com/questions/28107123/cannot-install-numpy-from-wheel-format?rq=1</a></p>
+<h3 id="验证安装"><a href="#验证安装" class="headerlink" title="验证安装"></a>验证安装</h3><ul>
+<li>验证 tesserocr 安装的 python 代码如下：</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> tesserocr</span><br><span class="line"><span class="keyword">from</span> PIL <span class="keyword">import</span> Image</span><br><span class="line"></span><br><span class="line">print(tesserocr.tesseract_version())  <span class="comment"># print tesseract-ocr version</span></span><br><span class="line">print(tesserocr.get_languages())  <span class="comment"># prints tessdata path and list of available languages</span></span><br><span class="line"></span><br><span class="line">image = Image.open(<span class="string">'image.png'</span>)</span><br><span class="line">print(tesserocr.image_to_text(image))  <span class="comment"># print ocr text from image</span></span><br><span class="line"><span class="comment"># or</span></span><br><span class="line">print(tesserocr.file_to_text(<span class="string">'image.png'</span>))</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>图片 image.png 如下：</p>
+<img src="http://ww1.sinaimg.cn/large/006s8uOZly1gb4mwkoz2tj30gw032mxd.jpg" alt="image.png" style="zoom:80%;">
+
+</li>
+</ul>
+<ul>
+<li>代码 verify_tesserocr.py 与 图片 image.png 位于同一目录。</li>
+</ul>
+<p><img src="http://ww1.sinaimg.cn/large/006s8uOZly1gb4ezf29f2j308i06adft.jpg" alt="1579555286797.png"></p>
+<ul>
+<li>运行结果出现新的错误：tessdata 无效的路径。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">RuntimeError: Failed to init API, possibly an invalid tessdata path: D:\SoftWare\Anaconda3\/tessdata/</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>解决：将 <strong>Tesseract-OCR</strong> 安装目录下的 <strong>tessdata</strong> 文件夹复制到 <strong>Anaconda3</strong> 的安装目录。</p>
+</li>
+<li><p>测试代码输出结果：</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">PS H:\coding_demo\python_demo\web_crawler_demo\install_demo&gt; py verify_tesserocr.py</span><br><span class="line">tesseract 4.0.0</span><br><span class="line"> leptonica-1.76.0 (Jan  8 2019, 13:34:23) [MSC v.1900 LIB Release x64]</span><br><span class="line">  libgif 5.1.4 : libjpeg 9b : libpng 1.6.35 : libtiff 4.0.9 : zlib 1.2.11 : libwebp 0.6.1 : libopenjp2 2.3.0</span><br><span class="line">(&apos;D:\\SoftWare\\Anaconda3\\/tessdata/&apos;, [&apos;afr&apos;, &apos;amh&apos;, &apos;ara&apos;, &apos;asm&apos;, &apos;aze&apos;, &apos;aze_cyrl&apos;, &apos;bel&apos;, &apos;ben&apos;, &apos;bod&apos;, &apos;bos&apos;, &apos;bre&apos;, &apos;bul&apos;, &apos;cat&apos;, &apos;ceb&apos;, &apos;ces&apos;, &apos;chi_sim&apos;, &apos;chi_sim_vert&apos;, &apos;chi_tra&apos;, &apos;chi_tra_vert&apos;, &apos;chr&apos;, &apos;cos&apos;, &apos;cym&apos;, &apos;dan&apos;, &apos;deu&apos;, &apos;div&apos;, &apos;dzo&apos;, &apos;ell&apos;, &apos;eng&apos;, &apos;enm&apos;, &apos;epo&apos;, &apos;equ&apos;, &apos;est&apos;, &apos;eus&apos;, &apos;fao&apos;, &apos;fas&apos;, &apos;fil&apos;, &apos;fin&apos;, &apos;fra&apos;, &apos;frk&apos;, &apos;frm&apos;, &apos;fry&apos;, &apos;gla&apos;, &apos;gle&apos;, &apos;glg&apos;, &apos;grc&apos;, &apos;guj&apos;, </span><br><span class="line">&apos;hat&apos;, &apos;heb&apos;, &apos;hin&apos;, &apos;hrv&apos;, &apos;hun&apos;, &apos;hye&apos;, &apos;iku&apos;, &apos;ind&apos;, &apos;isl&apos;, &apos;ita&apos;, &apos;ita_old&apos;, &apos;jav&apos;, &apos;jpn&apos;, &apos;kan&apos;, &apos;kat&apos;, &apos;kat_old&apos;, &apos;kaz&apos;, &apos;khm&apos;, &apos;kir&apos;, &apos;kor&apos;, &apos;lao&apos;, &apos;lat&apos;, &apos;lav&apos;, &apos;lit&apos;, &apos;ltz&apos;, &apos;mal&apos;, &apos;mar&apos;, </span><br><span class="line">&apos;mkd&apos;, &apos;mlt&apos;, &apos;mon&apos;, &apos;mri&apos;, &apos;msa&apos;, &apos;mya&apos;, &apos;nep&apos;, &apos;nld&apos;, &apos;nor&apos;, &apos;oci&apos;, &apos;ori&apos;, &apos;osd&apos;, &apos;pan&apos;, &apos;pol&apos;, &apos;por&apos;, &apos;pus&apos;, &apos;que&apos;, &apos;ron&apos;, &apos;rus&apos;, &apos;san&apos;, &apos;sin&apos;, &apos;slk&apos;, &apos;slv&apos;, &apos;snd&apos;, &apos;spa&apos;, &apos;spa_old&apos;, &apos;sqi&apos;, &apos;srp&apos;, &apos;srp_latn&apos;, &apos;sun&apos;, &apos;swa&apos;, &apos;swe&apos;, &apos;syr&apos;, &apos;tam&apos;, &apos;tat&apos;, &apos;tel&apos;, &apos;tgk&apos;, &apos;tha&apos;, &apos;tir&apos;, &apos;ton&apos;, &apos;tur&apos;, &apos;uig&apos;, &apos;ukr&apos;, &apos;urd&apos;, &apos;uzb&apos;, &apos;uzb_cyrl&apos;, &apos;vie&apos;, &apos;yid&apos;, &apos;yor&apos;])</span><br><span class="line">Python3WebSpider</span><br><span class="line"></span><br><span class="line">Python3WebSpider</span><br></pre></td></tr></table></figure>
+
+<hr>
+]]></content>
       <categories>
-          
-          <category> python </category>
-          
+        <category>python</category>
       </categories>
-      
-      
-        <tags>
-            
-            <tag> python </tag>
-            
-            <tag> ocr </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>Hexo 的基本命令</title>
-      <link href="/2020/03/11/hello-world/"/>
-      <url>/2020/03/11/hello-world/</url>
-      
-        <content type="html"><![CDATA[<blockquote><p>Hexo 官网：<a href="https://hexo.io/" target="_blank" rel="noopener">https://hexo.io/</a></p><p>Hexo 官方文档：<a href="https://hexo.io/docs/" target="_blank" rel="noopener">https://hexo.io/docs/</a></p><p>Hexo 的 GitHub 地址：<a href="https://github.com/hexojs/hexo">https://github.com/hexojs/hexo</a></p></blockquote><h2 id="快速开始"><a href="#快速开始" class="headerlink" title="快速开始"></a>快速开始</h2><h3 id="创建一篇新文章"><a href="#创建一篇新文章" class="headerlink" title="创建一篇新文章"></a>创建一篇新文章</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure><p>更多信息: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p><a id="more"></a><h3 id="运行服务器"><a href="#运行服务器" class="headerlink" title="运行服务器"></a>运行服务器</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure><p>更多信息: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p><h3 id="生成静态网页"><a href="#生成静态网页" class="headerlink" title="生成静态网页"></a>生成静态网页</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure><p>更多信息: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p><h3 id="提交到远程站点"><a href="#提交到远程站点" class="headerlink" title="提交到远程站点"></a>提交到远程站点</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure><p>更多信息: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>]]></content>
-      
-      
+      <tags>
+        <tag>python</tag>
+        <tag>ocr</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Hexo 的基本命令</title>
+    <url>/2020/03/11/hello-world/</url>
+    <content><![CDATA[<blockquote>
+<p>Hexo 官网：<a href="https://hexo.io/" target="_blank" rel="noopener">https://hexo.io/</a></p>
+<p>Hexo 官方文档：<a href="https://hexo.io/docs/" target="_blank" rel="noopener">https://hexo.io/docs/</a></p>
+<p>Hexo 的 GitHub 地址：<a href="https://github.com/hexojs/hexo">https://github.com/hexojs/hexo</a></p>
+</blockquote><h2 id="快速开始"><a href="#快速开始" class="headerlink" title="快速开始"></a>快速开始</h2><h3 id="创建一篇新文章"><a href="#创建一篇新文章" class="headerlink" title="创建一篇新文章"></a>创建一篇新文章</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure><p>更多信息: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p><a id="more"></a>
+
+
+
+<h3 id="运行服务器"><a href="#运行服务器" class="headerlink" title="运行服务器"></a>运行服务器</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+
+<p>更多信息: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
+<h3 id="生成静态网页"><a href="#生成静态网页" class="headerlink" title="生成静态网页"></a>生成静态网页</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>更多信息: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
+<h3 id="提交到远程站点"><a href="#提交到远程站点" class="headerlink" title="提交到远程站点"></a>提交到远程站点</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>更多信息: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+]]></content>
       <categories>
-          
-          <category> 博客 </category>
-          
+        <category>博客</category>
       </categories>
-      
-      
-        <tags>
-            
-            <tag> hexo </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>对中医的一点感想</title>
-      <link href="/2020/02/18/thoughts-of-TCM/"/>
-      <url>/2020/02/18/thoughts-of-TCM/</url>
-      
-        <content type="html"><![CDATA[<p>中医终究只是在上千年的时间线尺度上不断试出来的医学，理论上靠玄学以不明不白的方式强加解释，自然会误导不少人相信古人反倒有什么大智慧。</p>]]></content>
-      
-      
+      <tags>
+        <tag>hexo</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>对中医的一点感想</title>
+    <url>/2020/02/18/thoughts-of-TCM/</url>
+    <content><![CDATA[<p>中医终究只是在上千年的时间线尺度上不断试出来的医学，理论上靠玄学以不明不白的方式强加解释，自然会误导不少人相信古人反倒有什么大智慧。</p>]]></content>
       <categories>
-          
-          <category> 杂想 </category>
-          
+        <category>杂想</category>
       </categories>
-      
-      
-        <tags>
-            
-            <tag> 杂想 </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>Chrome 快捷键</title>
-      <link href="/2019/11/20/chrome-hotkeys/"/>
-      <url>/2019/11/20/chrome-hotkeys/</url>
-      
-        <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><blockquote><p><strong>Chrome</strong> ，即<strong>谷歌浏览器</strong>，英文直译为化学元素”铬“，是由 <strong>Google</strong> 公司开发的一款免费的网页浏览器。于2008年9月首次发布后，Chrome 用户数量迅速增长，仅用了4年时间，市场占有率便超越了 <strong>FireFox</strong> 和 <strong>IE</strong>，截止19年， Chrome 浏览器已占有将近 7 成的市场份额。对于当下最广为流行的浏览器，学习掌握其特性和使用自然是完全有必要的。</p><p><img src="data:image/jpeg;base64,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" alt="“chrome”的图片搜索结果"></p></blockquote><a id="more"></a><hr><h2 id="Chrome-快捷键"><a href="#Chrome-快捷键" class="headerlink" title="Chrome 快捷键"></a>Chrome 快捷键</h2><h3 id="标签页和窗口"><a href="#标签页和窗口" class="headerlink" title="标签页和窗口"></a>标签页和窗口</h3><table><thead><tr><th>快捷键</th><th>操作</th></tr></thead><tbody><tr><td><code>Ctrl</code>+<code>N</code></td><td>打开新窗口</td></tr><tr><td><code>Ctrl</code>+<code>T</code></td><td>打开新的标签页</td></tr><tr><td><code>Ctrl</code>+<code>Shift</code>+<code>N</code></td><td>在隐身模式下打开新窗口</td></tr><tr><td><code>Ctrl</code>+<code>Shift</code>+<code>T</code></td><td>恢复最近关闭的标签页（最多10个）</td></tr><tr><td><code>Ctrl</code>+<code>O</code></td><td>选择打开计算机上的文件</td></tr><tr><td><code>Ctrl</code>+<code>点击链接</code></td><td>新标签页打开链接，仍停留在原页面</td></tr><tr><td><code>Ctrl</code>+<code>Shift</code>+<code>点击链接</code></td><td>新标签页打开链接，同时切换到新页面</td></tr><tr><td><code>Shift</code>+<code>点击链接</code></td><td>在新窗口打开链接</td></tr><tr><td><code>Ctrl</code>+<code>Tab</code>或<code>Ctrl</code>+<code>PgDown</code></td><td>切换到下一个标签页</td></tr><tr><td><code>Ctrl</code>+<code>Shift</code>+<code>Tab</code> 或 <code>Ctrl</code>+<code>PgUp</code></td><td>切换到上一个标签页</td></tr><tr><td><code>Alt</code>+<code>←</code>/<code>→</code></td><td>历史记录上一页/下一页</td></tr><tr><td><code>Ctrl</code>+<code>W</code> 或 <code>Ctrl</code>+<code>F4</code></td><td>关闭当前的标签页</td></tr><tr><td><code>Ctrl</code>+<code>1</code>到<code>Ctrl</code>+<code>8</code></td><td>切换到指定位置编号的标签页</td></tr><tr><td><code>Ctrl</code>+<code>9</code></td><td>跳转到最后一个标签页</td></tr><tr><td><code>Alt</code>+<code>Home</code></td><td>在当前标签页打开主页</td></tr><tr><td><code>Ctrl</code>+<code>Shift</code>+<code>W</code></td><td>关闭所有标签页</td></tr><tr><td><code>Ctrl</code>+<code>Shift</code>+<code>Q</code></td><td>退出浏览器</td></tr><tr><td><code>Alt</code>+<code>F4</code></td><td>关闭当前窗口</td></tr><tr><td><code>Alt</code>+<code>Space</code>+<code>C</code></td><td>关闭当前窗口</td></tr></tbody></table><h3 id="地址栏"><a href="#地址栏" class="headerlink" title="地址栏"></a>地址栏</h3><table><thead><tr><th>快捷键</th><th>操作</th></tr></thead><tbody><tr><td><code>Ctrl</code>+<code>Enter</code></td><td>自动为地址输入内容添加 “www” 和 ”.com“，然后打开网址</td></tr><tr><td><code>Enter</code></td><td>使用搜索引擎进行搜索</td></tr><tr><td><code>Alt</code>+<code>Enter</code></td><td>在新标签页打开网址</td></tr><tr><td><code>Alt</code>+<code>D</code></td><td>聚焦或选中地址栏中的内容</td></tr><tr><td><code>Ctrl</code>+<code>L</code></td><td>聚焦或选中地址栏中的内容</td></tr><tr><td><code>F6</code></td><td>聚焦或选中地址栏中的内容</td></tr><tr><td><code>Ctrl</code>+<code>←</code>/<code>→</code></td><td>光标移到上 / 下一个关键字词</td></tr><tr><td><code>Ctrl</code>+<code>Space</code></td><td>删除地址栏中光标前的字词</td></tr><tr><td><code>输入搜索引擎关键字或网址</code>+<code>Tab</code></td><td>使用相关联的搜索引擎进行搜索</td></tr></tbody></table><h3 id="网页"><a href="#网页" class="headerlink" title="网页"></a>网页</h3><table><thead><tr><th>快捷键</th><th>操作</th></tr></thead><tbody><tr><td><code>Ctrl</code>+<code>P</code></td><td>打印当前页</td></tr><tr><td><code>Ctrl</code>+<code>S</code></td><td>保存当前页</td></tr><tr><td><code>F5</code></td><td>重新加载当前页</td></tr><tr><td><code>Ctrl</code>+<code>R</code></td><td>重新加载当前页</td></tr><tr><td><code>Esc</code></td><td>停止加载当前页</td></tr><tr><td><code>Ctrl</code>+<code>F</code></td><td>打开查找栏</td></tr><tr><td><code>点击鼠标滚轮</code></td><td>激活自动滚动。根据鼠标的移动方向控制滚动方向，位移量控制滚动速度</td></tr><tr><td><code>Ctrl</code>+<code>F5</code>  或  <code>Shift</code>+<code>F5</code></td><td>重新加载当前页，清除缓存内容</td></tr><tr><td><code>Alt</code>+ <code>点击链接</code></td><td>下载链接</td></tr><tr><td><code>Ctrl</code>+<code>G</code> 或 <code>F3</code></td><td>查找与页面搜索相匹配的下一匹配项</td></tr><tr><td><code>Ctrl</code>+<code>Shift</code>+<code>G</code> 或 <code>Shift</code>+<code>F3</code></td><td>查找与页面搜索相匹配的上一匹配项</td></tr><tr><td><code>Ctrl</code>+<code>U</code></td><td>查看源代码</td></tr><tr><td><code>Ctrl</code>+<code>D</code></td><td>将当前网页加入书签</td></tr><tr><td><code>Ctrl</code>+<code>Shift</code>+<code>D</code></td><td>将所有打开的网页以书签形式保存在新文件夹</td></tr><tr><td><code>Ctrl</code>+<code>+</code></td><td>放大网页上的所有内容</td></tr><tr><td><code>Ctrl</code>+<code>-</code></td><td>缩小网页上的所有内容</td></tr><tr><td><code>Ctrl</code>+<code>0</code></td><td>将网页上的所有内容都恢复到正常大小</td></tr><tr><td><code>Home</code></td><td>转至网页顶部</td></tr><tr><td><code>End</code></td><td>转至网页底部</td></tr><tr><td><code>Space</code></td><td>向下滚动页面</td></tr><tr><td><code>↓</code>/<code>↑</code></td><td>向下 / 上 滚动页面</td></tr><tr><td><code>Shift</code>+<code>↑</code>/<code>↓</code></td><td>向右/左横向滚动页面</td></tr><tr><td><code>F11</code></td><td>启动/取消全屏模式</td></tr></tbody></table><h3 id="功能"><a href="#功能" class="headerlink" title="功能"></a>功能</h3><table><thead><tr><th>快捷键</th><th>操作</th></tr></thead><tbody><tr><td><code>Ctrl</code>+<code>Shift</code>+<code>J</code> 或 <code>F12</code></td><td>打开开发人员工具</td></tr><tr><td><code>Ctrl</code>+<code>Shift</code>+<code>Delete</code></td><td>打开”清除浏览数据”对话框</td></tr><tr><td><code>F1</code></td><td>在新标签页中打开帮助中心</td></tr><tr><td><code>Tab</code></td><td>下一个属性</td></tr><tr><td><code>Enter</code></td><td>执行命令</td></tr><tr><td><code>Alt</code>+<code>E</code></td><td>打开工具菜单</td></tr><tr><td><code>Ctrl</code>+<code>B</code></td><td>打开和关闭书签栏</td></tr><tr><td><code>Ctrl</code>+<code>Shift</code>+`B``</td><td>打开书签管理器页</td></tr><tr><td><code>Ctrl</code>+<code>H</code></td><td>在新标签页打开”历史记录”页</td></tr><tr><td><code>Ctrl</code>+<code>J</code></td><td>在新标签页打开”下载内容”页</td></tr><tr><td><code>Shift</code>+<code>Esc</code></td><td>查看任务管理器</td></tr><tr><td><code>Shift</code>+<code>Alt</code>+<code>T</code></td><td>将焦点设置在工具栏上</td></tr></tbody></table><h3 id="文本"><a href="#文本" class="headerlink" title="文本"></a>文本</h3><table><thead><tr><th>快捷键</th><th>操作</th></tr></thead><tbody><tr><td><code>Ctrl</code>+<code>C</code></td><td>将选中内容复制到剪贴板</td></tr><tr><td><code>Ctrl</code>+<code>Insert</code></td><td>将选中内容复制到剪贴板</td></tr><tr><td><code>Ctrl</code>+<code>V</code></td><td>从剪贴板粘贴内容</td></tr><tr><td><code>Shift</code>+<code>Insert</code></td><td>从剪贴板粘贴内容</td></tr><tr><td><code>Ctrl</code>+<code>Shift</code>+<code>V</code></td><td>从剪贴板粘贴内容（不带格式）</td></tr><tr><td><code>Ctrl</code>+<code>X</code></td><td>剪贴选中内容到剪贴板</td></tr><tr><td><code>Shift</code>+<code>Delete</code></td><td>剪贴选中内容到剪贴板</td></tr></tbody></table><hr><h2 id="Vimium-快捷键"><a href="#Vimium-快捷键" class="headerlink" title="Vimium 快捷键"></a>Vimium 快捷键</h2><style>   table th:first-of-type {           width: 40%    }    a .foo {        color: blue    }</style><h3 id="Vimium-简介"><a href="#Vimium-简介" class="headerlink" title="Vimium 简介"></a>Vimium 简介</h3><p><strong>Vimium</strong> 是 Chrome 的一款快捷键扩展插件，继承了 <strong>Vim</strong> 中的常用键位，相比Chrome 拥有更为简单的快捷键，让用户在使用 Chrome 过程中几乎可以完全脱离鼠标，全通过键盘完成浏览网页、切换标签或是其他任何操作。</p><h3 id="浏览网页快捷键"><a href="#浏览网页快捷键" class="headerlink" title="浏览网页快捷键"></a>浏览网页快捷键</h3><table><thead><tr><th>快捷键</th><th>操作</th></tr></thead><tbody><tr><td><code>j</code></td><td>向下细微滚动页面</td></tr><tr><td><code>k</code></td><td>向上细微滚动页面</td></tr><tr><td><code>gg</code></td><td>到页面顶部</td></tr><tr><td><code>G</code></td><td>到页面底部</td></tr><tr><td><code>d</code></td><td>向下滚动半页</td></tr><tr><td><code>u</code></td><td>向上滚动半页</td></tr><tr><td><code>h</code></td><td>页面向左细微滚动</td></tr><tr><td><code>l</code></td><td>页面向右细微滚动</td></tr><tr><td><code>r</code></td><td>刷新页面</td></tr><tr><td><code>yy</code></td><td>复制当前 URL 到剪贴板</td></tr><tr><td><code>yf</code></td><td>拷贝页面某一个 URL 到剪贴板</td></tr><tr><td><code>p</code></td><td>在当前页打开剪贴板 URL</td></tr><tr><td><code>P</code></td><td>在新标签页打开剪贴板 URL</td></tr><tr><td><code>i</code></td><td>进入插入模式</td></tr><tr><td><code>v</code></td><td>进入虚拟模式</td></tr><tr><td><code>gi</code></td><td>聚焦页面第一个文本输入框</td></tr><tr><td><code>f</code></td><td>在当前页面打开一个链接（生成快捷键）</td></tr><tr><td><code>F</code></td><td>在新标签页打开一个链接（生成快捷键）</td></tr><tr><td><code>gf</code></td><td>选中当前页面页面下一个框层</td></tr><tr><td><code>gF</code></td><td>选中当前页面的主框层</td></tr></tbody></table><h3 id="搜索条"><a href="#搜索条" class="headerlink" title="搜索条"></a>搜索条</h3><table><thead><tr><th>快捷键</th><th>操作</th></tr></thead><tbody><tr><td><code>o</code></td><td>当前页面打开 URL, 书签或者历史记录</td></tr><tr><td><code>O</code></td><td>新标签页打开 URL，书签或者历史记录</td></tr><tr><td><code>b</code></td><td>在当前页面打开一个书签</td></tr><tr><td><code>B</code></td><td>在新标签页打开一个书签</td></tr><tr><td><code>T</code></td><td>在开启的标签中查找</td></tr></tbody></table><h3 id="查找"><a href="#查找" class="headerlink" title="查找"></a>查找</h3><table><thead><tr><th>快捷键</th><th>操作</th></tr></thead><tbody><tr><td><code>/</code></td><td>进入查找模式</td></tr><tr><td><code>n</code></td><td>下一个匹配内容（循环）</td></tr><tr><td><code>N</code></td><td>上一个匹配内容</td></tr></tbody></table><h3 id="导航历史"><a href="#导航历史" class="headerlink" title="导航历史"></a>导航历史</h3><table><thead><tr><th>快捷键</th><th>操作</th></tr></thead><tbody><tr><td><code>H</code></td><td>后退历史</td></tr><tr><td><code>L</code></td><td>前进历史</td></tr><tr><td><code>gu</code></td><td>跳转到父页面</td></tr></tbody></table><h3 id="操作标签页"><a href="#操作标签页" class="headerlink" title="操作标签页"></a>操作标签页</h3><table><thead><tr><th>快捷键</th><th>操作</th></tr></thead><tbody><tr><td><code>t</code></td><td>创建新标签页</td></tr><tr><td><code>gT</code></td><td>切换到左边的标签页</td></tr><tr><td><code>gt</code></td><td>切换到右边的标签页</td></tr><tr><td><code>^</code></td><td>切换到上次访问的标签页</td></tr><tr><td><code>g0</code></td><td>切换到第一个标签页</td></tr><tr><td><code>g$</code></td><td>切换到最后一标签页</td></tr><tr><td><code>yt</code></td><td>重复当前标签页</td></tr><tr><td><code>x</code></td><td>关闭当前标签页</td></tr><tr><td><code>X</code></td><td>恢复当前标签页</td></tr><tr><td><code>gs</code></td><td>查看网页源码</td></tr></tbody></table><h3 id="帮助"><a href="#帮助" class="headerlink" title="帮助"></a>帮助</h3><table><thead><tr><th>快捷键</th><th>操作</th></tr></thead><tbody><tr><td><code>?</code></td><td>显示帮助</td></tr></tbody></table>]]></content>
-      
-      
+      <tags>
+        <tag>杂想</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Chrome 快捷键</title>
+    <url>/2019/11/20/chrome-hotkeys/</url>
+    <content><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><blockquote>
+<p><strong>Chrome</strong> ，即<strong>谷歌浏览器</strong>，英文直译为化学元素”铬“，是由 <strong>Google</strong> 公司开发的一款免费的网页浏览器。于2008年9月首次发布后，Chrome 用户数量迅速增长，仅用了4年时间，市场占有率便超越了 <strong>FireFox</strong> 和 <strong>IE</strong>，截止19年， Chrome 浏览器已占有将近 7 成的市场份额。对于当下最广为流行的浏览器，学习掌握其特性和使用自然是完全有必要的。</p>
+<p><img src="data:image/jpeg;base64,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" alt="“chrome”的图片搜索结果"></p>
+</blockquote><a id="more"></a>
+<hr>
+<h2 id="Chrome-快捷键"><a href="#Chrome-快捷键" class="headerlink" title="Chrome 快捷键"></a>Chrome 快捷键</h2><h3 id="标签页和窗口"><a href="#标签页和窗口" class="headerlink" title="标签页和窗口"></a>标签页和窗口</h3><table>
+<thead>
+<tr>
+<th>快捷键</th>
+<th>操作</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>Ctrl</code>+<code>N</code></td>
+<td>打开新窗口</td>
+</tr>
+<tr>
+<td><code>Ctrl</code>+<code>T</code></td>
+<td>打开新的标签页</td>
+</tr>
+<tr>
+<td><code>Ctrl</code>+<code>Shift</code>+<code>N</code></td>
+<td>在隐身模式下打开新窗口</td>
+</tr>
+<tr>
+<td><code>Ctrl</code>+<code>Shift</code>+<code>T</code></td>
+<td>恢复最近关闭的标签页（最多10个）</td>
+</tr>
+<tr>
+<td><code>Ctrl</code>+<code>O</code></td>
+<td>选择打开计算机上的文件</td>
+</tr>
+<tr>
+<td><code>Ctrl</code>+<code>点击链接</code></td>
+<td>新标签页打开链接，仍停留在原页面</td>
+</tr>
+<tr>
+<td><code>Ctrl</code>+<code>Shift</code>+<code>点击链接</code></td>
+<td>新标签页打开链接，同时切换到新页面</td>
+</tr>
+<tr>
+<td><code>Shift</code>+<code>点击链接</code></td>
+<td>在新窗口打开链接</td>
+</tr>
+<tr>
+<td><code>Ctrl</code>+<code>Tab</code>或<code>Ctrl</code>+<code>PgDown</code></td>
+<td>切换到下一个标签页</td>
+</tr>
+<tr>
+<td><code>Ctrl</code>+<code>Shift</code>+<code>Tab</code> 或 <code>Ctrl</code>+<code>PgUp</code></td>
+<td>切换到上一个标签页</td>
+</tr>
+<tr>
+<td><code>Alt</code>+<code>←</code>/<code>→</code></td>
+<td>历史记录上一页/下一页</td>
+</tr>
+<tr>
+<td><code>Ctrl</code>+<code>W</code> 或 <code>Ctrl</code>+<code>F4</code></td>
+<td>关闭当前的标签页</td>
+</tr>
+<tr>
+<td><code>Ctrl</code>+<code>1</code>到<code>Ctrl</code>+<code>8</code></td>
+<td>切换到指定位置编号的标签页</td>
+</tr>
+<tr>
+<td><code>Ctrl</code>+<code>9</code></td>
+<td>跳转到最后一个标签页</td>
+</tr>
+<tr>
+<td><code>Alt</code>+<code>Home</code></td>
+<td>在当前标签页打开主页</td>
+</tr>
+<tr>
+<td><code>Ctrl</code>+<code>Shift</code>+<code>W</code></td>
+<td>关闭所有标签页</td>
+</tr>
+<tr>
+<td><code>Ctrl</code>+<code>Shift</code>+<code>Q</code></td>
+<td>退出浏览器</td>
+</tr>
+<tr>
+<td><code>Alt</code>+<code>F4</code></td>
+<td>关闭当前窗口</td>
+</tr>
+<tr>
+<td><code>Alt</code>+<code>Space</code>+<code>C</code></td>
+<td>关闭当前窗口</td>
+</tr>
+</tbody></table>
+<h3 id="地址栏"><a href="#地址栏" class="headerlink" title="地址栏"></a>地址栏</h3><table>
+<thead>
+<tr>
+<th>快捷键</th>
+<th>操作</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>Ctrl</code>+<code>Enter</code></td>
+<td>自动为地址输入内容添加 “www” 和 ”.com“，然后打开网址</td>
+</tr>
+<tr>
+<td><code>Enter</code></td>
+<td>使用搜索引擎进行搜索</td>
+</tr>
+<tr>
+<td><code>Alt</code>+<code>Enter</code></td>
+<td>在新标签页打开网址</td>
+</tr>
+<tr>
+<td><code>Alt</code>+<code>D</code></td>
+<td>聚焦或选中地址栏中的内容</td>
+</tr>
+<tr>
+<td><code>Ctrl</code>+<code>L</code></td>
+<td>聚焦或选中地址栏中的内容</td>
+</tr>
+<tr>
+<td><code>F6</code></td>
+<td>聚焦或选中地址栏中的内容</td>
+</tr>
+<tr>
+<td><code>Ctrl</code>+<code>←</code>/<code>→</code></td>
+<td>光标移到上 / 下一个关键字词</td>
+</tr>
+<tr>
+<td><code>Ctrl</code>+<code>Space</code></td>
+<td>删除地址栏中光标前的字词</td>
+</tr>
+<tr>
+<td><code>输入搜索引擎关键字或网址</code>+<code>Tab</code></td>
+<td>使用相关联的搜索引擎进行搜索</td>
+</tr>
+</tbody></table>
+<h3 id="网页"><a href="#网页" class="headerlink" title="网页"></a>网页</h3><table>
+<thead>
+<tr>
+<th>快捷键</th>
+<th>操作</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>Ctrl</code>+<code>P</code></td>
+<td>打印当前页</td>
+</tr>
+<tr>
+<td><code>Ctrl</code>+<code>S</code></td>
+<td>保存当前页</td>
+</tr>
+<tr>
+<td><code>F5</code></td>
+<td>重新加载当前页</td>
+</tr>
+<tr>
+<td><code>Ctrl</code>+<code>R</code></td>
+<td>重新加载当前页</td>
+</tr>
+<tr>
+<td><code>Esc</code></td>
+<td>停止加载当前页</td>
+</tr>
+<tr>
+<td><code>Ctrl</code>+<code>F</code></td>
+<td>打开查找栏</td>
+</tr>
+<tr>
+<td><code>点击鼠标滚轮</code></td>
+<td>激活自动滚动。根据鼠标的移动方向控制滚动方向，位移量控制滚动速度</td>
+</tr>
+<tr>
+<td><code>Ctrl</code>+<code>F5</code>  或  <code>Shift</code>+<code>F5</code></td>
+<td>重新加载当前页，清除缓存内容</td>
+</tr>
+<tr>
+<td><code>Alt</code>+ <code>点击链接</code></td>
+<td>下载链接</td>
+</tr>
+<tr>
+<td><code>Ctrl</code>+<code>G</code> 或 <code>F3</code></td>
+<td>查找与页面搜索相匹配的下一匹配项</td>
+</tr>
+<tr>
+<td><code>Ctrl</code>+<code>Shift</code>+<code>G</code> 或 <code>Shift</code>+<code>F3</code></td>
+<td>查找与页面搜索相匹配的上一匹配项</td>
+</tr>
+<tr>
+<td><code>Ctrl</code>+<code>U</code></td>
+<td>查看源代码</td>
+</tr>
+<tr>
+<td><code>Ctrl</code>+<code>D</code></td>
+<td>将当前网页加入书签</td>
+</tr>
+<tr>
+<td><code>Ctrl</code>+<code>Shift</code>+<code>D</code></td>
+<td>将所有打开的网页以书签形式保存在新文件夹</td>
+</tr>
+<tr>
+<td><code>Ctrl</code>+<code>+</code></td>
+<td>放大网页上的所有内容</td>
+</tr>
+<tr>
+<td><code>Ctrl</code>+<code>-</code></td>
+<td>缩小网页上的所有内容</td>
+</tr>
+<tr>
+<td><code>Ctrl</code>+<code>0</code></td>
+<td>将网页上的所有内容都恢复到正常大小</td>
+</tr>
+<tr>
+<td><code>Home</code></td>
+<td>转至网页顶部</td>
+</tr>
+<tr>
+<td><code>End</code></td>
+<td>转至网页底部</td>
+</tr>
+<tr>
+<td><code>Space</code></td>
+<td>向下滚动页面</td>
+</tr>
+<tr>
+<td><code>↓</code>/<code>↑</code></td>
+<td>向下 / 上 滚动页面</td>
+</tr>
+<tr>
+<td><code>Shift</code>+<code>↑</code>/<code>↓</code></td>
+<td>向右/左横向滚动页面</td>
+</tr>
+<tr>
+<td><code>F11</code></td>
+<td>启动/取消全屏模式</td>
+</tr>
+</tbody></table>
+<h3 id="功能"><a href="#功能" class="headerlink" title="功能"></a>功能</h3><table>
+<thead>
+<tr>
+<th>快捷键</th>
+<th>操作</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>Ctrl</code>+<code>Shift</code>+<code>J</code> 或 <code>F12</code></td>
+<td>打开开发人员工具</td>
+</tr>
+<tr>
+<td><code>Ctrl</code>+<code>Shift</code>+<code>Delete</code></td>
+<td>打开”清除浏览数据”对话框</td>
+</tr>
+<tr>
+<td><code>F1</code></td>
+<td>在新标签页中打开帮助中心</td>
+</tr>
+<tr>
+<td><code>Tab</code></td>
+<td>下一个属性</td>
+</tr>
+<tr>
+<td><code>Enter</code></td>
+<td>执行命令</td>
+</tr>
+<tr>
+<td><code>Alt</code>+<code>E</code></td>
+<td>打开工具菜单</td>
+</tr>
+<tr>
+<td><code>Ctrl</code>+ <code>Shift</code>+<code>B</code></td>
+<td>打开和关闭书签栏</td>
+</tr>
+<tr>
+<td><code>Ctrl</code>+<code>Shift</code>+<code>O</code></td>
+<td>打开书签管理器页</td>
+</tr>
+<tr>
+<td><code>Ctrl</code>+<code>H</code></td>
+<td>在新标签页打开”历史记录”页</td>
+</tr>
+<tr>
+<td><code>Ctrl</code>+<code>J</code></td>
+<td>在新标签页打开”下载内容”页</td>
+</tr>
+<tr>
+<td><code>Shift</code>+<code>Esc</code></td>
+<td>查看任务管理器</td>
+</tr>
+<tr>
+<td><code>Shift</code>+<code>Alt</code>+<code>T</code></td>
+<td>将焦点设置在工具栏上</td>
+</tr>
+</tbody></table>
+<h3 id="文本"><a href="#文本" class="headerlink" title="文本"></a>文本</h3><table>
+<thead>
+<tr>
+<th>快捷键</th>
+<th>操作</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>Ctrl</code>+<code>C</code></td>
+<td>将选中内容复制到剪贴板</td>
+</tr>
+<tr>
+<td><code>Ctrl</code>+<code>Insert</code></td>
+<td>将选中内容复制到剪贴板</td>
+</tr>
+<tr>
+<td><code>Ctrl</code>+<code>V</code></td>
+<td>从剪贴板粘贴内容</td>
+</tr>
+<tr>
+<td><code>Shift</code>+<code>Insert</code></td>
+<td>从剪贴板粘贴内容</td>
+</tr>
+<tr>
+<td><code>Ctrl</code>+<code>Shift</code>+<code>V</code></td>
+<td>从剪贴板粘贴内容（不带格式）</td>
+</tr>
+<tr>
+<td><code>Ctrl</code>+<code>X</code></td>
+<td>剪贴选中内容到剪贴板</td>
+</tr>
+<tr>
+<td><code>Shift</code>+<code>Delete</code></td>
+<td>剪贴选中内容到剪贴板</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="Vimium-快捷键"><a href="#Vimium-快捷键" class="headerlink" title="Vimium 快捷键"></a>Vimium 快捷键</h2><style>
+   table th:first-of-type {
+           width: 40%
+    }
+    a .foo {
+        color: blue
+    }
+</style>
+
+<h3 id="Vimium-简介"><a href="#Vimium-简介" class="headerlink" title="Vimium 简介"></a>Vimium 简介</h3><p><strong>Vimium</strong> 是 Chrome 的一款快捷键扩展插件，继承了 <strong>Vim</strong> 中的常用键位，相比Chrome 拥有更为简单的快捷键，让用户在使用 Chrome 过程中几乎可以完全脱离鼠标，全通过键盘完成浏览网页、切换标签或是其他任何操作。</p>
+<h3 id="浏览网页快捷键"><a href="#浏览网页快捷键" class="headerlink" title="浏览网页快捷键"></a>浏览网页快捷键</h3><table>
+<thead>
+<tr>
+<th>快捷键</th>
+<th>操作</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>j</code></td>
+<td>向下细微滚动页面</td>
+</tr>
+<tr>
+<td><code>k</code></td>
+<td>向上细微滚动页面</td>
+</tr>
+<tr>
+<td><code>gg</code></td>
+<td>到页面顶部</td>
+</tr>
+<tr>
+<td><code>G</code></td>
+<td>到页面底部</td>
+</tr>
+<tr>
+<td><code>d</code></td>
+<td>向下滚动半页</td>
+</tr>
+<tr>
+<td><code>u</code></td>
+<td>向上滚动半页</td>
+</tr>
+<tr>
+<td><code>h</code></td>
+<td>页面向左细微滚动</td>
+</tr>
+<tr>
+<td><code>l</code></td>
+<td>页面向右细微滚动</td>
+</tr>
+<tr>
+<td><code>r</code></td>
+<td>刷新页面</td>
+</tr>
+<tr>
+<td><code>yy</code></td>
+<td>复制当前 URL 到剪贴板</td>
+</tr>
+<tr>
+<td><code>yf</code></td>
+<td>拷贝页面某一个 URL 到剪贴板</td>
+</tr>
+<tr>
+<td><code>p</code></td>
+<td>在当前页打开剪贴板 URL</td>
+</tr>
+<tr>
+<td><code>P</code></td>
+<td>在新标签页打开剪贴板 URL</td>
+</tr>
+<tr>
+<td><code>i</code></td>
+<td>进入插入模式</td>
+</tr>
+<tr>
+<td><code>v</code></td>
+<td>进入虚拟模式</td>
+</tr>
+<tr>
+<td><code>gi</code></td>
+<td>聚焦页面第一个文本输入框</td>
+</tr>
+<tr>
+<td><code>f</code></td>
+<td>在当前页面打开一个链接（生成快捷键）</td>
+</tr>
+<tr>
+<td><code>F</code></td>
+<td>在新标签页打开一个链接（生成快捷键）</td>
+</tr>
+<tr>
+<td><code>gf</code></td>
+<td>选中当前页面页面下一个框层</td>
+</tr>
+<tr>
+<td><code>gF</code></td>
+<td>选中当前页面的主框层</td>
+</tr>
+</tbody></table>
+<h3 id="搜索条"><a href="#搜索条" class="headerlink" title="搜索条"></a>搜索条</h3><table>
+<thead>
+<tr>
+<th>快捷键</th>
+<th>操作</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>o</code></td>
+<td>当前页面打开 URL, 书签或者历史记录</td>
+</tr>
+<tr>
+<td><code>O</code></td>
+<td>新标签页打开 URL，书签或者历史记录</td>
+</tr>
+<tr>
+<td><code>b</code></td>
+<td>在当前页面打开一个书签</td>
+</tr>
+<tr>
+<td><code>B</code></td>
+<td>在新标签页打开一个书签</td>
+</tr>
+<tr>
+<td><code>T</code></td>
+<td>在开启的标签中查找</td>
+</tr>
+</tbody></table>
+<h3 id="查找"><a href="#查找" class="headerlink" title="查找"></a>查找</h3><table>
+<thead>
+<tr>
+<th>快捷键</th>
+<th>操作</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>/</code></td>
+<td>进入查找模式</td>
+</tr>
+<tr>
+<td><code>n</code></td>
+<td>下一个匹配内容（循环）</td>
+</tr>
+<tr>
+<td><code>N</code></td>
+<td>上一个匹配内容</td>
+</tr>
+</tbody></table>
+<h3 id="导航历史"><a href="#导航历史" class="headerlink" title="导航历史"></a>导航历史</h3><table>
+<thead>
+<tr>
+<th>快捷键</th>
+<th>操作</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>H</code></td>
+<td>后退历史</td>
+</tr>
+<tr>
+<td><code>L</code></td>
+<td>前进历史</td>
+</tr>
+<tr>
+<td><code>gu</code></td>
+<td>跳转到父页面</td>
+</tr>
+</tbody></table>
+<h3 id="操作标签页"><a href="#操作标签页" class="headerlink" title="操作标签页"></a>操作标签页</h3><table>
+<thead>
+<tr>
+<th>快捷键</th>
+<th>操作</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>t</code></td>
+<td>创建新标签页</td>
+</tr>
+<tr>
+<td><code>gT</code></td>
+<td>切换到左边的标签页</td>
+</tr>
+<tr>
+<td><code>gt</code></td>
+<td>切换到右边的标签页</td>
+</tr>
+<tr>
+<td><code>^</code></td>
+<td>切换到上次访问的标签页</td>
+</tr>
+<tr>
+<td><code>g0</code></td>
+<td>切换到第一个标签页</td>
+</tr>
+<tr>
+<td><code>g$</code></td>
+<td>切换到最后一标签页</td>
+</tr>
+<tr>
+<td><code>yt</code></td>
+<td>重复当前标签页</td>
+</tr>
+<tr>
+<td><code>x</code></td>
+<td>关闭当前标签页</td>
+</tr>
+<tr>
+<td><code>X</code></td>
+<td>恢复当前标签页</td>
+</tr>
+<tr>
+<td><code>gs</code></td>
+<td>查看网页源码</td>
+</tr>
+</tbody></table>
+<h3 id="帮助"><a href="#帮助" class="headerlink" title="帮助"></a>帮助</h3><table>
+<thead>
+<tr>
+<th>快捷键</th>
+<th>操作</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>?</code></td>
+<td>显示帮助</td>
+</tr>
+</tbody></table>
+]]></content>
       <categories>
-          
-          <category> 快捷键 </category>
-          
+        <category>快捷键</category>
       </categories>
-      
-      
-        <tags>
-            
-            <tag> chrome </tag>
-            
-            <tag> 快捷键 </tag>
-            
-            <tag> vimium </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>windows 10 常用快捷键</title>
-      <link href="/2019/11/18/windows10-quickkey/"/>
-      <url>/2019/11/18/windows10-quickkey/</url>
-      
-        <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><blockquote><p>Windows 10 是美国微软公司研发的跨平台及设备应用的操作系统，是微软的最后一个独立 Windows 版本，也是目前最普遍、市场份额最大的操作系统。善于使用键盘快捷键，省去额外鼠标滑动和点击操作，能够有效减少操作时间。本文将尽可能搜集、整理及更新最新版 Win10 的快捷键。</p><p><a href="https://www.microsoft.com/zh-cn/windows/features" target="_blank" rel="noopener">微软官网 Win10 介绍</a></p></blockquote><a id="more"></a><hr><h2 id="Windows-10-快捷键"><a href="#Windows-10-快捷键" class="headerlink" title="Windows 10 快捷键"></a>Windows 10 快捷键</h2><style>   table th:first-of-type {           width: 40%    }    a .foo {        color: blue    }</style><h3 id="Win-相关快捷键"><a href="#Win-相关快捷键" class="headerlink" title="Win 相关快捷键"></a>Win 相关快捷键</h3><table><thead><tr><th>快捷键</th><th>操作</th></tr></thead><tbody><tr><td><code>Win</code>+<code>A</code></td><td>打开操作中心</td></tr><tr><td><code>Win</code>+<code>B</code></td><td>将焦点转移到任务栏通知区域</td></tr><tr><td><code>Win</code>+<code>D</code></td><td>显示桌面</td></tr><tr><td><code>Win</code>+<code>E</code></td><td>打开资源管理器</td></tr><tr><td><code>Win</code>+<code>G</code></td><td>打开游戏录制工具</td></tr><tr><td><code>Win</code>+<code>H</code></td><td>通过语音激活 Cortana</td></tr><tr><td><code>Win</code>+<code>I</code></td><td>打开 Windows 设置应用</td></tr><tr><td><code>Win</code>+<code>K</code></td><td>激活无线显示器连接或音频设备连接</td></tr><tr><td><code>Win</code>+<code>L</code></td><td>锁定屏幕</td></tr><tr><td><code>Win</code>+<code>M</code></td><td>最小化所有窗口</td></tr><tr><td><code>Win</code>+<code>O</code></td><td>打开或关闭屏幕旋转锁定</td></tr><tr><td><code>Win</code>+<code>P</code></td><td>打开投影，可用于复制、扩展显示屏幕</td></tr><tr><td><code>Win</code>+<code>Q</code></td><td>弹出索引搜索</td></tr><tr><td><code>Win</code>+<code>R</code></td><td>打开运行</td></tr><tr><td><code>Win</code>+<code>S</code></td><td>打开索引搜索</td></tr><tr><td><code>Win</code>+<code>T</code></td><td>将焦点切换到任务栏图标或在图标之间切换</td></tr><tr><td><code>Win</code>+<code>U</code></td><td>打开 Windows 设置 — 轻松使用</td></tr><tr><td><code>Win</code>+<code>V</code></td><td>查看剪切板历史记录（体验复制粘贴的快乐）</td></tr><tr><td><code>Win</code>+<code>W</code></td><td>打开 Windows Ink（含白板、全屏截图功能，可编辑）注：新版 win10 在 Windows Ink 中去掉了便笺</td></tr><tr><td><code>Win</code>+<code>X</code></td><td>激活开始按钮右键菜单</td></tr><tr><td><code>Win</code>+<code>Ctrl</code>+<code>D</code></td><td>新建虚拟桌面</td></tr><tr><td><code>Win</code>+<code>Ctrl</code>+<code>F</code></td><td>打开查找计算机窗口</td></tr><tr><td><code>Win</code>+<code>Ctrl</code>+<code>F4</code></td><td>关闭正在使用的虚拟桌面</td></tr><tr><td><code>Win</code>+<code>Ctrl</code>+<code>←</code>/<code>→</code></td><td>在已打开的虚拟桌面之间进行切换 （BOSS键）</td></tr><tr><td><code>Win</code>+<code>Shift</code>+<code>M</code></td><td>取消最小化所有窗口</td></tr><tr><td><code>Win</code>+<code>Shift</code>+<code>S</code></td><td>自定义（矩形、任意形状、窗口、全屏）截图，自动保存到剪贴板！！！缺点：不可编辑</td></tr><tr><td><code>Win</code>+<code>Shift</code>+<code>↑</code></td><td>在垂直方向最大化窗口</td></tr><tr><td><code>Win</code>+<code>Shift</code>+<code>←</code>/<code>→</code></td><td>将应用窗口移动到左边或右边的显示器中</td></tr><tr><td><code>Win</code>+<code>Alt</code>+<code>G</code></td><td>录制游戏最近 30 秒</td></tr><tr><td><code>Win</code>+<code>Alt</code>+<code>R</code></td><td>开始录制游戏</td></tr><tr><td><code>Win</code>+<code>Alt</code>+<code>Prtsc</code></td><td>对游戏进行截屏</td></tr><tr><td><code>Win</code>+<code>Alt</code>+<code>数字键</code></td><td>与右击任务栏对应位置应用效果相同</td></tr><tr><td><code>Win</code>+<code>Space</code></td><td>切换输入法</td></tr><tr><td><code>Win</code>+<code>Pause</code></td><td>打开系统属性窗口</td></tr><tr><td><code>Win</code>+<code>,</code></td><td>窥探桌面</td></tr><tr><td><code>Win</code>+<code>.</code></td><td>打开表情符号</td></tr><tr><td><code>Win</code>+<code>Tab</code></td><td>激活任务视图（显示所有已打开的应用和桌面）</td></tr><tr><td><code>Win</code>+<code>=</code></td><td>启动放大镜或放大屏幕内容</td></tr><tr><td><code>Win</code>+<code>-</code></td><td>放大镜启动后，缩小屏幕内容</td></tr><tr><td><code>Win</code>+<code>Home</code></td><td>除了当前窗口，将其他窗口最小化/恢复</td></tr><tr><td><code>Win</code>+<code>Esc</code></td><td>放大镜开启状态时，退出放大镜</td></tr><tr><td><code>Win</code>+<code>数字键</code></td><td>打开任务栏上固定的应用或程序</td></tr><tr><td><code>Win</code>+<code>Prtsc</code></td><td>截全屏并保持到用户图片 \ 屏幕截屏文件夹下</td></tr><tr><td><code>Win</code>+<code>↑</code>/<code>↓</code></td><td>使应用窗口在最大化，正常状态以及最小化之间进行切换</td></tr><tr><td><code>Win</code>+<code>←</code>+<code>→</code></td><td>使应用窗口在占据左/右半边屏幕以及正常状态之间切换</td></tr><tr><td><code>Win</code>+<code>←</code>+<code>→</code>  &gt; <code>Win</code>+<code>↑</code>/<code>↓</code></td><td>使应用窗口占据屏幕四个角落 1/4 的屏幕区域（二分屏、三分屏、四分屏）</td></tr><tr><td><code>Win</code>+<code>F1</code></td><td>启动 Edge 搜索 “如何在 windows 10 中获取帮助”</td></tr><tr><td><code>Win</code>+<code>Ctrl</code>+<code>Shift</code>+<code>B</code></td><td>重启显卡驱动 【解决部分假死机问题】</td></tr></tbody></table><h3 id="Ctrl-相关快捷键"><a href="#Ctrl-相关快捷键" class="headerlink" title="Ctrl 相关快捷键"></a>Ctrl 相关快捷键</h3><table><thead><tr><th>快捷键</th><th>操作</th></tr></thead><tbody><tr><td><code>Ctrl</code>+<code>Shift</code></td><td>输入法切换</td></tr><tr><td><code>Ctrl</code>+<code>Shift</code>+<code>N</code></td><td>新建文件夹【文件资源管理器】【桌面】</td></tr><tr><td><code>Ctrl</code>+<code>Shift</code>+<code>Esc</code></td><td>启动任务管理器</td></tr><tr><td><code>Ctrl</code>+<code>Space</code></td><td>中英文切换</td></tr><tr><td><code>Ctrl</code>+<code>Home</code></td><td>光标快速移到文件头</td></tr><tr><td><code>Ctrl</code>+<code>End</code></td><td>光标快速移到文件尾</td></tr><tr><td><code>Ctrl</code>+<code>Esc</code></td><td>显示开始菜单</td></tr><tr><td><code>Ctrl</code>+<code>鼠标拖动文件</code></td><td>复制文件</td></tr><tr><td><code>鼠标拖动文件</code>+<code>Ctrl</code>+<code>Shift</code></td><td>创建文件的快捷方式</td></tr><tr><td><code>Ctrl</code>+<code>A</code></td><td>选中全文</td></tr><tr><td><code>Ctrl</code>+<code>C</code></td><td>将选中的文字复制到剪贴板中</td></tr><tr><td><code>Ctrl</code>+<code>F</code></td><td>打开“查找与替换”对话框，并定位在“查找”</td></tr><tr><td><code>Ctrl</code>+<code>H</code></td><td>打开“查找与替换”对话框，并定位在“替换”</td></tr><tr><td><code>Ctrl</code>+<code>N</code></td><td>创建同级界面</td></tr><tr><td><code>Ctrl</code>+<code>O</code></td><td>激活“打开”对话框【编辑器】【浏览器】</td></tr><tr><td><code>Ctrl</code>+<code>P</code></td><td>激活“打印”对话框 【编辑器】【浏览器】</td></tr><tr><td><code>Ctrl</code>+<code>V</code></td><td>将剪贴板中的文本或图片粘贴到光标处</td></tr><tr><td><code>Ctrl</code>+<code>W</code></td><td>关闭当前文档</td></tr><tr><td><code>Ctrl</code>+<code>X</code></td><td>将选中的文字剪切到剪贴板中</td></tr><tr><td><code>Ctrl</code>+<code>Y</code></td><td>恢复上一步操作</td></tr><tr><td><code>Ctrl</code>+<code>Z</code></td><td>撤销上一步操作</td></tr><tr><td><code>Ctrl</code>+<code>End</code></td><td>快速将光标移到文末</td></tr><tr><td><code>Ctrl</code>+<code>Home</code></td><td>快速将光标移到文首</td></tr></tbody></table><h3 id="Alt-相关快捷键"><a href="#Alt-相关快捷键" class="headerlink" title="Alt 相关快捷键"></a>Alt 相关快捷键</h3><table><thead><tr><th>快捷键</th><th>操作</th></tr></thead><tbody><tr><td><code>Alt</code>+<code>A</code></td><td>截图（前提：启动微信 PC 版）</td></tr><tr><td><code>Alt</code>+<code>Space</code>+<code>C</code></td><td>关闭窗口</td></tr><tr><td><code>Alt</code>+<code>Space</code>+<code>M</code></td><td>移动窗口</td></tr><tr><td><code>Alt</code>+<code>Space</code>+<code>N</code></td><td>最小化当前窗口</td></tr><tr><td><code>Alt</code>+<code>Space</code>+<code>R</code></td><td>恢复窗口</td></tr><tr><td><code>Alt</code>+<code>Space</code>+<code>S</code></td><td>改变窗口大小</td></tr><tr><td><code>Alt</code>+<code>Space</code>+<code>X</code></td><td>最大化当前窗口</td></tr><tr><td><code>Alt</code>+<code>Tab</code></td><td>切换活动的应用</td></tr><tr><td><code>Alt</code>+<code>Enter</code></td><td>查看文件属性</td></tr><tr><td><code>Alt</code>+<code>Double Click</code></td><td>查看文件属性</td></tr><tr><td><code>Alt</code>+<code>255</code></td><td>QQ 号中输入无名人</td></tr><tr><td><code>Alt</code>+<code>F4</code></td><td>关闭 Windows【桌面】或关闭窗口</td></tr><tr><td><code>Alt</code>+<code>↑</code></td><td>打开上一级界面 【文件资源管理器】</td></tr><tr><td><code>Alt</code>+<code>←</code></td><td>打开上一次界面 【文件资源管理器】</td></tr><tr><td><code>Alt</code>+<code>PrtScn</code></td><td>窗口截图</td></tr></tbody></table><h3 id="Shift-相关快捷键"><a href="#Shift-相关快捷键" class="headerlink" title="Shift 相关快捷键"></a>Shift 相关快捷键</h3><table><thead><tr><th>快捷键</th><th>操作</th></tr></thead><tbody><tr><td><code>Shift</code></td><td>切换输入法英文/中文</td></tr><tr><td><code>Shift</code>+<code>字母</code></td><td>输入法字母大写</td></tr><tr><td><code>Shift</code>+<code>Ctrl</code>+<code>Esc</code></td><td>打开任务管理器</td></tr><tr><td><code>Shift</code>+<code>Delete</code></td><td>永久删除</td></tr><tr><td><code>Shift</code>+<code>Space</code></td><td>半 \ 全角切换</td></tr><tr><td><code>Shift</code>+<code>右击</code></td><td>右击菜单打开方式</td></tr><tr><td><code>Shift</code>+<code>F10</code></td><td>选中文件的右菜单</td></tr><tr><td><code>Shift</code>+<code>多级文件</code></td><td>全部关闭</td></tr><tr><td><code>Shift</code>+<code>任务栏图标</code></td><td>新建一个该应用窗口</td></tr></tbody></table><h3 id="其他快捷键"><a href="#其他快捷键" class="headerlink" title="其他快捷键"></a>其他快捷键</h3><table><thead><tr><th>快捷键</th><th>操作</th></tr></thead><tbody><tr><td><code>F2</code></td><td>对文件重命名（等效于鼠标慢文件名两次）</td></tr><tr><td><code>Delete</code></td><td>删除文件 → 回收站</td></tr><tr><td><code>PrtScn</code></td><td>全屏截图</td></tr></tbody></table><hr><h2 id="运行窗口命令"><a href="#运行窗口命令" class="headerlink" title="运行窗口命令"></a>运行窗口命令</h2><table><thead><tr><th>命令</th><th>操作</th></tr></thead><tbody><tr><td>cmd</td><td>启动命令提示符</td></tr><tr><td>osk</td><td>打开虚拟键盘</td></tr><tr><td>notepad</td><td>启用记事本</td></tr><tr><td>psr.exe</td><td>打开步骤记录器</td></tr><tr><td>calc</td><td>打开计算器</td></tr><tr><td>shell:startup</td><td>打开程序启动目录</td></tr></tbody></table><hr>]]></content>
-      
-      
+      <tags>
+        <tag>chrome</tag>
+        <tag>快捷键</tag>
+        <tag>vimium</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>windows 10 常用快捷键</title>
+    <url>/2019/11/18/windows10-quickkey/</url>
+    <content><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><blockquote>
+<p>Windows 10 是美国微软公司研发的跨平台及设备应用的操作系统，是微软的最后一个独立 Windows 版本，也是目前最普遍、市场份额最大的操作系统。善于使用键盘快捷键，省去额外鼠标滑动和点击操作，能够有效减少操作时间。本文将尽可能搜集、整理及更新最新版 Win10 的快捷键。</p>
+<p><a href="https://www.microsoft.com/zh-cn/windows/features" target="_blank" rel="noopener">微软官网 Win10 介绍</a></p>
+</blockquote><a id="more"></a>
+<hr>
+<h2 id="Windows-10-快捷键"><a href="#Windows-10-快捷键" class="headerlink" title="Windows 10 快捷键"></a>Windows 10 快捷键</h2><style>
+   table th:first-of-type {
+           width: 40%
+    }
+    a .foo {
+        color: blue
+    }
+</style>
+
+<h3 id="Win-相关快捷键"><a href="#Win-相关快捷键" class="headerlink" title="Win 相关快捷键"></a>Win 相关快捷键</h3><table>
+<thead>
+<tr>
+<th>快捷键</th>
+<th>操作</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>Win</code>+<code>A</code></td>
+<td>打开操作中心</td>
+</tr>
+<tr>
+<td><code>Win</code>+<code>B</code></td>
+<td>将焦点转移到任务栏通知区域</td>
+</tr>
+<tr>
+<td><code>Win</code>+<code>D</code></td>
+<td>显示桌面</td>
+</tr>
+<tr>
+<td><code>Win</code>+<code>E</code></td>
+<td>打开资源管理器</td>
+</tr>
+<tr>
+<td><code>Win</code>+<code>G</code></td>
+<td>打开游戏录制工具</td>
+</tr>
+<tr>
+<td><code>Win</code>+<code>H</code></td>
+<td>通过语音激活 Cortana</td>
+</tr>
+<tr>
+<td><code>Win</code>+<code>I</code></td>
+<td>打开 Windows 设置应用</td>
+</tr>
+<tr>
+<td><code>Win</code>+<code>K</code></td>
+<td>激活无线显示器连接或音频设备连接</td>
+</tr>
+<tr>
+<td><code>Win</code>+<code>L</code></td>
+<td>锁定屏幕</td>
+</tr>
+<tr>
+<td><code>Win</code>+<code>M</code></td>
+<td>最小化所有窗口</td>
+</tr>
+<tr>
+<td><code>Win</code>+<code>O</code></td>
+<td>打开或关闭屏幕旋转锁定</td>
+</tr>
+<tr>
+<td><code>Win</code>+<code>P</code></td>
+<td>打开投影，可用于复制、扩展显示屏幕</td>
+</tr>
+<tr>
+<td><code>Win</code>+<code>Q</code></td>
+<td>弹出索引搜索</td>
+</tr>
+<tr>
+<td><code>Win</code>+<code>R</code></td>
+<td>打开运行</td>
+</tr>
+<tr>
+<td><code>Win</code>+<code>S</code></td>
+<td>打开索引搜索</td>
+</tr>
+<tr>
+<td><code>Win</code>+<code>T</code></td>
+<td>将焦点切换到任务栏图标或在图标之间切换</td>
+</tr>
+<tr>
+<td><code>Win</code>+<code>U</code></td>
+<td>打开 Windows 设置 — 轻松使用</td>
+</tr>
+<tr>
+<td><code>Win</code>+<code>V</code></td>
+<td>查看剪切板历史记录（体验复制粘贴的快乐）</td>
+</tr>
+<tr>
+<td><code>Win</code>+<code>W</code></td>
+<td>打开 Windows Ink（含白板、全屏截图功能，可编辑）注：新版 win10 在 Windows Ink 中去掉了便笺</td>
+</tr>
+<tr>
+<td><code>Win</code>+<code>X</code></td>
+<td>激活开始按钮右键菜单</td>
+</tr>
+<tr>
+<td><code>Win</code>+<code>Ctrl</code>+<code>D</code></td>
+<td>新建虚拟桌面</td>
+</tr>
+<tr>
+<td><code>Win</code>+<code>Ctrl</code>+<code>F</code></td>
+<td>打开查找计算机窗口</td>
+</tr>
+<tr>
+<td><code>Win</code>+<code>Ctrl</code>+<code>F4</code></td>
+<td>关闭正在使用的虚拟桌面</td>
+</tr>
+<tr>
+<td><code>Win</code>+<code>Ctrl</code>+<code>←</code>/<code>→</code></td>
+<td>在已打开的虚拟桌面之间进行切换 （BOSS键）</td>
+</tr>
+<tr>
+<td><code>Win</code>+<code>Shift</code>+<code>M</code></td>
+<td>取消最小化所有窗口</td>
+</tr>
+<tr>
+<td><code>Win</code>+<code>Shift</code>+<code>S</code></td>
+<td>自定义（矩形、任意形状、窗口、全屏）截图，自动保存到剪贴板！！！缺点：不可编辑</td>
+</tr>
+<tr>
+<td><code>Win</code>+<code>Shift</code>+<code>↑</code></td>
+<td>在垂直方向最大化窗口</td>
+</tr>
+<tr>
+<td><code>Win</code>+<code>Shift</code>+<code>←</code>/<code>→</code></td>
+<td>将应用窗口移动到左边或右边的显示器中</td>
+</tr>
+<tr>
+<td><code>Win</code>+<code>Alt</code>+<code>G</code></td>
+<td>录制游戏最近 30 秒</td>
+</tr>
+<tr>
+<td><code>Win</code>+<code>Alt</code>+<code>R</code></td>
+<td>开始录制游戏</td>
+</tr>
+<tr>
+<td><code>Win</code>+<code>Alt</code>+<code>Prtsc</code></td>
+<td>对游戏进行截屏</td>
+</tr>
+<tr>
+<td><code>Win</code>+<code>Alt</code>+<code>数字键</code></td>
+<td>与右击任务栏对应位置应用效果相同</td>
+</tr>
+<tr>
+<td><code>Win</code>+<code>Space</code></td>
+<td>切换输入法</td>
+</tr>
+<tr>
+<td><code>Win</code>+<code>Pause</code></td>
+<td>打开系统属性窗口</td>
+</tr>
+<tr>
+<td><code>Win</code>+<code>,</code></td>
+<td>窥探桌面</td>
+</tr>
+<tr>
+<td><code>Win</code>+<code>.</code></td>
+<td>打开表情符号</td>
+</tr>
+<tr>
+<td><code>Win</code>+<code>Tab</code></td>
+<td>激活任务视图（显示所有已打开的应用和桌面）</td>
+</tr>
+<tr>
+<td><code>Win</code>+<code>=</code></td>
+<td>启动放大镜或放大屏幕内容</td>
+</tr>
+<tr>
+<td><code>Win</code>+<code>-</code></td>
+<td>放大镜启动后，缩小屏幕内容</td>
+</tr>
+<tr>
+<td><code>Win</code>+<code>Home</code></td>
+<td>除了当前窗口，将其他窗口最小化/恢复</td>
+</tr>
+<tr>
+<td><code>Win</code>+<code>Esc</code></td>
+<td>放大镜开启状态时，退出放大镜</td>
+</tr>
+<tr>
+<td><code>Win</code>+<code>数字键</code></td>
+<td>打开任务栏上固定的应用或程序</td>
+</tr>
+<tr>
+<td><code>Win</code>+<code>Prtsc</code></td>
+<td>截全屏并保持到用户图片 \ 屏幕截屏文件夹下</td>
+</tr>
+<tr>
+<td><code>Win</code>+<code>↑</code>/<code>↓</code></td>
+<td>使应用窗口在最大化，正常状态以及最小化之间进行切换</td>
+</tr>
+<tr>
+<td><code>Win</code>+<code>←</code>+<code>→</code></td>
+<td>使应用窗口在占据左/右半边屏幕以及正常状态之间切换</td>
+</tr>
+<tr>
+<td><code>Win</code>+<code>←</code>+<code>→</code>  &gt; <code>Win</code>+<code>↑</code>/<code>↓</code></td>
+<td>使应用窗口占据屏幕四个角落 1/4 的屏幕区域（二分屏、三分屏、四分屏）</td>
+</tr>
+<tr>
+<td><code>Win</code>+<code>F1</code></td>
+<td>启动 Edge 搜索 “如何在 windows 10 中获取帮助”</td>
+</tr>
+<tr>
+<td><code>Win</code>+<code>Ctrl</code>+<code>Shift</code>+<code>B</code></td>
+<td>重启显卡驱动 【解决部分假死机问题】</td>
+</tr>
+</tbody></table>
+<h3 id="Ctrl-相关快捷键"><a href="#Ctrl-相关快捷键" class="headerlink" title="Ctrl 相关快捷键"></a>Ctrl 相关快捷键</h3><table>
+<thead>
+<tr>
+<th>快捷键</th>
+<th>操作</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>Ctrl</code>+<code>Shift</code></td>
+<td>输入法切换</td>
+</tr>
+<tr>
+<td><code>Ctrl</code>+<code>Shift</code>+<code>N</code></td>
+<td>新建文件夹【文件资源管理器】【桌面】</td>
+</tr>
+<tr>
+<td><code>Ctrl</code>+<code>Shift</code>+<code>Esc</code></td>
+<td>启动任务管理器</td>
+</tr>
+<tr>
+<td><code>Ctrl</code>+<code>Space</code></td>
+<td>中英文切换</td>
+</tr>
+<tr>
+<td><code>Ctrl</code>+<code>Home</code></td>
+<td>光标快速移到文件头</td>
+</tr>
+<tr>
+<td><code>Ctrl</code>+<code>End</code></td>
+<td>光标快速移到文件尾</td>
+</tr>
+<tr>
+<td><code>Ctrl</code>+<code>Esc</code></td>
+<td>显示开始菜单</td>
+</tr>
+<tr>
+<td><code>Ctrl</code>+<code>鼠标拖动文件</code></td>
+<td>复制文件</td>
+</tr>
+<tr>
+<td><code>鼠标拖动文件</code>+<code>Ctrl</code>+<code>Shift</code></td>
+<td>创建文件的快捷方式</td>
+</tr>
+<tr>
+<td><code>Ctrl</code>+<code>A</code></td>
+<td>选中全文</td>
+</tr>
+<tr>
+<td><code>Ctrl</code>+<code>C</code></td>
+<td>将选中的文字复制到剪贴板中</td>
+</tr>
+<tr>
+<td><code>Ctrl</code>+<code>F</code></td>
+<td>打开“查找与替换”对话框，并定位在“查找”</td>
+</tr>
+<tr>
+<td><code>Ctrl</code>+<code>H</code></td>
+<td>打开“查找与替换”对话框，并定位在“替换”</td>
+</tr>
+<tr>
+<td><code>Ctrl</code>+<code>N</code></td>
+<td>创建同级界面</td>
+</tr>
+<tr>
+<td><code>Ctrl</code>+<code>O</code></td>
+<td>激活“打开”对话框【编辑器】【浏览器】</td>
+</tr>
+<tr>
+<td><code>Ctrl</code>+<code>P</code></td>
+<td>激活“打印”对话框 【编辑器】【浏览器】</td>
+</tr>
+<tr>
+<td><code>Ctrl</code>+<code>V</code></td>
+<td>将剪贴板中的文本或图片粘贴到光标处</td>
+</tr>
+<tr>
+<td><code>Ctrl</code>+<code>W</code></td>
+<td>关闭当前文档</td>
+</tr>
+<tr>
+<td><code>Ctrl</code>+<code>X</code></td>
+<td>将选中的文字剪切到剪贴板中</td>
+</tr>
+<tr>
+<td><code>Ctrl</code>+<code>Y</code></td>
+<td>恢复上一步操作</td>
+</tr>
+<tr>
+<td><code>Ctrl</code>+<code>Z</code></td>
+<td>撤销上一步操作</td>
+</tr>
+<tr>
+<td><code>Ctrl</code>+<code>End</code></td>
+<td>快速将光标移到文末</td>
+</tr>
+<tr>
+<td><code>Ctrl</code>+<code>Home</code></td>
+<td>快速将光标移到文首</td>
+</tr>
+</tbody></table>
+<h3 id="Alt-相关快捷键"><a href="#Alt-相关快捷键" class="headerlink" title="Alt 相关快捷键"></a>Alt 相关快捷键</h3><table>
+<thead>
+<tr>
+<th>快捷键</th>
+<th>操作</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>Alt</code>+<code>A</code></td>
+<td>截图（前提：启动微信 PC 版）</td>
+</tr>
+<tr>
+<td><code>Alt</code>+<code>Space</code>+<code>C</code></td>
+<td>关闭窗口</td>
+</tr>
+<tr>
+<td><code>Alt</code>+<code>Space</code>+<code>M</code></td>
+<td>移动窗口</td>
+</tr>
+<tr>
+<td><code>Alt</code>+<code>Space</code>+<code>N</code></td>
+<td>最小化当前窗口</td>
+</tr>
+<tr>
+<td><code>Alt</code>+<code>Space</code>+<code>R</code></td>
+<td>恢复窗口</td>
+</tr>
+<tr>
+<td><code>Alt</code>+<code>Space</code>+<code>S</code></td>
+<td>改变窗口大小</td>
+</tr>
+<tr>
+<td><code>Alt</code>+<code>Space</code>+<code>X</code></td>
+<td>最大化当前窗口</td>
+</tr>
+<tr>
+<td><code>Alt</code>+<code>Tab</code></td>
+<td>切换活动的应用</td>
+</tr>
+<tr>
+<td><code>Alt</code>+<code>Enter</code></td>
+<td>查看文件属性</td>
+</tr>
+<tr>
+<td><code>Alt</code>+<code>Double Click</code></td>
+<td>查看文件属性</td>
+</tr>
+<tr>
+<td><code>Alt</code>+<code>255</code></td>
+<td>QQ 号中输入无名人</td>
+</tr>
+<tr>
+<td><code>Alt</code>+<code>F4</code></td>
+<td>关闭 Windows【桌面】或关闭窗口</td>
+</tr>
+<tr>
+<td><code>Alt</code>+<code>↑</code></td>
+<td>打开上一级界面 【文件资源管理器】</td>
+</tr>
+<tr>
+<td><code>Alt</code>+<code>←</code></td>
+<td>打开上一次界面 【文件资源管理器】</td>
+</tr>
+<tr>
+<td><code>Alt</code>+<code>PrtScn</code></td>
+<td>窗口截图</td>
+</tr>
+</tbody></table>
+<h3 id="Shift-相关快捷键"><a href="#Shift-相关快捷键" class="headerlink" title="Shift 相关快捷键"></a>Shift 相关快捷键</h3><table>
+<thead>
+<tr>
+<th>快捷键</th>
+<th>操作</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>Shift</code></td>
+<td>切换输入法英文/中文</td>
+</tr>
+<tr>
+<td><code>Shift</code>+<code>字母</code></td>
+<td>输入法字母大写</td>
+</tr>
+<tr>
+<td><code>Shift</code>+<code>Ctrl</code>+<code>Esc</code></td>
+<td>打开任务管理器</td>
+</tr>
+<tr>
+<td><code>Shift</code>+<code>Delete</code></td>
+<td>永久删除</td>
+</tr>
+<tr>
+<td><code>Shift</code>+<code>Space</code></td>
+<td>半 \ 全角切换</td>
+</tr>
+<tr>
+<td><code>Shift</code>+<code>右击</code></td>
+<td>右击菜单打开方式</td>
+</tr>
+<tr>
+<td><code>Shift</code>+<code>F10</code></td>
+<td>选中文件的右菜单</td>
+</tr>
+<tr>
+<td><code>Shift</code>+<code>多级文件</code></td>
+<td>全部关闭</td>
+</tr>
+<tr>
+<td><code>Shift</code>+<code>任务栏图标</code></td>
+<td>新建一个该应用窗口</td>
+</tr>
+</tbody></table>
+<h3 id="其他快捷键"><a href="#其他快捷键" class="headerlink" title="其他快捷键"></a>其他快捷键</h3><table>
+<thead>
+<tr>
+<th>快捷键</th>
+<th>操作</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>F2</code></td>
+<td>对文件重命名（等效于鼠标慢文件名两次）</td>
+</tr>
+<tr>
+<td><code>Delete</code></td>
+<td>删除文件 → 回收站</td>
+</tr>
+<tr>
+<td><code>PrtScn</code></td>
+<td>全屏截图</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="运行窗口命令"><a href="#运行窗口命令" class="headerlink" title="运行窗口命令"></a>运行窗口命令</h2><table>
+<thead>
+<tr>
+<th>命令</th>
+<th>操作</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>cmd</td>
+<td>启动命令提示符</td>
+</tr>
+<tr>
+<td>osk</td>
+<td>打开虚拟键盘</td>
+</tr>
+<tr>
+<td>notepad</td>
+<td>启用记事本</td>
+</tr>
+<tr>
+<td>psr.exe</td>
+<td>打开步骤记录器</td>
+</tr>
+<tr>
+<td>calc</td>
+<td>打开计算器</td>
+</tr>
+<tr>
+<td>shell:startup</td>
+<td>打开程序启动目录</td>
+</tr>
+</tbody></table>
+<hr>
+]]></content>
       <categories>
-          
-          <category> 快捷键 </category>
-          
+        <category>快捷键</category>
       </categories>
-      
-      
-        <tags>
-            
-            <tag> 快捷键 </tag>
-            
-            <tag> windows 10 </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>Visual Studio Code 快捷键</title>
-      <link href="/2019/10/23/vscode-ks/"/>
-      <url>/2019/10/23/vscode-ks/</url>
-      
-        <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><blockquote><p>Visual Studio Code（简称 VS Code）是一款由微软推出的开源代码编辑器，支持多种编程语言，集成终端，可以在编译器中脚本、编译软件、调试脚本、设置断点、做版本管理。此外VS Code 还支持丰富的扩展程序。VS Code 凭借众多优点已一跃成为”最受欢迎的开发环境“，没有之一！</p><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQO0B5xlmRoPQO43h8hjigbOhNQqLLT1CxzH92P2_TTwZV5GAB_Kg&amp;s" alt="“vscode”的图片搜索结果" style="zoom:50%;"><p>掌握 VS Code 的快捷键，对于开发效率的提升将有很大帮助。</p></blockquote><a id="more"></a><hr><h2 id="VS-Code-快捷键"><a href="#VS-Code-快捷键" class="headerlink" title="VS Code 快捷键"></a>VS Code 快捷键</h2><style>   table th:first-of-type {           width: 40%    }    a .foo {        color: blue    }</style><h3 id="通用部分"><a href="#通用部分" class="headerlink" title="通用部分"></a>通用部分</h3><table><thead><tr><th align="left">快捷键</th><th align="left">命令</th></tr></thead><tbody><tr><td align="left"><code>Ctrl</code>+<code>Shift</code>+<code>P</code>, <code>F1</code></td><td align="left">显示命令</td></tr><tr><td align="left"><code>Ctrl</code>+<code>P</code></td><td align="left">快速打开文件</td></tr><tr><td align="left"><code>Ctrl</code>+<code>Shift</code>+<code>N</code></td><td align="left">新建窗口</td></tr><tr><td align="left"><code>Ctrl</code>+<code>Shift</code>+<code>w</code></td><td align="left">关闭窗口</td></tr></tbody></table><h3 id="基本的编辑"><a href="#基本的编辑" class="headerlink" title="基本的编辑"></a>基本的编辑</h3><table><thead><tr><th>快捷键</th><th>命令</th></tr></thead><tbody><tr><td><code>Ctrl</code>+<code>X</code></td><td>剪切选中的内容或剪切行（空选）</td></tr><tr><td><code>Ctrl</code>+<code>C</code></td><td>复制选择的内容或复制行（空选）</td></tr><tr><td><code>Alt</code>+<code>↑</code>/<code>↓</code></td><td>向上/向下移动一行代码</td></tr><tr><td><code>Shift</code>+<code>Alt</code>+<code>↑</code>/<code>↓</code></td><td>复制当前行，向上/向下粘贴</td></tr><tr><td><code>Ctrl</code>+<code>Shift</code>+<code>K</code></td><td>删除当前行</td></tr><tr><td><code>Ctrl</code>+<code>Shift</code>+<code>\</code></td><td>跳到匹配的括号</td></tr><tr><td><code>Ctrl</code>+<code>Shift</code>+<code>]</code>+<code>[</code></td><td>增加/减小一个缩进</td></tr><tr><td><code>Home</code></td><td>跳到当前行开始位置</td></tr><tr><td><code>End</code></td><td>跳到当前行结束位置</td></tr><tr><td><code>Ctrl</code>+<code>Home</code></td><td>跳到文件的开始位置</td></tr><tr><td><code>Ctrl</code>+<code>End</code></td><td>跳到文件的结束位置</td></tr><tr><td><code>Ctrl</code>+<code>↑</code>/<code>↓</code></td><td>向上 / 下滚动一行</td></tr><tr><td><code>Alt</code>+<code>PgUp</code>/<code>PgDown</code></td><td>向上 / 下滚动一页</td></tr><tr><td><code>Ctrl</code>+<code>Shift</code>+<code>[</code></td><td>折叠区域</td></tr><tr><td><code>Ctrl</code>+<code>Shift</code>+<code>]</code></td><td>展开区域</td></tr><tr><td><code>Ctrl</code>+<code>K</code> <code>Ctrl</code>+<code>[</code></td><td>折叠所有子区域</td></tr><tr><td><code>Ctrl</code>+<code>K</code> <code>Ctrl</code>+<code>]</code></td><td>展开所有子区域</td></tr><tr><td><code>Ctrl</code>+<code>K</code> <code>Ctrl</code>+<code>J</code></td><td>展开所有区域</td></tr><tr><td><code>Ctrl</code>+<code>K</code> <code>Ctrl</code>+<code>C</code></td><td>添加行注释</td></tr><tr><td><code>Ctrl</code>+<code>K</code> <code>Ctrl</code>+<code>U</code></td><td>移除行注释</td></tr><tr><td><code>Ctrl</code>+<code>/</code></td><td>添加或移除行注释</td></tr><tr><td><code>Shift</code>+<code>Alt</code>+<code>A</code></td><td>添加或移除多行注释</td></tr><tr><td><code>Alt</code>+<code>Z</code></td><td>适应或取消适应屏幕</td></tr></tbody></table><h3 id="导航栏"><a href="#导航栏" class="headerlink" title="导航栏"></a>导航栏</h3><table><thead><tr><th>快捷键</th><th>命令</th></tr></thead><tbody><tr><td><code>Ctrl</code>+<code>T</code></td><td>显示所有的符号</td></tr><tr><td><code>Ctrl</code>+<code>G</code></td><td>跳到指定行</td></tr><tr><td><code>Ctrl</code>+<code>P</code></td><td>跳到指定文件</td></tr><tr><td><code>Ctrl</code>+<code>Shift</code>+<code>O</code></td><td>跳转到指定符号</td></tr><tr><td><code>Ctrl</code>+<code>Shift</code>+<code>M</code></td><td>显示问题面板</td></tr><tr><td><code>F8</code></td><td>跳到下一个错误或警告</td></tr><tr><td><code>Shift</code>+<code>F8</code></td><td>跳到上一个错误或警告</td></tr><tr><td><code>Ctrl</code>+<code>Shift</code>+<code>Table</code></td><td>导航编辑器组历史记录</td></tr><tr><td><code>Alt</code>+<code>←</code>/<code>→</code></td><td>退回/向前一个操作的位置</td></tr><tr><td><code>Ctrl</code>+<code>M</code></td><td>启动或取消标签移动焦点</td></tr></tbody></table><h3 id="查找或替换"><a href="#查找或替换" class="headerlink" title="查找或替换"></a>查找或替换</h3><table><thead><tr><th>快捷键</th><th>命令</th></tr></thead><tbody><tr><td><code>Ctrl</code>+<code>F</code></td><td>文件内查找</td></tr><tr><td><code>Ctrl</code>+<code>H</code></td><td>文件内替换</td></tr><tr><td><code>F3</code>/<code>Shift</code>+<code>F3</code></td><td>查找下一个/上一个</td></tr><tr><td><code>Alt</code>+<code>Enter</code></td><td>选中所有查找匹配到的内容</td></tr><tr><td><code>Ctrl</code>+<code>D</code></td><td>选中下一个匹配到的内容</td></tr><tr><td><code>Ctrl</code>+<code>K</code> <code>Ctrl</code>+<code>D</code></td><td>移除上次选中，跳到下一个匹配</td></tr><tr><td><code>Alt</code>+<code>C</code>/<code>R</code>/<code>W</code></td><td>开启或取消大小写敏感/正则/全局搜索</td></tr></tbody></table><h3 id="多光标和选择"><a href="#多光标和选择" class="headerlink" title="多光标和选择"></a>多光标和选择</h3><table><thead><tr><th>快捷键</th><th>命令</th></tr></thead><tbody><tr><td><code>Alt</code>+<code>Click</code></td><td>插入光标</td></tr><tr><td><code>Ctrl</code>+<code>Alt</code>+<code>↑</code>/↓</td><td>向上/向下插入光标</td></tr><tr><td><code>Ctrl</code>+<code>U</code></td><td>撤销上一次光标操作</td></tr><tr><td><code>Shift</code>+<code>Alt</code>+<code>I</code></td><td>在选择的每一行末尾插入光标</td></tr><tr><td><code>Ctrl</code>+<code>L</code></td><td>选中当前行</td></tr><tr><td><code>Ctrl</code>+<code>Shift</code>+<code>L</code></td><td>选中所有与当前选择相同的项</td></tr><tr><td><code>Ctrl</code>+<code>F2</code></td><td>选择所有与当前光标所在单词相同的项</td></tr><tr><td><code>Shift</code>+<code>Alt</code>+<code>→</code></td><td>扩展选择</td></tr><tr><td><code>Shift</code>+<code>Alt</code>+<code>←</code></td><td>缩减选择</td></tr><tr><td><code>Shift</code>+<code>Alt</code>+<code>(drag mouse)</code></td><td>列选择</td></tr><tr><td><code>Ctrl</code>+<code>Shift</code>+<code>Alt</code>+<code>(arrow key)</code></td><td>列选择</td></tr><tr><td><code>Ctrl</code>+<code>Shift</code>+<code>Alt</code>+<code>PgUp</code>/<code>PgDown</code></td><td>列选择向上/下一页</td></tr></tbody></table><h3 id="富语言编译"><a href="#富语言编译" class="headerlink" title="富语言编译"></a>富语言编译</h3><table><thead><tr><th>快捷键</th><th>命令</th></tr></thead><tbody><tr><td><code>Ctrl</code>+<code>Space</code></td><td>触发建议</td></tr><tr><td><code>Ctrl</code>+<code>Shift</code>+<code>Space</code></td><td>触发参数提示</td></tr><tr><td><code>F12</code></td><td>跳转到定义处</td></tr><tr><td><code>Alt</code>+<code>F12</code></td><td>查看定义</td></tr><tr><td><code>Shift</code>+<code>F12</code></td><td>查看引用</td></tr><tr><td><code>F2</code></td><td>重命名</td></tr><tr><td><code>Ctrl</code>+<code>Shift</code>+<code>.</code></td><td>树形显示文件内容</td></tr><tr><td><code>Ctrl</code>+<code>K</code> <code>Ctrl</code>+<code>X</code></td><td>截取掉尾部空格</td></tr></tbody></table><h3 id="编辑器管理"><a href="#编辑器管理" class="headerlink" title="编辑器管理"></a>编辑器管理</h3><table><thead><tr><th>快捷键</th><th>命令</th></tr></thead><tbody><tr><td><code>Ctrl</code>+<code>F4</code>, <code>Ctrl</code>+<code>w</code></td><td>关闭编辑器</td></tr><tr><td><code>Ctrl</code>+<code>K</code> <code>F</code></td><td>关闭文件夹</td></tr><tr><td><code>Ctrl</code>+<code>\</code></td><td>分割编辑器</td></tr><tr><td><code>Ctrl</code>+<code>1</code>/<code>2</code>/<code>3</code></td><td>聚焦第1/2/3编辑器组</td></tr><tr><td><code>Ctrl</code>+<code>K</code> <code>Ctrl</code>+<code>←</code>/<code>→</code></td><td>聚焦前一个/后一个编辑器组</td></tr><tr><td><code>Ctrl</code>+<code>Shift</code>+<code>PgUp</code>/<code>PgDown</code></td><td>向左/右移动编辑器</td></tr></tbody></table><h3 id="文件管理"><a href="#文件管理" class="headerlink" title="文件管理"></a>文件管理</h3><table><thead><tr><th>快捷键</th><th>命令</th></tr></thead><tbody><tr><td><code>Ctrl</code>+<code>N</code></td><td>新建文件</td></tr><tr><td><code>Ctrl</code>+<code>O</code></td><td>打开文件</td></tr><tr><td><code>Ctrl</code>+<code>S</code></td><td>保存文件</td></tr><tr><td><code>Ctrl</code>+<code>Shift</code>+<code>S</code></td><td>文件另存为</td></tr><tr><td><code>Ctrl</code>+<code>K</code> <code>S</code></td><td>保存所有文件</td></tr><tr><td><code>Ctrl</code>+<code>F4</code></td><td>关闭</td></tr><tr><td><code>Ctrl</code>+<code>K</code> <code>Ctrl</code>+<code>W</code></td><td>关闭所有文件</td></tr><tr><td><code>Ctrl</code>+<code>Shift</code>+<code>T</code></td><td>重新打开关闭的编辑器</td></tr><tr><td><code>Ctrl</code>+<code>Tab</code></td><td>切换到下一个打开的文件</td></tr><tr><td><code>Ctrl</code>+<code>Shift</code>+<code>Tab</code></td><td>切换到上一个打开的文件</td></tr><tr><td><code>Ctrl</code>+<code>K</code> <code>P</code></td><td>复制文件的目录</td></tr><tr><td><code>Ctrl</code>+<code>K</code> <code>R</code></td><td>在资源管理器显示所有活跃的文件</td></tr><tr><td><code>Ctrl</code>+<code>K</code> <code>O</code></td><td>在新的窗口显示活跃文件</td></tr></tbody></table><h3 id="显示"><a href="#显示" class="headerlink" title="显示"></a>显示</h3><table><thead><tr><th>快捷键</th><th>命令</th></tr></thead><tbody><tr><td><code>F11</code></td><td>启动或取消全屏显示</td></tr><tr><td><code>Ctrl</code>+<code>=</code>/<code>-</code></td><td>放大/缩小</td></tr><tr><td><code>Ctrl</code>+<code>B</code></td><td>显示/隐藏侧边栏</td></tr><tr><td><code>Ctrl</code>+<code>Shift</code>+<code>E</code></td><td>显示资源管理器/开启或取消文件聚焦</td></tr><tr><td><code>Ctrl</code>+<code>Shift</code>+<code>F</code></td><td>显示搜索</td></tr><tr><td><code>Ctrl</code>+<code>Shift</code>+<code>G</code></td><td>显示Git</td></tr><tr><td><code>Ctrl</code>+<code>Shift</code>+<code>D</code></td><td>显示Debug</td></tr><tr><td><code>Ctrl</code>+<code>Shift</code>+<code>X</code></td><td>显示扩展</td></tr><tr><td><code>Ctrl</code>+<code>Shift</code>+<code>H</code></td><td>替换文件中的匹配上的内容</td></tr><tr><td><code>Ctrl</code>+<code>Shift</code>+<code>J</code></td><td>开启或取消搜索细节</td></tr><tr><td><code>Ctrl</code>+<code>Shift</code>+<code>C</code></td><td>打开命令提示符</td></tr><tr><td><code>Ctrl</code>+<code>Shift</code>+<code>U</code></td><td>显示输出面板</td></tr><tr><td><code>Ctrl</code>+<code>Shift</code>+<code>V</code></td><td>开启或取消markdown预览</td></tr><tr><td><code>Ctrl</code>+<code>K</code>+<code>V</code></td><td>右侧边开启markdown预览</td></tr></tbody></table><h3 id="Debug"><a href="#Debug" class="headerlink" title="Debug"></a>Debug</h3><table><thead><tr><th>快捷键</th><th>命令</th></tr></thead><tbody><tr><td><code>F9</code></td><td>设置或取消断点</td></tr><tr><td><code>F5</code></td><td>开始/继续</td></tr><tr><td><code>Shift</code>+<code>F5</code></td><td>停止</td></tr><tr><td><code>F11</code>/<code>Shift</code>+<code>F11</code></td><td>进入/跳出</td></tr><tr><td><code>F10</code></td><td>单步执行</td></tr><tr><td><code>Ctrl</code>+<code>K</code> <code>Ctrl</code>+<code>1</code></td><td>显示悬停</td></tr></tbody></table><h3 id="集成终端"><a href="#集成终端" class="headerlink" title="集成终端"></a>集成终端</h3><table><thead><tr><th>快捷键</th><th>命令</th></tr></thead><tbody><tr><td><code>Ctrl</code>+`</td><td>显示集成终端</td></tr><tr><td><code>Ctrl</code>+<code>Shift</code>+`</td><td>创建一个新的终端</td></tr><tr><td><code>Ctrl</code>+<code>Shift</code>+<code>C</code></td><td>复制选中的内容</td></tr><tr><td><code>Ctrl</code>+<code>Shift</code>+<code>V</code></td><td>粘贴到激活状态的终端</td></tr><tr><td><code>Ctrl</code>+<code>↑</code>/<code>↓</code></td><td>向上/下滚动</td></tr><tr><td><code>Shift</code>+<code>PgUp</code>/<code>PgDown</code></td><td>向上/下滚动一页</td></tr><tr><td><code>Ctrl</code>+<code>Home</code>/<code>End</code></td><td>滚动到顶部/底部</td></tr></tbody></table><hr><h2 id="获取官方快捷键文件"><a href="#获取官方快捷键文件" class="headerlink" title="获取官方快捷键文件"></a>获取官方快捷键文件</h2><p><code>Ctrl</code>+<code>K</code> <code>Ctrl</code>+<code>R</code>     启动浏览器自动打开一篇包含 VS Code 支持快捷键的 pdf。</p><p><img src="/images/vscode-ks/vscode-ks.png" alt="1572013816555"></p><hr><h2 id="VS-Code-常用的快捷键"><a href="#VS-Code-常用的快捷键" class="headerlink" title="VS Code 常用的快捷键"></a>VS Code 常用的快捷键</h2><ul><li>一篇值得收藏的关于 VS Code 常用快捷键的公众号文章：</li></ul><blockquote><p><a class="foo" href="https://mp.weixin.qq.com/s/SX0dp3506Pabo-mpZ99cKw" target="_blank" rel="noopener">21个VSCode快捷键，让代码更快，更有趣</a></p></blockquote><ul><li>最后，再附上 markdown 修改表格宽度的方法：</li></ul><blockquote><p><a class="foo" href="https://stackoverflow.com/questions/36121672/set-table-column-width-via-markdown" target="_blank" rel="noopener">https://stackoverflow.com/questions/36121672/set-table-column-width-via-markdown</a></p></blockquote>]]></content>
-      
-      
+      <tags>
+        <tag>快捷键</tag>
+        <tag>windows 10</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Visual Studio Code 快捷键</title>
+    <url>/2019/10/23/vscode-ks/</url>
+    <content><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><blockquote>
+<p>Visual Studio Code（简称 VS Code）是一款由微软推出的开源代码编辑器，支持多种编程语言，集成终端，可以在编译器中脚本、编译软件、调试脚本、设置断点、做版本管理。此外VS Code 还支持丰富的扩展程序。VS Code 凭借众多优点已一跃成为”最受欢迎的开发环境“，没有之一！</p>
+<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQO0B5xlmRoPQO43h8hjigbOhNQqLLT1CxzH92P2_TTwZV5GAB_Kg&amp;s" alt="“vscode”的图片搜索结果" style="zoom:50%;">
+
+<p>掌握 VS Code 的快捷键，对于开发效率的提升将有很大帮助。</p>
+</blockquote><a id="more"></a>
+<hr>
+<h2 id="VS-Code-快捷键"><a href="#VS-Code-快捷键" class="headerlink" title="VS Code 快捷键"></a>VS Code 快捷键</h2><style>
+   table th:first-of-type {
+           width: 40%
+    }
+    a .foo {
+        color: blue
+    }
+</style>
+
+<h3 id="通用部分"><a href="#通用部分" class="headerlink" title="通用部分"></a>通用部分</h3><table>
+<thead>
+<tr>
+<th align="left">快捷键</th>
+<th align="left">命令</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>Ctrl</code>+<code>Shift</code>+<code>P</code>, <code>F1</code></td>
+<td align="left">显示命令</td>
+</tr>
+<tr>
+<td align="left"><code>Ctrl</code>+<code>P</code></td>
+<td align="left">快速打开文件</td>
+</tr>
+<tr>
+<td align="left"><code>Ctrl</code>+<code>Shift</code>+<code>N</code></td>
+<td align="left">新建窗口</td>
+</tr>
+<tr>
+<td align="left"><code>Ctrl</code>+<code>Shift</code>+<code>w</code></td>
+<td align="left">关闭窗口</td>
+</tr>
+</tbody></table>
+<h3 id="基本的编辑"><a href="#基本的编辑" class="headerlink" title="基本的编辑"></a>基本的编辑</h3><table>
+<thead>
+<tr>
+<th>快捷键</th>
+<th>命令</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>Ctrl</code>+<code>X</code></td>
+<td>剪切选中的内容或剪切行（空选）</td>
+</tr>
+<tr>
+<td><code>Ctrl</code>+<code>C</code></td>
+<td>复制选择的内容或复制行（空选）</td>
+</tr>
+<tr>
+<td><code>Alt</code>+<code>↑</code>/<code>↓</code></td>
+<td>向上/向下移动一行代码</td>
+</tr>
+<tr>
+<td><code>Shift</code>+<code>Alt</code>+<code>↑</code>/<code>↓</code></td>
+<td>复制当前行，向上/向下粘贴</td>
+</tr>
+<tr>
+<td><code>Ctrl</code>+<code>Shift</code>+<code>K</code></td>
+<td>删除当前行</td>
+</tr>
+<tr>
+<td><code>Ctrl</code>+<code>Shift</code>+<code>\</code></td>
+<td>跳到匹配的括号</td>
+</tr>
+<tr>
+<td><code>Ctrl</code>+<code>Shift</code>+<code>]</code>+<code>[</code></td>
+<td>增加/减小一个缩进</td>
+</tr>
+<tr>
+<td><code>Home</code></td>
+<td>跳到当前行开始位置</td>
+</tr>
+<tr>
+<td><code>End</code></td>
+<td>跳到当前行结束位置</td>
+</tr>
+<tr>
+<td><code>Ctrl</code>+<code>Home</code></td>
+<td>跳到文件的开始位置</td>
+</tr>
+<tr>
+<td><code>Ctrl</code>+<code>End</code></td>
+<td>跳到文件的结束位置</td>
+</tr>
+<tr>
+<td><code>Ctrl</code>+<code>↑</code>/<code>↓</code></td>
+<td>向上 / 下滚动一行</td>
+</tr>
+<tr>
+<td><code>Alt</code>+<code>PgUp</code>/<code>PgDown</code></td>
+<td>向上 / 下滚动一页</td>
+</tr>
+<tr>
+<td><code>Ctrl</code>+<code>Shift</code>+<code>[</code></td>
+<td>折叠区域</td>
+</tr>
+<tr>
+<td><code>Ctrl</code>+<code>Shift</code>+<code>]</code></td>
+<td>展开区域</td>
+</tr>
+<tr>
+<td><code>Ctrl</code>+<code>K</code> <code>Ctrl</code>+<code>[</code></td>
+<td>折叠所有子区域</td>
+</tr>
+<tr>
+<td><code>Ctrl</code>+<code>K</code> <code>Ctrl</code>+<code>]</code></td>
+<td>展开所有子区域</td>
+</tr>
+<tr>
+<td><code>Ctrl</code>+<code>K</code> <code>Ctrl</code>+<code>J</code></td>
+<td>展开所有区域</td>
+</tr>
+<tr>
+<td><code>Ctrl</code>+<code>K</code> <code>Ctrl</code>+<code>C</code></td>
+<td>添加行注释</td>
+</tr>
+<tr>
+<td><code>Ctrl</code>+<code>K</code> <code>Ctrl</code>+<code>U</code></td>
+<td>移除行注释</td>
+</tr>
+<tr>
+<td><code>Ctrl</code>+<code>/</code></td>
+<td>添加或移除行注释</td>
+</tr>
+<tr>
+<td><code>Shift</code>+<code>Alt</code>+<code>A</code></td>
+<td>添加或移除多行注释</td>
+</tr>
+<tr>
+<td><code>Alt</code>+<code>Z</code></td>
+<td>适应或取消适应屏幕</td>
+</tr>
+</tbody></table>
+<h3 id="导航栏"><a href="#导航栏" class="headerlink" title="导航栏"></a>导航栏</h3><table>
+<thead>
+<tr>
+<th>快捷键</th>
+<th>命令</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>Ctrl</code>+<code>T</code></td>
+<td>显示所有的符号</td>
+</tr>
+<tr>
+<td><code>Ctrl</code>+<code>G</code></td>
+<td>跳到指定行</td>
+</tr>
+<tr>
+<td><code>Ctrl</code>+<code>P</code></td>
+<td>跳到指定文件</td>
+</tr>
+<tr>
+<td><code>Ctrl</code>+<code>Shift</code>+<code>O</code></td>
+<td>跳转到指定符号</td>
+</tr>
+<tr>
+<td><code>Ctrl</code>+<code>Shift</code>+<code>M</code></td>
+<td>显示问题面板</td>
+</tr>
+<tr>
+<td><code>F8</code></td>
+<td>跳到下一个错误或警告</td>
+</tr>
+<tr>
+<td><code>Shift</code>+<code>F8</code></td>
+<td>跳到上一个错误或警告</td>
+</tr>
+<tr>
+<td><code>Ctrl</code>+<code>Shift</code>+<code>Table</code></td>
+<td>导航编辑器组历史记录</td>
+</tr>
+<tr>
+<td><code>Alt</code>+<code>←</code>/<code>→</code></td>
+<td>退回/向前一个操作的位置</td>
+</tr>
+<tr>
+<td><code>Ctrl</code>+<code>M</code></td>
+<td>启动或取消标签移动焦点</td>
+</tr>
+</tbody></table>
+<h3 id="查找或替换"><a href="#查找或替换" class="headerlink" title="查找或替换"></a>查找或替换</h3><table>
+<thead>
+<tr>
+<th>快捷键</th>
+<th>命令</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>Ctrl</code>+<code>F</code></td>
+<td>文件内查找</td>
+</tr>
+<tr>
+<td><code>Ctrl</code>+<code>H</code></td>
+<td>文件内替换</td>
+</tr>
+<tr>
+<td><code>F3</code>/<code>Shift</code>+<code>F3</code></td>
+<td>查找下一个/上一个</td>
+</tr>
+<tr>
+<td><code>Alt</code>+<code>Enter</code></td>
+<td>选中所有查找匹配到的内容</td>
+</tr>
+<tr>
+<td><code>Ctrl</code>+<code>D</code></td>
+<td>选中下一个匹配到的内容</td>
+</tr>
+<tr>
+<td><code>Ctrl</code>+<code>K</code> <code>Ctrl</code>+<code>D</code></td>
+<td>移除上次选中，跳到下一个匹配</td>
+</tr>
+<tr>
+<td><code>Alt</code>+<code>C</code>/<code>R</code>/<code>W</code></td>
+<td>开启或取消大小写敏感/正则/全局搜索</td>
+</tr>
+</tbody></table>
+<h3 id="多光标和选择"><a href="#多光标和选择" class="headerlink" title="多光标和选择"></a>多光标和选择</h3><table>
+<thead>
+<tr>
+<th>快捷键</th>
+<th>命令</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>Alt</code>+<code>Click</code></td>
+<td>插入光标</td>
+</tr>
+<tr>
+<td><code>Ctrl</code>+<code>Alt</code>+<code>↑</code>/↓</td>
+<td>向上/向下插入光标</td>
+</tr>
+<tr>
+<td><code>Ctrl</code>+<code>U</code></td>
+<td>撤销上一次光标操作</td>
+</tr>
+<tr>
+<td><code>Shift</code>+<code>Alt</code>+<code>I</code></td>
+<td>在选择的每一行末尾插入光标</td>
+</tr>
+<tr>
+<td><code>Ctrl</code>+<code>L</code></td>
+<td>选中当前行</td>
+</tr>
+<tr>
+<td><code>Ctrl</code>+<code>Shift</code>+<code>L</code></td>
+<td>选中所有与当前选择相同的项</td>
+</tr>
+<tr>
+<td><code>Ctrl</code>+<code>F2</code></td>
+<td>选择所有与当前光标所在单词相同的项</td>
+</tr>
+<tr>
+<td><code>Shift</code>+<code>Alt</code>+<code>→</code></td>
+<td>扩展选择</td>
+</tr>
+<tr>
+<td><code>Shift</code>+<code>Alt</code>+<code>←</code></td>
+<td>缩减选择</td>
+</tr>
+<tr>
+<td><code>Shift</code>+<code>Alt</code>+<code>(drag mouse)</code></td>
+<td>列选择</td>
+</tr>
+<tr>
+<td><code>Ctrl</code>+<code>Shift</code>+<code>Alt</code>+<code>(arrow key)</code></td>
+<td>列选择</td>
+</tr>
+<tr>
+<td><code>Ctrl</code>+<code>Shift</code>+<code>Alt</code>+<code>PgUp</code>/<code>PgDown</code></td>
+<td>列选择向上/下一页</td>
+</tr>
+</tbody></table>
+<h3 id="富语言编译"><a href="#富语言编译" class="headerlink" title="富语言编译"></a>富语言编译</h3><table>
+<thead>
+<tr>
+<th>快捷键</th>
+<th>命令</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>Ctrl</code>+<code>Space</code></td>
+<td>触发建议</td>
+</tr>
+<tr>
+<td><code>Ctrl</code>+<code>Shift</code>+<code>Space</code></td>
+<td>触发参数提示</td>
+</tr>
+<tr>
+<td><code>F12</code></td>
+<td>跳转到定义处</td>
+</tr>
+<tr>
+<td><code>Alt</code>+<code>F12</code></td>
+<td>查看定义</td>
+</tr>
+<tr>
+<td><code>Shift</code>+<code>F12</code></td>
+<td>查看引用</td>
+</tr>
+<tr>
+<td><code>F2</code></td>
+<td>重命名</td>
+</tr>
+<tr>
+<td><code>Ctrl</code>+<code>Shift</code>+<code>.</code></td>
+<td>树形显示文件内容</td>
+</tr>
+<tr>
+<td><code>Ctrl</code>+<code>K</code> <code>Ctrl</code>+<code>X</code></td>
+<td>截取掉尾部空格</td>
+</tr>
+</tbody></table>
+<h3 id="编辑器管理"><a href="#编辑器管理" class="headerlink" title="编辑器管理"></a>编辑器管理</h3><table>
+<thead>
+<tr>
+<th>快捷键</th>
+<th>命令</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>Ctrl</code>+<code>F4</code>, <code>Ctrl</code>+<code>w</code></td>
+<td>关闭编辑器</td>
+</tr>
+<tr>
+<td><code>Ctrl</code>+<code>K</code> <code>F</code></td>
+<td>关闭文件夹</td>
+</tr>
+<tr>
+<td><code>Ctrl</code>+<code>\</code></td>
+<td>分割编辑器</td>
+</tr>
+<tr>
+<td><code>Ctrl</code>+<code>1</code>/<code>2</code>/<code>3</code></td>
+<td>聚焦第1/2/3编辑器组</td>
+</tr>
+<tr>
+<td><code>Ctrl</code>+<code>K</code> <code>Ctrl</code>+<code>←</code>/<code>→</code></td>
+<td>聚焦前一个/后一个编辑器组</td>
+</tr>
+<tr>
+<td><code>Ctrl</code>+<code>Shift</code>+<code>PgUp</code>/<code>PgDown</code></td>
+<td>向左/右移动编辑器</td>
+</tr>
+</tbody></table>
+<h3 id="文件管理"><a href="#文件管理" class="headerlink" title="文件管理"></a>文件管理</h3><table>
+<thead>
+<tr>
+<th>快捷键</th>
+<th>命令</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>Ctrl</code>+<code>N</code></td>
+<td>新建文件</td>
+</tr>
+<tr>
+<td><code>Ctrl</code>+<code>O</code></td>
+<td>打开文件</td>
+</tr>
+<tr>
+<td><code>Ctrl</code>+<code>S</code></td>
+<td>保存文件</td>
+</tr>
+<tr>
+<td><code>Ctrl</code>+<code>Shift</code>+<code>S</code></td>
+<td>文件另存为</td>
+</tr>
+<tr>
+<td><code>Ctrl</code>+<code>K</code> <code>S</code></td>
+<td>保存所有文件</td>
+</tr>
+<tr>
+<td><code>Ctrl</code>+<code>F4</code></td>
+<td>关闭</td>
+</tr>
+<tr>
+<td><code>Ctrl</code>+<code>K</code> <code>Ctrl</code>+<code>W</code></td>
+<td>关闭所有文件</td>
+</tr>
+<tr>
+<td><code>Ctrl</code>+<code>Shift</code>+<code>T</code></td>
+<td>重新打开关闭的编辑器</td>
+</tr>
+<tr>
+<td><code>Ctrl</code>+<code>Tab</code></td>
+<td>切换到下一个打开的文件</td>
+</tr>
+<tr>
+<td><code>Ctrl</code>+<code>Shift</code>+<code>Tab</code></td>
+<td>切换到上一个打开的文件</td>
+</tr>
+<tr>
+<td><code>Ctrl</code>+<code>K</code> <code>P</code></td>
+<td>复制文件的目录</td>
+</tr>
+<tr>
+<td><code>Ctrl</code>+<code>K</code> <code>R</code></td>
+<td>在资源管理器显示所有活跃的文件</td>
+</tr>
+<tr>
+<td><code>Ctrl</code>+<code>K</code> <code>O</code></td>
+<td>在新的窗口显示活跃文件</td>
+</tr>
+</tbody></table>
+<h3 id="显示"><a href="#显示" class="headerlink" title="显示"></a>显示</h3><table>
+<thead>
+<tr>
+<th>快捷键</th>
+<th>命令</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>F11</code></td>
+<td>启动或取消全屏显示</td>
+</tr>
+<tr>
+<td><code>Ctrl</code>+<code>=</code>/<code>-</code></td>
+<td>放大/缩小</td>
+</tr>
+<tr>
+<td><code>Ctrl</code>+<code>B</code></td>
+<td>显示/隐藏侧边栏</td>
+</tr>
+<tr>
+<td><code>Ctrl</code>+<code>Shift</code>+<code>E</code></td>
+<td>显示资源管理器/开启或取消文件聚焦</td>
+</tr>
+<tr>
+<td><code>Ctrl</code>+<code>Shift</code>+<code>F</code></td>
+<td>显示搜索</td>
+</tr>
+<tr>
+<td><code>Ctrl</code>+<code>Shift</code>+<code>G</code></td>
+<td>显示Git</td>
+</tr>
+<tr>
+<td><code>Ctrl</code>+<code>Shift</code>+<code>D</code></td>
+<td>显示Debug</td>
+</tr>
+<tr>
+<td><code>Ctrl</code>+<code>Shift</code>+<code>X</code></td>
+<td>显示扩展</td>
+</tr>
+<tr>
+<td><code>Ctrl</code>+<code>Shift</code>+<code>H</code></td>
+<td>替换文件中的匹配上的内容</td>
+</tr>
+<tr>
+<td><code>Ctrl</code>+<code>Shift</code>+<code>J</code></td>
+<td>开启或取消搜索细节</td>
+</tr>
+<tr>
+<td><code>Ctrl</code>+<code>Shift</code>+<code>C</code></td>
+<td>打开命令提示符</td>
+</tr>
+<tr>
+<td><code>Ctrl</code>+<code>Shift</code>+<code>U</code></td>
+<td>显示输出面板</td>
+</tr>
+<tr>
+<td><code>Ctrl</code>+<code>Shift</code>+<code>V</code></td>
+<td>开启或取消markdown预览</td>
+</tr>
+<tr>
+<td><code>Ctrl</code>+<code>K</code>+<code>V</code></td>
+<td>右侧边开启markdown预览</td>
+</tr>
+</tbody></table>
+<h3 id="Debug"><a href="#Debug" class="headerlink" title="Debug"></a>Debug</h3><table>
+<thead>
+<tr>
+<th>快捷键</th>
+<th>命令</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>F9</code></td>
+<td>设置或取消断点</td>
+</tr>
+<tr>
+<td><code>F5</code></td>
+<td>开始/继续</td>
+</tr>
+<tr>
+<td><code>Shift</code>+<code>F5</code></td>
+<td>停止</td>
+</tr>
+<tr>
+<td><code>F11</code>/<code>Shift</code>+<code>F11</code></td>
+<td>进入/跳出</td>
+</tr>
+<tr>
+<td><code>F10</code></td>
+<td>单步执行</td>
+</tr>
+<tr>
+<td><code>Ctrl</code>+<code>K</code> <code>Ctrl</code>+<code>1</code></td>
+<td>显示悬停</td>
+</tr>
+</tbody></table>
+<h3 id="集成终端"><a href="#集成终端" class="headerlink" title="集成终端"></a>集成终端</h3><table>
+<thead>
+<tr>
+<th>快捷键</th>
+<th>命令</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>Ctrl</code>+`</td>
+<td>显示集成终端</td>
+</tr>
+<tr>
+<td><code>Ctrl</code>+<code>Shift</code>+`</td>
+<td>创建一个新的终端</td>
+</tr>
+<tr>
+<td><code>Ctrl</code>+<code>Shift</code>+<code>C</code></td>
+<td>复制选中的内容</td>
+</tr>
+<tr>
+<td><code>Ctrl</code>+<code>Shift</code>+<code>V</code></td>
+<td>粘贴到激活状态的终端</td>
+</tr>
+<tr>
+<td><code>Ctrl</code>+<code>↑</code>/<code>↓</code></td>
+<td>向上/下滚动</td>
+</tr>
+<tr>
+<td><code>Shift</code>+<code>PgUp</code>/<code>PgDown</code></td>
+<td>向上/下滚动一页</td>
+</tr>
+<tr>
+<td><code>Ctrl</code>+<code>Home</code>/<code>End</code></td>
+<td>滚动到顶部/底部</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="获取官方快捷键文件"><a href="#获取官方快捷键文件" class="headerlink" title="获取官方快捷键文件"></a>获取官方快捷键文件</h2><p><code>Ctrl</code>+<code>K</code> <code>Ctrl</code>+<code>R</code>     启动浏览器自动打开一篇包含 VS Code 支持快捷键的 pdf。</p>
+<p><img src="/images/vscode-ks/vscode-ks.png" alt="1572013816555"></p>
+<hr>
+<h2 id="VS-Code-常用的快捷键"><a href="#VS-Code-常用的快捷键" class="headerlink" title="VS Code 常用的快捷键"></a>VS Code 常用的快捷键</h2><ul>
+<li>一篇值得收藏的关于 VS Code 常用快捷键的公众号文章：</li>
+</ul>
+<blockquote>
+<p><a class="foo" href="https://mp.weixin.qq.com/s/SX0dp3506Pabo-mpZ99cKw" target="_blank" rel="noopener">21个VSCode快捷键，让代码更快，更有趣</a></p>
+</blockquote>
+<ul>
+<li>最后，再附上 markdown 修改表格宽度的方法：</li>
+</ul>
+<blockquote>
+<p><a class="foo" href="https://stackoverflow.com/questions/36121672/set-table-column-width-via-markdown" target="_blank" rel="noopener">https://stackoverflow.com/questions/36121672/set-table-column-width-via-markdown</a></p>
+</blockquote>
+]]></content>
       <categories>
-          
-          <category> 快捷键 </category>
-          
+        <category>快捷键</category>
       </categories>
-      
-      
-        <tags>
-            
-            <tag> 快捷键 </tag>
-            
-            <tag> Windows10 </tag>
-            
-            <tag> Vscode </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>Typora 的基本语法基础</title>
-      <link href="/2019/10/20/typera-markdown/"/>
-      <url>/2019/10/20/typera-markdown/</url>
-      
-        <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><blockquote><p><strong>Typora</strong> 是当下一款流行的 <strong>mardown</strong> 编辑器和阅读器，简单、高效。</p><p>本篇是对 <strong>Typora</strong> 帮助使用文档中语法部分的整理，方便日后查阅和熟悉。</p></blockquote><hr><h2 id="块级元素"><a href="#块级元素" class="headerlink" title="块级元素"></a>块级元素</h2><h3 id="段落和换行"><a href="#段落和换行" class="headerlink" title="段落和换行"></a>段落和换行</h3><ul><li>单击 <code>return</code>，创建一个新的段落；</li><li>点击 <code>Shift</code>+<code>Return</code> 创建单行换行 ，兼容大多数其他的markdown转换器，末尾留两个空格；</li><li>或者插入 <code>&lt;br/&gt;</code></li></ul><a id="more"></a><h3 id="标题"><a href="#标题" class="headerlink" title="标题"></a>标题</h3><ul><li><p>标题在行首前使用1~6个 <code>#</code> 字符，相当于header的 <code>h1</code> 到 <code>h6</code>。  </p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># This is an H1</span><br><span class="line"># This is an H2</span><br><span class="line"># This is an H6This is an H1</span><br></pre></td></tr></table></figure></li></ul><h3 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h3><p>Markdown 使用 email 风格的 <code>&gt;</code> 字符作为块级应用。如下呈现：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt; 这是两段块级引用。</span><br><span class="line">&gt; 这是第一段落。</span><br><span class="line">&gt; 这是第二个段落。</span><br><span class="line">&gt;&gt; 这是一段另一个块级引用。</span><br></pre></td></tr></table></figure><blockquote><p>这是两段块级引用。</p><p>这是第一段落。</p><p>这是第二段落。</p><blockquote><p>这是一段另一个块级引用。</p></blockquote></blockquote><h3 id="列表"><a href="#列表" class="headerlink" title="列表"></a>列表</h3><ul><li>输入 <code>* 列表项</code> 将创建未排序的列表，也可以使用 <code>+</code> 或 <code>-</code> 代替 <code>*</code>；</li><li>输入<code>1. 列表项</code> 将创建有序列表。</li></ul><p>无序列表实例：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">* 红色</span><br><span class="line">* 绿色</span><br><span class="line">* 蓝色</span><br></pre></td></tr></table></figure><ul><li>红色</li><li>绿色</li><li>蓝色</li></ul><p>有序列表实例：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1. Red</span><br><span class="line">2. Green</span><br><span class="line">3. Blue</span><br></pre></td></tr></table></figure><ol><li>Red</li><li>Green</li><li>Blue  </li></ol><h3 id="任务列表"><a href="#任务列表" class="headerlink" title="任务列表"></a>任务列表</h3><p>任务列表用 <code>- [ ]</code> 或 <code>- [x]</code> （未完成或已完成）标记。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">- [ ]任务列表项</span><br><span class="line">     - [ ]未完成</span><br><span class="line">     - [x]已完成</span><br></pre></td></tr></table></figure><ul><li><input disabled type="checkbox"> 任务列表项<ul><li><input disabled type="checkbox"> 未完成</li><li><input checked disabled type="checkbox"> 已完成 </li></ul></li></ul><h3 id="代码块"><a href="#代码块" class="headerlink" title="代码块"></a>代码块</h3><p>输入```，然后点击回车，选择一门语言，然后可以看到语法高亮。</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"notice the blank line before this function!"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h3 id="数学块"><a href="#数学块" class="headerlink" title="数学块"></a>数学块</h3><ul><li>可以使用 <strong>MathJax</strong> <em>提取</em>  <em>LaTex</em> 数学表达式；</li><li>输入$$，添加数学表达式，输入回车。</li></ul><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$$</span><br><span class="line">\mathbf&#123;V&#125;_1 \times \mathbf&#123;V&#125;_2 =  \begin&#123;vmatrix&#125; </span><br><span class="line">\mathbf&#123;i&#125; &amp; \mathbf&#123;j&#125; &amp; \mathbf&#123;k&#125; \\   </span><br><span class="line">\frac&#123;\partial X&#125;&#123;\partial u&#125; &amp;  \frac&#123;\partial Y&#125;&#123;\partial u&#125; &amp; 0 \\        \frac&#123;\partial X&#125;&#123;\partial v&#125; &amp;  \frac&#123;\partial Y&#125;&#123;\partial v&#125; &amp; 0 \\     \end&#123;vmatrix&#125;</span><br><span class="line">$$</span><br></pre></td></tr></table></figure><p>$$<br>\mathbf{V}_1 \times \mathbf{V}_2 =  \begin{vmatrix}<br>   \mathbf{i} &amp; \mathbf{j} &amp; \mathbf{k} \<br>   \frac{\partial X}{\partial u} &amp;  \frac{\partial Y}{\partial u} &amp; 0 \<br>   \frac{\partial X}{\partial v} &amp;  \frac{\partial Y}{\partial v} &amp; 0 \<br>   \end{vmatrix}<br>$$</p><h3 id="表格"><a href="#表格" class="headerlink" title="表格"></a>表格</h3><p>输入 <code>| First Header  | Second Header|</code>，再输入回车。将创建一行两列的表格。</p><p>创建出的列表，可以使用工具条重新调整表格大小、对其或者删除，也可以使用文本菜单复制、删除、添加行列。Typora 自动生成，没有必要完全了解markdown表格源码。</p><p>表格中可以包括连接、粗体、斜体或者删除线。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">| 第一个标题 | 第二个标题 |</span><br><span class="line">| 内容1  | 内容2     |</span><br></pre></td></tr></table></figure><table><thead><tr><th align="center">第一个标题</th><th align="center">第二个标题</th></tr></thead><tbody><tr><td align="center">内容1</td><td align="center">内容2</td></tr></tbody></table><h3 id="注脚"><a href="#注脚" class="headerlink" title="注脚"></a>注脚</h3><p>使用<code>[^footnote]</code>创建注脚。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">这是一个注脚[^hello]</span><br></pre></td></tr></table></figure><blockquote><p>这是一个注脚[^hello]</p></blockquote><h3 id="水平线"><a href="#水平线" class="headerlink" title="水平线"></a>水平线</h3><p>在空行输入 <code>***</code> 或 <code>---</code> ，再回车就可以画出一条水平线。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">***</span><br><span class="line">---</span><br></pre></td></tr></table></figure><hr><hr><h3 id="YAML前页"><a href="#YAML前页" class="headerlink" title="YAML前页"></a>YAML前页</h3><p>Typora支持 <strong>YAML</strong> 前页。在文章顶部输入 <code>---</code> ，回车后引入 <em>metadata</em> 块。</p><h3 id="目录表"><a href="#目录表" class="headerlink" title="目录表"></a>目录表</h3><p>输入 <code>[toc]</code>，按下 <code>enter</code> 键，根据文档标题自动生成、更新目录表。</p><p>[TOC]</p><hr><h2 id="内联元素"><a href="#内联元素" class="headerlink" title="内联元素"></a>内联元素</h2><h3 id="链接"><a href="#链接" class="headerlink" title="链接"></a>链接</h3><p>[显示的名称](实际的链接)</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">这是[百度](https://www.baidu.com)的链接。</span><br></pre></td></tr></table></figure><blockquote><p>这是<a href="https://www.baidu.com" target="_blank" rel="noopener">百度</a>的链接。</p></blockquote><ul><li><strong>内部链接</strong></li></ul><p>​        可以设置超文本引用到标题，将创建一个允许点击后跳转到对应部分的书签。</p><p>​        windows: <code>ctrl</code>+<code>click</code> 链接，将跳转到块级元素标题。</p><ul><li><strong>参考链接</strong></li></ul><p>​        使用第二个方括号<code>[]</code>，内部放了你选择定位的链接</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">这是一个[参考链接][id]</span><br></pre></td></tr></table></figure><blockquote><p>这是一个<a href="https://www.bilibili.com/" target="_blank" rel="noopener" title="哔哩哔哩">参考链接</a></p></blockquote><p>​        在文档的任何地方，都可以像这样定义：</p><blockquote></blockquote><p>​        两个方括号的内容名相同，可以省略第二方括号的名字</p><p>​        <a href="https://google.com/" target="_blank" rel="noopener">Google</a></p><p>​        然后定义链接：</p><blockquote></blockquote><p><strong>注意</strong>：在 Typora 中，点击链接只是看到源码，<code>ctrl</code> + 鼠标左键，才能启动浏览器打开链接。</p><h3 id="URLs"><a href="#URLs" class="headerlink" title="URLs"></a>URLs</h3><p>Typora可允许直接将 URLs 作为链接，使用 <code>&lt;url&gt;</code>。</p><p>例如：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;www.google.com&gt;</span><br></pre></td></tr></table></figure><blockquote><p>&lt;<a href="http://www.google.com&gt;" target="_blank" rel="noopener">www.google.com&gt;</a></p></blockquote><h3 id="图片"><a href="#图片" class="headerlink" title="图片"></a>图片</h3><p>语法类似于链接，只不过在前面多了一个<code>！</code>，也可直接将图片拖拽进 <strong>Typora</strong>。右键图片可进行缩放比设置。</p><img src="/images/avatar.gif" alt="章鱼猫" style="zoom:25%;"><h3 id="强调"><a href="#强调" class="headerlink" title="强调"></a>强调</h3><p>使用 <code>*</code> 和 <code>_</code> 作为强调指示符（斜体）。文本包含在单一的*或_将被HTML标签<em>包含。</em></p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">*单一的星号*</span><br><span class="line">_单一的下划线_</span><br></pre></td></tr></table></figure><h3 id="加强"><a href="#加强" class="headerlink" title="加强"></a>加强</h3><p>两个 <code>*</code> 或 <code>_</code> 包围文本，等价于HTML标签<strong>包围。</strong></p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">** 双星号 **</span><br><span class="line">__ 双下划线 __</span><br></pre></td></tr></table></figure><blockquote><p><strong>双星号</strong></p><p><strong>双下划线</strong></p></blockquote><h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><p>内联代码，使用反单引号包含单行代码。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">use the `print()` function.</span><br></pre></td></tr></table></figure><blockquote><p>use the <code>printf()</code> function.</p></blockquote><h3 id="删除线"><a href="#删除线" class="headerlink" title="删除线"></a>删除线</h3><p>双波浪号 <code>~</code> 包含文本。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">~错误的文本~</span><br></pre></td></tr></table></figure><blockquote><p><del>错误的文本</del></p></blockquote><h3 id="下划线"><a href="#下划线" class="headerlink" title="下划线"></a>下划线</h3><p>使用原生的HTML产生，<code>&lt;u&gt;添加下划线的文本&lt;/u&gt;</code>。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;u&gt;下划线&lt;/u&gt;</span><br></pre></td></tr></table></figure><blockquote><p><u>下划线</u></p></blockquote><h3 id="表情"><a href="#表情" class="headerlink" title="表情"></a>表情</h3><ul><li>输入表情语法 <code>:smile:</code>。</li><li>智能提示表情，<code>ESC</code>键退出。</li></ul><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">:smile::black_flag:</span><br></pre></td></tr></table></figure><blockquote><p>:smile::black_flag:</p></blockquote><h3 id="内联数学"><a href="#内联数学" class="headerlink" title="内联数学"></a>内联数学</h3><p>通过<code>首选项</code>-&gt;<code>Markdown</code>，开启功能。使用 <code>$</code> 包含 Tex 命令。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$\lim_&#123;x \to \infty&#125; \exp(-x) = 0$</span><br></pre></td></tr></table></figure><blockquote><p>$\lim_{x \to \infty} \exp(-x) = 0$</p></blockquote><h3 id="下标"><a href="#下标" class="headerlink" title="下标"></a>下标</h3><p>同样需要开启扩展语法。然后使用 <code>~</code> 包含下标文本。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">H~2~O</span><br></pre></td></tr></table></figure><blockquote><p>H<del>2</del>O</p></blockquote><h3 id="上标"><a href="#上标" class="headerlink" title="上标"></a>上标</h3><p>开启扩展语法，使用 <code>^</code>。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">X^2^</span><br></pre></td></tr></table></figure><blockquote><p>X^2^</p></blockquote><h3 id="高亮"><a href="#高亮" class="headerlink" title="高亮"></a>高亮</h3><p>开启扩展语法，使用==。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">==highlight==</span><br></pre></td></tr></table></figure><blockquote><p>==highlight==</p></blockquote><h3 id="HTML"><a href="#HTML" class="headerlink" title="HTML"></a>HTML</h3><p>可以使用HTML，不过原生Markdown不支持。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;span style=&quot;color:red&quot;&gt;this text is red&lt;/span&gt;</span><br></pre></td></tr></table></figure><blockquote><p><span style="color:red">this text is red</span></p></blockquote><h3 id="强调内容"><a href="#强调内容" class="headerlink" title="强调内容"></a>强调内容</h3><p><strong>iframe</strong> 标签。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;iframe&gt;&lt;/iframe&gt;</span><br></pre></td></tr></table></figure><blockquote><iframe></iframe></blockquote><h3 id="视频"><a href="#视频" class="headerlink" title="视频"></a>视频</h3><p><strong>video</strong> 标签引入视频。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;video src=&quot;moon.mp4&quot; /&gt;</span><br></pre></td></tr></table></figure><blockquote><video src="moon.mp4"></video></blockquote><h3 id="其他HTML支持"><a href="#其他HTML支持" class="headerlink" title="其他HTML支持"></a>其他HTML支持</h3><p>可参考相关文档，获取更多特性。</p>]]></content>
-      
-      
+      <tags>
+        <tag>快捷键</tag>
+        <tag>Windows10</tag>
+        <tag>Vscode</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Typora 的基本语法基础</title>
+    <url>/2019/10/20/typera-markdown/</url>
+    <content><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><blockquote>
+<p><strong>Typora</strong> 是当下一款流行的 <strong>mardown</strong> 编辑器和阅读器，简单、高效。</p>
+<p>本篇是对 <strong>Typora</strong> 帮助使用文档中语法部分的整理，方便日后查阅和熟悉。</p>
+</blockquote><hr><h2 id="块级元素"><a href="#块级元素" class="headerlink" title="块级元素"></a>块级元素</h2><h3 id="段落和换行"><a href="#段落和换行" class="headerlink" title="段落和换行"></a>段落和换行</h3><ul>
+<li>单击 <code>return</code>，创建一个新的段落；</li>
+<li>点击 <code>Shift</code>+<code>Return</code> 创建单行换行 ，兼容大多数其他的markdown转换器，末尾留两个空格；</li>
+<li>或者插入 <code>&lt;br/&gt;</code></li>
+</ul><a id="more"></a>
+
+
+<h3 id="标题"><a href="#标题" class="headerlink" title="标题"></a>标题</h3><ul>
+<li><p>标题在行首前使用1~6个 <code>#</code> 字符，相当于header的 <code>h1</code> 到 <code>h6</code>。  </p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># This is an H1</span><br><span class="line"># This is an H2</span><br><span class="line"># This is an H6This is an H1</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h3 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h3><p>Markdown 使用 email 风格的 <code>&gt;</code> 字符作为块级应用。如下呈现：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&gt; 这是两段块级引用。</span><br><span class="line">&gt; 这是第一段落。</span><br><span class="line">&gt; 这是第二个段落。</span><br><span class="line">&gt;&gt; 这是一段另一个块级引用。</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>这是两段块级引用。</p>
+<p>这是第一段落。</p>
+<p>这是第二段落。</p>
+<blockquote>
+<p>这是一段另一个块级引用。</p>
+</blockquote>
+</blockquote>
+<h3 id="列表"><a href="#列表" class="headerlink" title="列表"></a>列表</h3><ul>
+<li>输入 <code>* 列表项</code> 将创建未排序的列表，也可以使用 <code>+</code> 或 <code>-</code> 代替 <code>*</code>；</li>
+<li>输入<code>1. 列表项</code> 将创建有序列表。</li>
+</ul>
+<p>无序列表实例：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">* 红色</span><br><span class="line">* 绿色</span><br><span class="line">* 蓝色</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>红色</li>
+<li>绿色</li>
+<li>蓝色</li>
+</ul>
+<p>有序列表实例：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">1. Red</span><br><span class="line">2. Green</span><br><span class="line">3. Blue</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>Red</li>
+<li>Green</li>
+<li>Blue  </li>
+</ol>
+<h3 id="任务列表"><a href="#任务列表" class="headerlink" title="任务列表"></a>任务列表</h3><p>任务列表用 <code>- [ ]</code> 或 <code>- [x]</code> （未完成或已完成）标记。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">- [ ]任务列表项</span><br><span class="line">     - [ ]未完成</span><br><span class="line">     - [x]已完成</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><input disabled type="checkbox"> 任务列表项<ul>
+<li><input disabled type="checkbox"> 未完成</li>
+<li><input checked disabled type="checkbox"> 已完成 </li>
+</ul>
+</li>
+</ul>
+<h3 id="代码块"><a href="#代码块" class="headerlink" title="代码块"></a>代码块</h3><p>输入```，然后点击回车，选择一门语言，然后可以看到语法高亮。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"notice the blank line before this function!"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="数学块"><a href="#数学块" class="headerlink" title="数学块"></a>数学块</h3><ul>
+<li>可以使用 <strong>MathJax</strong> <em>提取</em>  <em>LaTex</em> 数学表达式；</li>
+<li>输入$$，添加数学表达式，输入回车。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$$				</span><br><span class="line">\mathbf&#123;V&#125;_1 \times \mathbf&#123;V&#125;_2 =  \begin&#123;vmatrix&#125; </span><br><span class="line">\mathbf&#123;i&#125; &amp; \mathbf&#123;j&#125; &amp; \mathbf&#123;k&#125; \\   </span><br><span class="line">\frac&#123;\partial X&#125;&#123;\partial u&#125; &amp;  \frac&#123;\partial Y&#125;&#123;\partial u&#125; &amp; 0 \\        \frac&#123;\partial X&#125;&#123;\partial v&#125; &amp;  \frac&#123;\partial Y&#125;&#123;\partial v&#125; &amp; 0 \\     \end&#123;vmatrix&#125;</span><br><span class="line">$$</span><br></pre></td></tr></table></figure>
+
+<p>$$<br>\mathbf{V}_1 \times \mathbf{V}_2 =  \begin{vmatrix}<br>   \mathbf{i} &amp; \mathbf{j} &amp; \mathbf{k} \<br>   \frac{\partial X}{\partial u} &amp;  \frac{\partial Y}{\partial u} &amp; 0 \<br>   \frac{\partial X}{\partial v} &amp;  \frac{\partial Y}{\partial v} &amp; 0 \<br>   \end{vmatrix}<br>$$</p>
+<h3 id="表格"><a href="#表格" class="headerlink" title="表格"></a>表格</h3><p>输入 <code>| First Header  | Second Header|</code>，再输入回车。将创建一行两列的表格。</p>
+<p>创建出的列表，可以使用工具条重新调整表格大小、对其或者删除，也可以使用文本菜单复制、删除、添加行列。Typora 自动生成，没有必要完全了解markdown表格源码。</p>
+<p>表格中可以包括连接、粗体、斜体或者删除线。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">| 第一个标题 | 第二个标题 |</span><br><span class="line">| 内容1	  | 内容2     |</span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th align="center">第一个标题</th>
+<th align="center">第二个标题</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">内容1</td>
+<td align="center">内容2</td>
+</tr>
+</tbody></table>
+<h3 id="注脚"><a href="#注脚" class="headerlink" title="注脚"></a>注脚</h3><p>使用<code>[^footnote]</code>创建注脚。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">这是一个注脚[^hello]</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>这是一个注脚[^hello]</p>
+</blockquote>
+<h3 id="水平线"><a href="#水平线" class="headerlink" title="水平线"></a>水平线</h3><p>在空行输入 <code>***</code> 或 <code>---</code> ，再回车就可以画出一条水平线。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">***</span><br><span class="line">---</span><br></pre></td></tr></table></figure>
+
+<hr>
+<hr>
+<h3 id="YAML前页"><a href="#YAML前页" class="headerlink" title="YAML前页"></a>YAML前页</h3><p>Typora支持 <strong>YAML</strong> 前页。在文章顶部输入 <code>---</code> ，回车后引入 <em>metadata</em> 块。</p>
+<h3 id="目录表"><a href="#目录表" class="headerlink" title="目录表"></a>目录表</h3><p>输入 <code>[toc]</code>，按下 <code>enter</code> 键，根据文档标题自动生成、更新目录表。</p>
+<p>[TOC]</p>
+<hr>
+<h2 id="内联元素"><a href="#内联元素" class="headerlink" title="内联元素"></a>内联元素</h2><h3 id="链接"><a href="#链接" class="headerlink" title="链接"></a>链接</h3><p>[显示的名称](实际的链接)</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">这是[百度](https://www.baidu.com)的链接。</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>这是<a href="https://www.baidu.com" target="_blank" rel="noopener">百度</a>的链接。</p>
+</blockquote>
+<ul>
+<li><strong>内部链接</strong></li>
+</ul>
+<p>​        可以设置超文本引用到标题，将创建一个允许点击后跳转到对应部分的书签。</p>
+<p>​        windows: <code>ctrl</code>+<code>click</code> 链接，将跳转到块级元素标题。</p>
+<ul>
+<li><strong>参考链接</strong></li>
+</ul>
+<p>​        使用第二个方括号<code>[]</code>，内部放了你选择定位的链接</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">这是一个[参考链接][id]</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>这是一个<a href="https://www.bilibili.com/" target="_blank" rel="noopener" title="哔哩哔哩">参考链接</a></p>
+</blockquote>
+<p>​        在文档的任何地方，都可以像这样定义：</p>
+<blockquote>
+</blockquote>
+<p>​        两个方括号的内容名相同，可以省略第二方括号的名字</p>
+<p>​        <a href="https://google.com/" target="_blank" rel="noopener">Google</a></p>
+<p>​        然后定义链接：</p>
+<blockquote>
+</blockquote>
+<p><strong>注意</strong>：在 Typora 中，点击链接只是看到源码，<code>ctrl</code> + 鼠标左键，才能启动浏览器打开链接。</p>
+<h3 id="URLs"><a href="#URLs" class="headerlink" title="URLs"></a>URLs</h3><p>Typora可允许直接将 URLs 作为链接，使用 <code>&lt;url&gt;</code>。</p>
+<p>例如：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;www.google.com&gt;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>&lt;<a href="http://www.google.com&gt;" target="_blank" rel="noopener">www.google.com&gt;</a></p>
+</blockquote>
+<h3 id="图片"><a href="#图片" class="headerlink" title="图片"></a>图片</h3><p>语法类似于链接，只不过在前面多了一个<code>！</code>，也可直接将图片拖拽进 <strong>Typora</strong>。右键图片可进行缩放比设置。</p>
+<img src="/images/avatar.gif" alt="章鱼猫" style="zoom:25%;">
+
+<h3 id="强调"><a href="#强调" class="headerlink" title="强调"></a>强调</h3><p>使用 <code>*</code> 和 <code>_</code> 作为强调指示符（斜体）。文本包含在单一的*或_将被HTML标签<em>包含。</em></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">*单一的星号*</span><br><span class="line">_单一的下划线_</span><br></pre></td></tr></table></figure>
+<h3 id="加强"><a href="#加强" class="headerlink" title="加强"></a>加强</h3><p>两个 <code>*</code> 或 <code>_</code> 包围文本，等价于HTML标签<strong>包围。</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">** 双星号 **</span><br><span class="line">__ 双下划线 __</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><strong>双星号</strong></p>
+<p><strong>双下划线</strong></p>
+</blockquote>
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><p>内联代码，使用反单引号包含单行代码。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">use the `print()` function.</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>use the <code>printf()</code> function.</p>
+</blockquote>
+<h3 id="删除线"><a href="#删除线" class="headerlink" title="删除线"></a>删除线</h3><p>双波浪号 <code>~</code> 包含文本。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">~错误的文本~</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><del>错误的文本</del></p>
+</blockquote>
+<h3 id="下划线"><a href="#下划线" class="headerlink" title="下划线"></a>下划线</h3><p>使用原生的HTML产生，<code>&lt;u&gt;添加下划线的文本&lt;/u&gt;</code>。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;u&gt;下划线&lt;/u&gt;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><u>下划线</u></p>
+</blockquote>
+<h3 id="表情"><a href="#表情" class="headerlink" title="表情"></a>表情</h3><ul>
+<li>输入表情语法 <code>:smile:</code>。</li>
+<li>智能提示表情，<code>ESC</code>键退出。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">:smile::black_flag:</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>:smile::black_flag:</p>
+</blockquote>
+<h3 id="内联数学"><a href="#内联数学" class="headerlink" title="内联数学"></a>内联数学</h3><p>通过<code>首选项</code>-&gt;<code>Markdown</code>，开启功能。使用 <code>$</code> 包含 Tex 命令。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$\lim_&#123;x \to \infty&#125; \exp(-x) = 0$</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>$\lim_{x \to \infty} \exp(-x) = 0$</p>
+</blockquote>
+<h3 id="下标"><a href="#下标" class="headerlink" title="下标"></a>下标</h3><p>同样需要开启扩展语法。然后使用 <code>~</code> 包含下标文本。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">H~2~O</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>H<del>2</del>O</p>
+</blockquote>
+<h3 id="上标"><a href="#上标" class="headerlink" title="上标"></a>上标</h3><p>开启扩展语法，使用 <code>^</code>。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">X^2^</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>X^2^</p>
+</blockquote>
+<h3 id="高亮"><a href="#高亮" class="headerlink" title="高亮"></a>高亮</h3><p>开启扩展语法，使用==。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">==highlight==</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>==highlight==</p>
+</blockquote>
+<h3 id="HTML"><a href="#HTML" class="headerlink" title="HTML"></a>HTML</h3><p>可以使用HTML，不过原生Markdown不支持。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;span style=&quot;color:red&quot;&gt;this text is red&lt;/span&gt;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><span style="color:red">this text is red</span></p>
+</blockquote>
+<h3 id="强调内容"><a href="#强调内容" class="headerlink" title="强调内容"></a>强调内容</h3><p><strong>iframe</strong> 标签。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;iframe&gt;&lt;/iframe&gt;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<iframe></iframe>
+</blockquote>
+<h3 id="视频"><a href="#视频" class="headerlink" title="视频"></a>视频</h3><p><strong>video</strong> 标签引入视频。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;video src=&quot;moon.mp4&quot; /&gt;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<video src="moon.mp4">
+</video></blockquote>
+<h3 id="其他HTML支持"><a href="#其他HTML支持" class="headerlink" title="其他HTML支持"></a>其他HTML支持</h3><p>可参考相关文档，获取更多特性。</p>
+]]></content>
       <categories>
-          
-          <category> markdown </category>
-          
+        <category>markdown</category>
       </categories>
-      
-      
-        <tags>
-            
-            <tag> Typora </tag>
-            
-            <tag> markdown </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>使用 Hexo 和 GitHub 搭建个人博客</title>
-      <link href="/2019/10/19/hexo-blog/"/>
-      <url>/2019/10/19/hexo-blog/</url>
-      
-        <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><blockquote><p>写个人博客的念头由来已久，曾尝试过申请域名，租服务器，搭建了 wordpress 博客，却又因为诸多原因一直搁置了下来。最近无意间浏览到一篇基于 <strong>Hexo</strong> 与 <strong>GitHub</strong> 的个人博客搭建教程，相当容易上手，那趁着周末就此开始吧！</p></blockquote><h2 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h2><ul><li>node.js（推荐 10.0 版本及以上）</li><li>git</li><li>hexo</li></ul><a id="more"></a><hr><h2 id="Node-js"><a href="#Node-js" class="headerlink" title="Node.js"></a>Node.js</h2><h3 id="什么是Node-js"><a href="#什么是Node-js" class="headerlink" title="什么是Node.js"></a>什么是Node.js</h3><p><strong>Node.js</strong>  是一个基于 Chrome V8 引擎的 JavaScript 运行时环境，运行在服务端，具有开源、跨平台的特性。</p><p>Node.js 大部分基本模块使用 JavaScript 编写，使用事件驱动、非阻塞和异步输入输出模型等技术提高性能。</p><h3 id="Node-js安装"><a href="#Node-js安装" class="headerlink" title="Node.js安装"></a>Node.js安装</h3><p>登录官网下载：<a href="https://nodejs.org/zh-cn/download/" target="_blank" rel="noopener">https://nodejs.org/zh-cn/download/</a></p><p><img src="/images/hexo-blog/nodejs-install.png" alt="Node.js的安装"></p><p>下载 windows 安装包，安装一路 next 即可。</p><p>查看是否安装成功，运行 <code>node -v</code>，出现版本号。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">C:\Users\dell&gt;node -v</span><br><span class="line">v10.16.0</span><br></pre></td></tr></table></figure><h3 id="更改-npm-源"><a href="#更改-npm-源" class="headerlink" title="更改 npm 源"></a>更改 npm 源</h3><p>查看 npm 源</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm config get registry</span><br></pre></td></tr></table></figure><p>更换为国内镜像</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm config set registry https://registry.npm.taobao.org</span><br></pre></td></tr></table></figure><hr><h2 id="git"><a href="#git" class="headerlink" title="git"></a>git</h2><h3 id="什么是-git"><a href="#什么是-git" class="headerlink" title="什么是 git"></a>什么是 git</h3><p>git 是优秀的分布式版本控制系统。</p><h3 id="git的安装"><a href="#git的安装" class="headerlink" title="git的安装"></a>git的安装</h3><ul><li>windows 安装，直接访问 <a href="https://git-scm.com/download/win" target="_blank" rel="noopener">git官网下载</a>。根据电脑位数，选择 32/64bit 对应安装即可。</li></ul><img src="/images/hexo-blog/git-install.png" alt="git仓库" style="zoom: 80%;"><ul><li>打开 Git Bash 设置 git 用户名和邮箱</li></ul><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git config --global user.name &quot;newiflin&quot;</span><br><span class="line">$ git config --global user.email &quot;newiflin@gmail.com&quot;</span><br></pre></td></tr></table></figure><h3 id="GitHub"><a href="#GitHub" class="headerlink" title="GitHub"></a>GitHub</h3><p>GitHub 是目前主流的开源代码托管平台，同时也是程序员的社交和学习平台。</p><ul><li><p>注册 GitHub 账号</p></li><li><p>创建一个私有仓库（私有仓库已免费，微软于去年收购 GitHub）</p><p><img src="/images/hexo-blog/repository.png" alt="GitHub仓库"></p><p>注：私有仓库似乎无法访问，浏览器直接跳到 GitHub 的404页面，改成公开仓库却没问题。</p><p><img src="http://ww1.sinaimg.cn/large/006s8uOZly1ge9qw3hixwj30zt0iqnf2.jpg" alt="clipboard_LI.jpg"></p></li></ul><hr><h2 id="Hexo"><a href="#Hexo" class="headerlink" title="Hexo"></a>Hexo</h2><h3 id="什么是-Hexo"><a href="#什么是-Hexo" class="headerlink" title="什么是 Hexo"></a>什么是 Hexo</h3><p><strong>Hexo</strong> 是一个快速、简单和功能强大的博客框架，支持 markdown 等标记语言，可以立即生成带有优美主题的静态文件。</p><p>Hexo 官方文档：<a href="https://hexo.io/docs/" target="_blank" rel="noopener">https://hexo.io/docs/</a></p><h3 id="安装-Hexo"><a href="#安装-Hexo" class="headerlink" title="安装 Hexo"></a>安装 Hexo</h3><ul><li><p>安装 Hexo 之前，确保已经安装 <strong>Node.js</strong> 和 <strong>Git</strong></p></li><li><p>在 H 盘新建文件夹 blog</p></li><li><p>cmd 运行命令<code>npm install -g hexo-cli</code></p><p>报了两个错误，不过并不影响后续。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">H:\blog&gt;npm install -g hexo-cli</span><br><span class="line">C:\Users\dell\AppData\Roaming\npm\hexo -&gt; C:\Users\dell\AppData\Roaming\npm\node_modules\hexo-cli\bin\hexo</span><br><span class="line">npm WARN optional SKIPPING OPTIONAL DEPENDENCY: fsevents@2.1.1 (node_modules\hexo-cli\node_modules\fsevents):</span><br><span class="line">npm WARN notsup SKIPPING OPTIONAL DEPENDENCY: Unsupported platform for fsevents@2.1.1: wanted &#123;&quot;os&quot;:&quot;darwin&quot;,&quot;arch&quot;:&quot;any&quot;&#125; (current: &#123;&quot;os&quot;:&quot;win32&quot;,&quot;arch&quot;:&quot;x64&quot;&#125;)</span><br></pre></td></tr></table></figure></li><li><p>运行<code>hexo init newiflin.github.io</code>，创建博客目录</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">H:\blog&gt;git init newiflin.github.io</span><br><span class="line">H:\blog&gt;cd newiflin.github.io</span><br><span class="line">H:\blog\newiflin.github.io&gt;npm install</span><br></pre></td></tr></table></figure></li><li><p>启动 hexo 服务</p></li></ul><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">H:\blog\hexo&gt;hexo s</span><br><span class="line">INFO  Start processing</span><br><span class="line">INFO  Hexo is running at http://localhost:4000 . Press Ctrl+C to stop.</span><br></pre></td></tr></table></figure><ul><li>启动 Chrome，访问 <a href="http://localhost:4000，预览页面" target="_blank" rel="noopener">http://localhost:4000，预览页面</a></li></ul><p><img src="/images/hexo-blog/hexo-page.png" alt="hexo首页"></p><ul><li>发表文章，命令<code>hexo new [文章名]</code></li></ul><p>会在 source/_posts 目录下生成对应的 md 文件，可预览页面。</p><p><img src="/images/hexo-blog/new-passage.png" alt="预览文章"></p><ul><li><p>修改hexo目录下的 <strong>_config.yml</strong> 文件</p><ol><li><p>修改 deploy 部分</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repo: https://github.com/newiflin/hexo.github.io</span><br><span class="line">  branch: gh-pages</span><br></pre></td></tr></table></figure></li><li><p>修改 url 和 root</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">url: https://github.com/newiflin/hexo</span><br><span class="line">root: /hexo/</span><br></pre></td></tr></table></figure></li><li><p>模板默认为 lanscape，可修改配置文件，更换主题</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">theme: landscape</span><br></pre></td></tr></table></figure></li></ol></li></ul><h3 id="静态文件生成"><a href="#静态文件生成" class="headerlink" title="静态文件生成"></a>静态文件生成</h3><p>修改博客或配置文件后，执行以下命令，生成静态网页。</p><figure class="highlight plain"><figcaption><span>hexo generate</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo clean</span><br><span class="line">hexo g</span><br></pre></td></tr></table></figure><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">H:\blog\hexo&gt;npx hexo generate</span><br><span class="line">INFO  Start processing</span><br><span class="line">INFO  Files loaded in 1.02 min</span><br><span class="line">INFO  Generated: index.html</span><br><span class="line">INFO  Generated: fancybox/fancybox_loading.gif</span><br><span class="line">INFO  Generated: archives/2019/10/index.html</span><br><span class="line">INFO  Generated: fancybox/blank.gif</span><br><span class="line">INFO  Generated: archives/index.html</span><br><span class="line">INFO  Generated: fancybox/jquery.fancybox.css</span><br><span class="line">INFO  Generated: fancybox/fancybox_sprite.png</span><br><span class="line">INFO  Generated: fancybox/fancybox_overlay.png</span><br><span class="line">INFO  Generated: fancybox/fancybox_sprite@2x.png</span><br><span class="line">INFO  Generated: fancybox/fancybox_loading@2x.gif</span><br><span class="line">INFO  Generated: fancybox/helpers/jquery.fancybox-buttons.css</span><br><span class="line">INFO  Generated: js/script.js</span><br><span class="line">INFO  Generated: fancybox/helpers/jquery.fancybox-thumbs.css</span><br><span class="line">INFO  Generated: fancybox/helpers/jquery.fancybox-media.js</span><br><span class="line">INFO  Generated: fancybox/helpers/jquery.fancybox-buttons.js</span><br><span class="line">INFO  Generated: css/fonts/FontAwesome.otf</span><br><span class="line">INFO  Generated: archives/2019/index.html</span><br><span class="line">INFO  Generated: fancybox/helpers/fancybox_buttons.png</span><br><span class="line">INFO  Generated: css/fonts/fontawesome-webfont.woff</span><br><span class="line">INFO  Generated: css/style.css</span><br><span class="line">INFO  Generated: css/fonts/fontawesome-webfont.svg</span><br><span class="line">INFO  Generated: fancybox/jquery.fancybox.pack.js</span><br><span class="line">INFO  Generated: css/fonts/fontawesome-webfont.eot</span><br><span class="line">INFO  Generated: fancybox/helpers/jquery.fancybox-thumbs.js</span><br><span class="line">INFO  Generated: css/fonts/fontawesome-webfont.ttf</span><br><span class="line">INFO  Generated: css/images/banner.jpg</span><br><span class="line">INFO  Generated: 2019/10/19/hello-world/index.html</span><br><span class="line">INFO  Generated: fancybox/jquery.fancybox.js</span><br><span class="line">INFO  28 files generated in 4.18 s</span><br></pre></td></tr></table></figure><h3 id="部署到服务器"><a href="#部署到服务器" class="headerlink" title="部署到服务器"></a>部署到服务器</h3><ul><li>确保已安装 git 部署器，未安装执行以下命令：</li></ul><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-deployer-git –save</span><br></pre></td></tr></table></figure><ul><li>部署到远程服务器</li></ul><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo d</span><br></pre></td></tr></table></figure><p>GitHub 对应仓库的分支下，可查到提交的代码。</p><p><img src="/images/hexo-blog/code-commit.png" alt="提交的代码"></p><p>访问 GitHub Page，即可浏览个人的博客页，参考：<a href https: newiflin.github.io"">newiflin.github.io</a></p><p>至此，基于 hexo + GitHub 的博客就基本搭建完毕。</p><hr>]]></content>
-      
-      
+      <tags>
+        <tag>Typora</tag>
+        <tag>markdown</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>使用 Hexo 和 GitHub 搭建个人博客</title>
+    <url>/2019/10/19/hexo-blog/</url>
+    <content><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><blockquote>
+<p>写个人博客的念头由来已久，曾尝试过申请域名，租服务器，搭建了 wordpress 博客，却又因为诸多原因一直搁置了下来。最近无意间浏览到一篇基于 <strong>Hexo</strong> 与 <strong>GitHub</strong> 的个人博客搭建教程，相当容易上手，那趁着周末就此开始吧！</p>
+</blockquote><h2 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h2><ul>
+<li>node.js（推荐 10.0 版本及以上）</li>
+<li>git</li>
+<li>hexo</li>
+</ul><a id="more"></a>
+
+<hr>
+<h2 id="Node-js"><a href="#Node-js" class="headerlink" title="Node.js"></a>Node.js</h2><h3 id="什么是Node-js"><a href="#什么是Node-js" class="headerlink" title="什么是Node.js"></a>什么是Node.js</h3><p><strong>Node.js</strong>  是一个基于 Chrome V8 引擎的 JavaScript 运行时环境，运行在服务端，具有开源、跨平台的特性。</p>
+<p>Node.js 大部分基本模块使用 JavaScript 编写，使用事件驱动、非阻塞和异步输入输出模型等技术提高性能。</p>
+<h3 id="Node-js安装"><a href="#Node-js安装" class="headerlink" title="Node.js安装"></a>Node.js安装</h3><p>登录官网下载：<a href="https://nodejs.org/zh-cn/download/" target="_blank" rel="noopener">https://nodejs.org/zh-cn/download/</a></p>
+<p><img src="/images/hexo-blog/nodejs-install.png" alt="Node.js的安装"></p>
+<p>下载 windows 安装包，安装一路 next 即可。</p>
+<p>查看是否安装成功，运行 <code>node -v</code>，出现版本号。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">C:\Users\dell&gt;node -v</span><br><span class="line">v10.16.0</span><br></pre></td></tr></table></figure>
+
+<h3 id="更改-npm-源"><a href="#更改-npm-源" class="headerlink" title="更改 npm 源"></a>更改 npm 源</h3><p>查看 npm 源</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">npm config get registry</span><br></pre></td></tr></table></figure>
+
+<p>更换为国内镜像</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">npm config set registry https://registry.npm.taobao.org</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="git"><a href="#git" class="headerlink" title="git"></a>git</h2><h3 id="什么是-git"><a href="#什么是-git" class="headerlink" title="什么是 git"></a>什么是 git</h3><p>git 是优秀的分布式版本控制系统。</p>
+<h3 id="git的安装"><a href="#git的安装" class="headerlink" title="git的安装"></a>git的安装</h3><ul>
+<li>windows 安装，直接访问 <a href="https://git-scm.com/download/win" target="_blank" rel="noopener">git官网下载</a>。根据电脑位数，选择 32/64bit 对应安装即可。</li>
+</ul>
+<img src="/images/hexo-blog/git-install.png" alt="git仓库" style="zoom: 80%;">
+
+<ul>
+<li>打开 Git Bash 设置 git 用户名和邮箱</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ git config --global user.name &quot;newiflin&quot;</span><br><span class="line">$ git config --global user.email &quot;newiflin@gmail.com&quot;</span><br></pre></td></tr></table></figure>
+
+<h3 id="GitHub"><a href="#GitHub" class="headerlink" title="GitHub"></a>GitHub</h3><p>GitHub 是目前主流的开源代码托管平台，同时也是程序员的社交和学习平台。</p>
+<ul>
+<li><p>注册 GitHub 账号</p>
+</li>
+<li><p>创建一个私有仓库（私有仓库已免费，微软于去年收购 GitHub）</p>
+<p><img src="/images/hexo-blog/repository.png" alt="GitHub仓库"></p>
+<p>注：私有仓库似乎无法访问，浏览器直接跳到 GitHub 的404页面，改成公开仓库却没问题。</p>
+<p><img src="http://ww1.sinaimg.cn/large/006s8uOZly1ge9qw3hixwj30zt0iqnf2.jpg" alt="clipboard_LI.jpg"></p>
+</li>
+</ul>
+<hr>
+<h2 id="Hexo"><a href="#Hexo" class="headerlink" title="Hexo"></a>Hexo</h2><h3 id="什么是-Hexo"><a href="#什么是-Hexo" class="headerlink" title="什么是 Hexo"></a>什么是 Hexo</h3><p><strong>Hexo</strong> 是一个快速、简单和功能强大的博客框架，支持 markdown 等标记语言，可以立即生成带有优美主题的静态文件。</p>
+<p>Hexo 官方文档：<a href="https://hexo.io/docs/" target="_blank" rel="noopener">https://hexo.io/docs/</a></p>
+<h3 id="安装-Hexo"><a href="#安装-Hexo" class="headerlink" title="安装 Hexo"></a>安装 Hexo</h3><ul>
+<li><p>安装 Hexo 之前，确保已经安装 <strong>Node.js</strong> 和 <strong>Git</strong></p>
+</li>
+<li><p>在 H 盘新建文件夹 blog</p>
+</li>
+<li><p>cmd 运行命令<code>npm install -g hexo-cli</code></p>
+<p>报了两个错误，不过并不影响后续。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">H:\blog&gt;npm install -g hexo-cli</span><br><span class="line">C:\Users\dell\AppData\Roaming\npm\hexo -&gt; C:\Users\dell\AppData\Roaming\npm\node_modules\hexo-cli\bin\hexo</span><br><span class="line">npm WARN optional SKIPPING OPTIONAL DEPENDENCY: fsevents@2.1.1 (node_modules\hexo-cli\node_modules\fsevents):</span><br><span class="line">npm WARN notsup SKIPPING OPTIONAL DEPENDENCY: Unsupported platform for fsevents@2.1.1: wanted &#123;&quot;os&quot;:&quot;darwin&quot;,&quot;arch&quot;:&quot;any&quot;&#125; (current: &#123;&quot;os&quot;:&quot;win32&quot;,&quot;arch&quot;:&quot;x64&quot;&#125;)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>运行<code>hexo init newiflin.github.io</code>，创建博客目录</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">H:\blog&gt;git init newiflin.github.io</span><br><span class="line">H:\blog&gt;cd newiflin.github.io</span><br><span class="line">H:\blog\newiflin.github.io&gt;npm install</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>启动 hexo 服务</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">H:\blog\hexo&gt;hexo s</span><br><span class="line">INFO  Start processing</span><br><span class="line">INFO  Hexo is running at http://localhost:4000 . Press Ctrl+C to stop.</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>启动 Chrome，访问 <a href="http://localhost:4000，预览页面" target="_blank" rel="noopener">http://localhost:4000，预览页面</a></li>
+</ul>
+<p><img src="/images/hexo-blog/hexo-page.png" alt="hexo首页"></p>
+<ul>
+<li>发表文章，命令<code>hexo new [文章名]</code></li>
+</ul>
+<p>会在 source/_posts 目录下生成对应的 md 文件，可预览页面。</p>
+<p><img src="/images/hexo-blog/new-passage.png" alt="预览文章"></p>
+<ul>
+<li><p>修改hexo目录下的 <strong>_config.yml</strong> 文件</p>
+<ol>
+<li><p>修改 deploy 部分</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repo: https://github.com/newiflin/hexo.github.io</span><br><span class="line">  branch: gh-pages</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>修改 url 和 root</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">url: https://github.com/newiflin/hexo</span><br><span class="line">root: /hexo/</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>模板默认为 lanscape，可修改配置文件，更换主题</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">theme: landscape</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+</li>
+</ul>
+<h3 id="静态文件生成"><a href="#静态文件生成" class="headerlink" title="静态文件生成"></a>静态文件生成</h3><p>修改博客或配置文件后，执行以下命令，生成静态网页。</p>
+<figure class="highlight plain"><figcaption><span>hexo generate</span></figcaption><table><tr><td class="code"><pre><span class="line">hexo clean</span><br><span class="line">hexo g</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">H:\blog\hexo&gt;npx hexo generate</span><br><span class="line">INFO  Start processing</span><br><span class="line">INFO  Files loaded in 1.02 min</span><br><span class="line">INFO  Generated: index.html</span><br><span class="line">INFO  Generated: fancybox/fancybox_loading.gif</span><br><span class="line">INFO  Generated: archives/2019/10/index.html</span><br><span class="line">INFO  Generated: fancybox/blank.gif</span><br><span class="line">INFO  Generated: archives/index.html</span><br><span class="line">INFO  Generated: fancybox/jquery.fancybox.css</span><br><span class="line">INFO  Generated: fancybox/fancybox_sprite.png</span><br><span class="line">INFO  Generated: fancybox/fancybox_overlay.png</span><br><span class="line">INFO  Generated: fancybox/fancybox_sprite@2x.png</span><br><span class="line">INFO  Generated: fancybox/fancybox_loading@2x.gif</span><br><span class="line">INFO  Generated: fancybox/helpers/jquery.fancybox-buttons.css</span><br><span class="line">INFO  Generated: js/script.js</span><br><span class="line">INFO  Generated: fancybox/helpers/jquery.fancybox-thumbs.css</span><br><span class="line">INFO  Generated: fancybox/helpers/jquery.fancybox-media.js</span><br><span class="line">INFO  Generated: fancybox/helpers/jquery.fancybox-buttons.js</span><br><span class="line">INFO  Generated: css/fonts/FontAwesome.otf</span><br><span class="line">INFO  Generated: archives/2019/index.html</span><br><span class="line">INFO  Generated: fancybox/helpers/fancybox_buttons.png</span><br><span class="line">INFO  Generated: css/fonts/fontawesome-webfont.woff</span><br><span class="line">INFO  Generated: css/style.css</span><br><span class="line">INFO  Generated: css/fonts/fontawesome-webfont.svg</span><br><span class="line">INFO  Generated: fancybox/jquery.fancybox.pack.js</span><br><span class="line">INFO  Generated: css/fonts/fontawesome-webfont.eot</span><br><span class="line">INFO  Generated: fancybox/helpers/jquery.fancybox-thumbs.js</span><br><span class="line">INFO  Generated: css/fonts/fontawesome-webfont.ttf</span><br><span class="line">INFO  Generated: css/images/banner.jpg</span><br><span class="line">INFO  Generated: 2019/10/19/hello-world/index.html</span><br><span class="line">INFO  Generated: fancybox/jquery.fancybox.js</span><br><span class="line">INFO  28 files generated in 4.18 s</span><br></pre></td></tr></table></figure>
+
+<h3 id="部署到服务器"><a href="#部署到服务器" class="headerlink" title="部署到服务器"></a>部署到服务器</h3><ul>
+<li>确保已安装 git 部署器，未安装执行以下命令：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">npm install hexo-deployer-git –save</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>部署到远程服务器</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">hexo d</span><br></pre></td></tr></table></figure>
+
+<p>GitHub 对应仓库的分支下，可查到提交的代码。</p>
+<p><img src="/images/hexo-blog/code-commit.png" alt="提交的代码"></p>
+<p>访问 GitHub Page，即可浏览个人的博客页，参考：<a href https: newiflin.github.io"">newiflin.github.io</a></p>
+<p>至此，基于 hexo + GitHub 的博客就基本搭建完毕。</p>
+<hr>
+]]></content>
       <categories>
-          
-          <category> 博客 </category>
-          
+        <category>博客</category>
       </categories>
-      
-      
-        <tags>
-            
-            <tag> hexo </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-  
-  
+      <tags>
+        <tag>hexo</tag>
+      </tags>
+  </entry>
 </search>
